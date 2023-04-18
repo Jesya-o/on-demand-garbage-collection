@@ -6,16 +6,14 @@ const usernameInput = document.querySelector('#username');
 	const pattern = /^[A-Za-z][A-Za-z0-9_.]{4,14}$/;
 	const alphabetPattern = /^[A-Za-z]*$/;
 
-	if (!alphabetPattern.test(username)) {
-		usernameInput.setCustomValidity('Username can only contain letters from English alphabet');
-	} else if (username.length === 0) {
+	if (username.length === 0) {
 		usernameInput.setCustomValidity('Username is required');
 	} else if (username.length < 5) {
 		usernameInput.setCustomValidity('Username must be at least 5 characters');
 	} else if (username.length > 15) {
 		usernameInput.setCustomValidity('Username cannot be more than 15 characters');
 	} else if (!pattern.test(username)) {
-		usernameInput.setCustomValidity('Username can only contain letters, numbers, dots, and underscores, and must start with a letter');
+		usernameInput.setCustomValidity('Username can only contain letters from English alphabet, numbers, dots, and underscores, and must start with a letter');
 	} else {
 		usernameInput.setCustomValidity('');
 	}

@@ -169,6 +169,12 @@ $selectedDate = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : date(
     <script src="js/current-date.js"></script>
     <script src="js/booking-totalprice.js"></script>
     <script src="js/booking-validation.js"></script>
+    <script>
+        <?php if (isset($_SESSION['error_message'])): ?>
+        alert("<?php echo $_SESSION['error_message']; ?>");
+        <?php unset($_SESSION['error_message']); ?>
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>

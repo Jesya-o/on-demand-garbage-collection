@@ -1,7 +1,13 @@
 <?php require_once('session.php'); ?>
 <?php require_once('book-validation.php'); ?>
 <?php
-
+// Check if booking has been made
+if (!isset($_SESSION['booking_made']) || $_SESSION['booking_made'] !== true) {
+    // Booking has not been made - display error message and redirect to booking.php
+    $_SESSION['error_message'] = "There are no orders that need confirmation! Please make a booking first.";
+    header("Location: booking.php");
+    exit();
+  }
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
 $phone = isset($_SESSION['phone']) ? $_SESSION['phone'] : '';

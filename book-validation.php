@@ -142,6 +142,8 @@ if (
 	}
 	// If validation don't fail
 	if (empty($error_messages)) {
+		// Set session variable to indicate that a booking has been made
+		$_SESSION['booking_made'] = true;
 		// Move the $data array initialization up here
 		$data = array();
 		$data[0] = $name;
