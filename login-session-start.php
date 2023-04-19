@@ -18,6 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Set the session variable
                     $_SESSION['loggedIn'] = true;
 
+                    // Generate token
+                    
+
                     // Redirect to booking.php if the username and password are valid
                     header("Location: booking.php");
                     exit;

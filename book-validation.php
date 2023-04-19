@@ -196,6 +196,7 @@ if (
 			$data[12] = ' ';
 		}
 	
+		
 		// Initializing file
 		$fileName = dirname(__FILE__) . "/booking-data.csv";
 		if (!file_exists($fileName)) {
