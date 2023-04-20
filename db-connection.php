@@ -1,6 +1,9 @@
 <?php
 function connectDatabase() {
-    require_once('db-connection-data.php');
+    $DB_HOST = 'localhost';
+    $DB_USER = 'username';
+    $DB_PASS = 'password';
+    $DB_NAME = 'db_name';
 
     $link = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 

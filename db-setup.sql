@@ -1,8 +1,9 @@
--- username: xeniokun
--- password: Try1ngFaster_
-
-DROP TABLE IF EXISTS Client;
-CREATE TABLE Client
+DROP TABLE IF EXISTS Bulk_items;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Drivers;
+DROP TABLE IF EXISTS Sessions;
+DROP TABLE IF EXISTS Clients;
+CREATE TABLE Clients
 (
   client_id int(11) NOT NULL AUTO_INCREMENT,
   username varchar(255) NOT NULL,
@@ -11,10 +12,10 @@ CREATE TABLE Client
   surname varchar(255),
   email varchar(255),
   phone_number varchar(255),
-  PRIMARY KEY (client_id)
+  PRIMARY KEY (client_id),
+  UNIQUE KEY username_unique (username)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS Drivers;
 CREATE TABLE Drivers
 (
   driver_id int(11) NOT NULL AUTO_INCREMENT,
@@ -34,7 +35,6 @@ VALUES ("Diego", "Brown", "diego@gmail.com", "+37289382939");
 INSERT INTO Drivers (name, surname, email, phone_number)
 VALUES ("Mary", "Wolf", "mary@gmail.com", "+37289382939");
 
-DROP TABLE IF EXISTS Orders;
 CREATE TABLE Orders
 (
   order_id int(11) NOT NULL AUTO_INCREMENT,
@@ -53,11 +53,22 @@ CREATE TABLE Orders
   FOREIGN KEY (client_id) REFERENCES Client(client_id)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS Bulk_items;
 CREATE TABLE Bulk_items
 (
   number_of_items int(11) NOT NULL,
   total_weight int(11) NOT NULL,
   order_id int(11) NOT NULL,
   FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE Sessions
+(
+  session_id int(11) NOT NULL AUTO_INCREMENT,
+  token varchar(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  client_id int(11) NOT NULL,
+  ip varchar(255) NOT NULL,
+  UNIQUE KEY token_unique (token),
+  PRIMARY KEY (session_id),
+  FOREIGN KEY (client_id) REFERENCES Clients(client_id)
 ) ENGINE=InnoDB;
