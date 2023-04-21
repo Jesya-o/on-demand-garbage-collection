@@ -35,8 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['loggedIn'] = true;
 
                 // Generate token
-                // ...
-
+                require_once('token-management.php');
+                if ($client_key = authenticateUser($username, $password)) {
+                  $_SESSION['client_key'] = $client_key;
+                }
+                
                 // Redirect to booking.php if the username and password are valid
                 header("Location: booking.php");
                 exit;
@@ -52,4 +55,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errorMessage = "Invalid username or password format.";
     }
 }
-?>
