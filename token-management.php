@@ -1,5 +1,6 @@
 <?php
-function deleteTokenByClientId($clientId) {
+function deleteTokenByClientId($clientId)
+{
     $link = connectDatabase();
     $query = "DELETE FROM Sessions WHERE client_id = ?";
     $statement = $link->prepare($query);
@@ -10,7 +11,8 @@ function deleteTokenByClientId($clientId) {
     }
 }
 
-function getTokenByClientId($clientId) {
+function getTokenByClientId($clientId)
+{
     $link = connectDatabase();
     $query = "SELECT token FROM Sessions WHERE client_id = ?";
     $statement = $link->prepare($query);
@@ -21,7 +23,8 @@ function getTokenByClientId($clientId) {
     return $result;
 }
 
-function authenticateUser($username, $password) {
+function authenticateUser($username, $password)
+{
     $link = connectDatabase();
     $query = "SELECT client_id, password FROM Clients WHERE username = ?";
     $statement = $link->prepare($query);
@@ -30,17 +33,17 @@ function authenticateUser($username, $password) {
     $data = $statement->get_result()->fetch_assoc();
     $statement->close();
 
-    if(password_verify($password, $data['password'])) {
+    if (password_verify($password, $data['password'])) {
 
         $clientId = $data['client_id'];
-        //deleteTokenByClientId($clientId);
+        deleteTokenByClientId($clientId);
 
         $query = "INSERT INTO Sessions (token, client_id, ip) VALUES (?, ?, ?)";
         $statement = $link->prepare($query);
         $statement->bind_param(
             'sis',
             uniqid($clientId, true),
-            $clientId, 
+            $clientId,
             $_SERVER['REMOTE_ADDR']
         );
         $statement->execute();
@@ -51,4 +54,27 @@ function authenticateUser($username, $password) {
 
     return false;
 }
-?>
+
+function validateClientKey($clientKey)
+{
+    // decode clientKey
+    list($clientId, $token) = explode(':', base64_decode($clientKey));
+    // select by client_id, token, ip
+    $link = connectDatabase();
+    $query = "SELECT client_id, token, ip FROM Clients WHERE client_id = ? AND token = ? AND ip = ?";
+    $statement = $link->prepare($query);
+    $statement->bind_param(
+        'iss',
+        $clientId,
+        $token,
+        $_SERVER['REMOTE_ADDR']
+    );
+
+    $statement->execute();
+    $result = false;
+    if ($statement->get_result()->num_rows > 0) {
+        $result = true;
+    } 
+    $statement->close();
+    return $result;
+}
