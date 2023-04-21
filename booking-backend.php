@@ -23,9 +23,10 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
     }
 
     // Insert data into orders table
-    $insertOrderQuery = "INSERT INTO orders (client_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $insertOrderQuery = "INSERT INTO orders (client_id, driver_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $orderStmt = $link->prepare($insertOrderQuery);
-    $orderStmt->bind_param("ississsds", $client_id, $street, $house, $index, $date, $time, $service, $price, $comment);
+    $driver_id = 1; // You can assign a driver ID here
+    $orderStmt->bind_param("iiississsd", $client_id, $driver_id, $street, $house, $index, $date, $time, $service, $price, $comment);
     $orderInserted = $orderStmt->execute();
 
     if ($orderInserted) {
@@ -35,35 +36,53 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
         // Insert data into bulk_items table if service is 'Bulk Waste Removal'
         if ($service === 'Bulk Waste Removal') {
             $selectedItemsArray = explode('|', $selectedItems);
+            $totalWeightLow = 0;
+            $totalWeightHigh = 0;
+            $numberOfItems = count($selectedItemsArray);
+            
             foreach ($selectedItemsArray as $item) {
-                $item_weight = '';
+                $itemWeightLow = 0;
+                $itemWeightHigh = 0;
+                
                 switch ($item) {
                     case 'option1':
-                        $item_weight = '0-10 kg';
+                        $itemWeightLow = 0;
+                        $itemWeightHigh = 10;
                         break;
                     case 'option2':
-                        $item_weight = '11-50 kg';
+                        $itemWeightLow = 11;
+                        $itemWeightHigh = 50;
                         break;
                     case 'option3':
-                        $item_weight = '51-100 kg';
+                        $itemWeightLow = 51;
+                        $itemWeightHigh = 100;
                         break;
                     case 'option4':
-                        $item_weight = '101-200 kg';
+                        $itemWeightLow = 101;
+                        $itemWeightHigh = 200;
                         break;
                     case 'option5':
-                        $item_weight = '201-500 kg';
+                        $itemWeightLow = 201;
+                        $itemWeightHigh = 500;
                         break;
                 }
-                $insertBulkItemQuery = "INSERT INTO bulk_items (order_id, item_weight) VALUES (?, ?)";
-                $bulkStmt = $link->prepare($insertBulkItemQuery);
-                $bulkStmt->bind_param("is", $orderId, $item_weight);
-                $itemInserted = $bulkStmt->execute();
                 
-                if (!$itemInserted) {
-                    $bulkStmt->close();
-                    return false;
-                }
+                $totalWeightLow += $itemWeightLow;
+                $totalWeightHigh += $itemWeightHigh;
             }
+
+            $totalWeight = $totalWeightLow . '-' . $totalWeightHigh . ' kg';
+
+            $insertBulkItemQuery = "INSERT INTO bulk_items (order_id, number_of_items, total_weight) VALUES (?, ?, ?)";
+            $bulkStmt = $link->prepare($insertBulkItemQuery);
+            $bulkStmt->bind_param("iis", $orderId, $numberOfItems, $totalWeight);
+            $itemInserted = $bulkStmt->execute();
+            
+            if (!$itemInserted) {
+                $bulkStmt->close();
+                return false;
+            }
+
             $bulkStmt->close();
         }
     } else {
@@ -74,4 +93,3 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
     $orderStmt->close();
     return true;
 }
-?>

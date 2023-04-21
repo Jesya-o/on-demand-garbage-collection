@@ -13,6 +13,7 @@ function sanitize($input)
 	$input = htmlspecialchars($input);
 	return $input;
 }
+
 if (
 	$_SERVER['REQUEST_METHOD'] === 'POST' &&
 	isset($_POST['submitBooking'], $_POST['name'], $_POST['surname'], $_POST['email'], $_POST['street'], $_POST['house'], $_POST['index'], $_POST['datepicker'], $_POST['time'], $_POST['service'], $_POST['price']) &&
@@ -32,7 +33,7 @@ if (
 	$date = sanitize($_POST['datepicker']);
 	$time = sanitize($_POST['time']);
 	$service = sanitize($_POST['service']);
-    
+
 	$_SESSION['name'] = $name;
 	$_SESSION['email'] = $email;
 	$_SESSION['surname'] = $surname;
