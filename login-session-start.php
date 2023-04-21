@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once('db-connection.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the entered username and password
     $username = $_POST['username'];
@@ -9,27 +11,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (preg_match('/^[A-Za-z][A-Za-z0-9_.]{4,14}$/', $username) && 
         preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_!%*?&])[A-Za-z\d@_!%*?&]{8,15}$/', $password)) {
 
-        if (($handle = fopen("user_data.csv", "r")) !== FALSE) {
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                if ($data[0] === $username && $data[1] === $password) {
-                    // Regenerate the session ID
-                    session_regenerate_id(true);
+        // Connect to the database
+        $link = connectDatabase();
 
-                    // Set the session variable
-                    $_SESSION['loggedIn'] = true;
+        // Prepare the database query
+        $query = "SELECT password FROM Clients WHERE username = ?";
+        $statement = $link->prepare($query);
+        $statement->bind_param('s', $username);
+        $statement->execute();
 
-                    // Generate token
-                    
+        // Get the result from the query
+        $result = $statement->get_result();
 
-                    // Redirect to booking.php if the username and password are valid
-                    header("Location: booking.php");
-                    exit;
-                }
+        // Check if the username and password are valid
+        if ($result->num_rows == 1) {
+            $data = $result->fetch_assoc();
+            $hash = $data['password'];
+            if (password_verify($password, $hash)) {
+                // Regenerate the session ID
+                session_regenerate_id(true);
+
+                // Set the session variable
+                $_SESSION['loggedIn'] = true;
+
+                // Generate token
+                // ...
+
+                // Redirect to booking.php if the username and password are valid
+                header("Location: booking.php");
+                exit;
             }
-            fclose($handle);
         }
 
-        // Display error message if the username and password are invalid
+        // Close the database connection and display error message if the username and password are invalid
+        $statement->close();
+        $link->close();
         $errorMessage = "Seems that either your username or password is wrong.";
     } else {
         // Display error message if the username and password are invalid
