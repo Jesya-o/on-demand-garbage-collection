@@ -1,6 +1,13 @@
 <?php require_once('session.php'); ?>
 <?php require_once('book-validation.php'); ?>
 <?php
+// Check if the user accessed order-confirmed.php from order-confirmation.php
+if(!isset($_SESSION['confirmation']) || $_SESSION['confirmation'] != true) {
+    // Redirect the user to booking.php and display an alert message
+    $_SESSION['error_message'] = "See your confirmed orders in Orders section on Dashboard. To make sure your ongoing order is confirmed, make a booking first!";
+    header("Location: booking.php");
+    exit();
+  }
 // set variables
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
@@ -28,7 +35,7 @@ unset($_SESSION['time']);
 unset($_SESSION['service']);
 unset($_SESSION['comment']);
 unset($_SESSION['price']);
-
+unset($_SESSION['confirmation']);
 ?>
 
 

@@ -123,7 +123,7 @@ $selectedDate = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : date(
                         </div>
                         <!-- Bulk waste removal items item-weight form -->
                         <div class="form-container">
-                            <p>Enter the weight of items</p>
+                            <p>Enter the weights of items</p>
                             <div class="form-line">
                                 <label for="selector1" class="item">Item 1</label>
                                 <select name="selector[]">

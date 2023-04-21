@@ -49,8 +49,8 @@ CREATE TABLE Orders
   driver_id int(11) NOT NULL,
   client_id int(11) NOT NULL,
   PRIMARY KEY (order_id),
-  FOREIGN KEY (driver_id) REFERENCES Drivers(driver_id),
-  FOREIGN KEY (client_id) REFERENCES Client(client_id)
+  FOREIGN KEY (driver_id) REFERENCES drivers(driver_id),
+  FOREIGN KEY (client_id) REFERENCES clients(client_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Bulk_items
