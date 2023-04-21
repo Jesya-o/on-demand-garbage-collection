@@ -36,7 +36,7 @@ require_once('registration-backend.php');
             <div class="error-msg" id="username-error"></div>
           </div>
           <div class="password-container">
-            <input type="password" id="password" class="password" name="password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_!%*?&])[A-Za-z\d@_!%*?&]{8,15}$">
+            <input type="password" id="password" class="password" name="password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+?.>,<|\/\\])[A-Za-z\d!@#$%^&*()-_=+?.>,<|\/\\]{8,45}$">
             <button type="button" id="show-password" class="show-password">Show</button>
             <div class="error-msg" id="password-error"></div>
           </div>
