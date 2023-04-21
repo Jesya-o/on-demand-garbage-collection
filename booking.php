@@ -1,4 +1,5 @@
 <?php require_once('session.php');
+require_once('booking-backend.php');
 
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
@@ -114,11 +115,11 @@ $selectedDate = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : date(
                         <!-- Selecting service to order -->
                         <p class="booking-form-title">Select the service you want</p>
                         <div class="service-selector">
-                            <input type="radio" id="regular" name="service_type" value="Regular Pickup" <?php echo (isset($_SESSION['service']) && $_SESSION['service'] === 'Regular Pickup') ? 'checked' : ''; ?>>
+                            <input type="radio" id="regular" name="service" value="Regular Pickup" <?php echo (isset($_SESSION['service']) && $_SESSION['service'] === 'Regular Pickup') ? 'checked' : ''; ?>>
                             <label for="regular">Regular pickup</label><br>
-                            <input type="radio" id="recycling" name="service_type" value="Recycling" <?php echo (isset($_SESSION['service']) && $_SESSION['service'] === 'Recycling') ? 'checked' : ''; ?>>
+                            <input type="radio" id="recycling" name="service" value="Recycling" <?php echo (isset($_SESSION['service']) && $_SESSION['service'] === 'Recycling') ? 'checked' : ''; ?>>
                             <label for="recycling">Recycling</label><br>
-                            <input type="radio" id="bulk" name="service_type" value="Bulk Waste Removal" <?php echo (isset($_SESSION['service']) && $_SESSION['service'] === 'Bulk Waste Removal') ? 'checked' : ''; ?>>
+                            <input type="radio" id="bulk" name="service" value="Bulk Waste Removal" <?php echo (isset($_SESSION['service']) && $_SESSION['service'] === 'Bulk Waste Removal') ? 'checked' : ''; ?>>
                             <label for="bulk">Bulk waste removal</label>
                         </div>
                         <!-- Bulk waste removal items item-weight form -->
