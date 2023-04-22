@@ -38,6 +38,8 @@ $_SESSION['confirmation'] = true;
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/order-confirmation.css">
+
+    <script src="js/dashboard-navigation.js"></script>
 </head>
 
 <body>
@@ -119,7 +121,7 @@ $_SESSION['confirmation'] = true;
         </div>
     </div>
 
-    <script src="js/dashboard-navigation.js"></script>
+    
 </body>
 
 </html>
