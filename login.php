@@ -27,21 +27,21 @@ require_once('login-session-start.php');
 		<h1>Welcome to <br> Throw It</h1>
 	</div>
       <div class="form-wrapper">
-        <form id="login" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form id="login" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
           <div class="input-lines">
             <div class="username-container">
               <input type="text" id="username" class="username" name="username" placeholder="Username" required pattern="^[A-Za-z][A-Za-z0-9_.]{4,14}$">
               <div class="error-msg" id="username-error"></div>
             </div>
             <div class="password-container">
-              <input type="password" id="password" class="password" name="password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_!%*?&])[A-Za-z\d@_!%*?&]{8,15}$">
+              <input type="password" id="password" class="password" name="password" placeholder="Password" required>
               <button type="button" id="show-password" class="show-password">Show</button>
               <div class="error-msg" id="password-error"></div>
             </div>
           </div>
 		  <?php if(isset($errorMessage)): ?>
             <script>
-			  alert('<?php echo $errorMessage; ?>');
+			  alert('<?= $errorMessage; ?>');
 			</script>
           <?php endif; ?>
           <div class="forgot-password">

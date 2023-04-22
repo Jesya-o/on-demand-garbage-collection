@@ -3,6 +3,11 @@
 /* Main text */
 .orders {
     margin-top: 20px;
+    display: flex !important;
+    flex-direction: column;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 .orders h1 {
     font-weight: 200;
@@ -25,7 +30,7 @@
     margin-top: calc(var(--bs-gutter-y) * -1);
     margin-right: calc(var(--bs-gutter-x) * -.5);
     margin-left: 30px;
-    flex-direction: row-reverse;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-around;
@@ -52,9 +57,9 @@
 }
 /* Display price in the right */
 .price {
-    right: 2%;
-    top:49%;
     position: absolute;
+    top: 80%;
+    right: -50%;
 }
 
 
@@ -162,6 +167,15 @@
     }
 }
 
+.order-record {
+    color: var(--black);
+    position: relative;
+    margin-bottom: 30px;
+    width: 360px;
+    display: flex;
+    align-items: self-start;
+}
+
 /* Cancel button */
 .cancel-btn {
     border: 1px solid;
@@ -177,11 +191,12 @@
     margin-left: 20px;
     border-radius: 10px;
 }
+
+.cancelled {
+    color: #bb0404;
+}
+
 @media screen and (max-width: 555px) {
-    .price {
-        left: 2%;
-        top: 70%;
-    }
     .slider-text {
         position: relative;
     }
@@ -191,7 +206,8 @@
     .price {
         text-align: center;
         font-weight: bold;
-        top:85%;
+        top:95%;
+        right: -50%;
     }
     .next {
         top:95%;
