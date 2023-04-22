@@ -170,7 +170,10 @@
 .order-record {
     color: var(--black);
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    width: 360px;
+    display: flex;
+    align-items: self-start;
 }
 
 /* Cancel button */
