@@ -65,11 +65,11 @@ $selectedDate = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : date(
                             <div class="line">
                                 <div class="address-group street">
                                     <label for="street">Street name</label>
-                                    <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" required pattern="[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+" value="<?php echo $street; ?>">
+                                    <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" required pattern="[\\w\\s.,'-#;^:=()~&>+=*/<!?{}\\[\\]]+" value="<?php echo $street; ?>">
                                 </div>
                                 <div class="address-group house">
                                     <label for="house">House</label>
-                                    <input type="text" id="house" name="house" class="field" placeholder=" 8" required pattern="[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]{1,5}" value="<?php echo $house; ?>">
+                                    <input type="text" id="house" name="house" class="field" placeholder=" 8" required pattern="[\\w\\s.,'-#;^:=()~&>+=*/<!?{}\\[\\]]{1,5}" value="<?php echo $house; ?>">
                                 </div>
                                 <div class="address-group index">
                                     <label for="index">Postcode</label>
@@ -176,6 +176,8 @@ $selectedDate = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : date(
         <?php unset($_SESSION['error_message']); ?>
         <?php endif; ?>
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUUbQx_beVyNpZ1KjcZma3KZHDGbC68U&libraries=places"></script>
+    <script src="js/address-suggestions.js"></script>
 </body>
 
 </html>
