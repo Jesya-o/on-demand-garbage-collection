@@ -26,6 +26,8 @@ require_once('orders-backend.php');
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/booking.css">
     <link rel="stylesheet" href="styles/orders.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
@@ -38,46 +40,46 @@ require_once('orders-backend.php');
         <div id="main" class="orders">
             <h1>See all the orders</h1>
             <?php $index = 1; ?>
-                <?php foreach (fetchOrders(getClientId()) as $order) : ?>
-                    <!-- caption text -->
-                    <div class="order-record">
-                        <div class="row">
-                            <div >
-                                <h2>
-                                    #
-                                    <?= $index ?>
-                                    <?= $order['order_type'] ?>
-                                </h2>
-                                <!-- Cancel button is available only for some time -->
-                                <p><?= $order['status'] . ' order' ?>
-                                    <?php if ($order['status'] == 'Ongoing') : ?>
-                                        <?= ' by ' . $order['date'] ?>
-                                    <?php elseif ($order['status'] == 'Completed') : ?>
-                                        <?= ' on ' . $order['date'] ?>
-                                    <?php endif; ?>
+            <?php foreach (fetchOrders(getClientId()) as $order) : ?>
+                <!-- caption text -->
+                <div class="order-record">
+                    <div class="row">
+                        <div>
+                            <h2>
+                                #
+                                <?= $index ?>
+                                <?= $order['order_type'] ?>
+                            </h2>
+                            <!-- Cancel button is available only for some time -->
+                            <p>
                                 <?php if ($order['status'] == 'Ongoing') : ?>
-                                    <button type="submit" onclick="alert('Order #3 cancelled!')" name="submitCancelling" class="cancel-btn">Cancel</button>
+                                    <?= 'Ongoing by ' . $order['date'] ?>
+                                    <button type="submit" onclick="cancelOrder(this, <?= $order['order_id'] ?>)" name="submitCancelling" class="cancel-btn">Cancel</button>
+                                <?php elseif ($order['status'] == 'Completed') : ?>
+                                    <?= 'Completed on ' . $order['date'] ?>
+                                <?php elseif ($order['status'] == 'Cancelled') : ?>
+                                    <span class="cancelled">Cancelled</span>
                                 <?php endif; ?>
-                                </p>
-                                <p>
-                                    Driver:
-                                    <?= $order['name'] . ' ' . $order['surname'] ?>
-                                </p>
-                            </div>
-                            <div class="price">
-                                <?= $order['price'] ?>
-                                EUR
-                            </div>
+                            </p>
+                            <p>
+                                Driver:
+                                <?= $order['name'] . ' ' . $order['surname'] ?>
+                            </p>
+                        </div>
+                        <div class="price">
+                            <?= $order['price'] ?>
+                            EUR
                         </div>
                     </div>
-                    <?php $index++; ?>
-                <?php endforeach; ?>
-
-
-            <script src="js/dashboard-navigation.js"></script>
+                </div>
+                <?php $index++; ?>
+            <?php endforeach; ?>
         </div>
-
     </div>
+
+    <div id="client_key" style="display: none"><?= $_SESSION['client_key'] ?? '' ?></div>
+    <script src="js/dashboard-navigation.js"></script>
+    <script src="js/cancel-order.js"></script>
 </body>
 
 </html>

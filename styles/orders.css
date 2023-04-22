@@ -188,6 +188,11 @@
     margin-left: 20px;
     border-radius: 10px;
 }
+
+.cancelled {
+    color: #bb0404;
+}
+
 @media screen and (max-width: 555px) {
     .slider-text {
         position: relative;
