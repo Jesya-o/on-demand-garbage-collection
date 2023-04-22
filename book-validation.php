@@ -1,5 +1,7 @@
 <?php
 require_once('booking-backend.php');
+require_once('token-management.php');
+
 // Function to sanitize user inputs
 function sanitize($input)
 {
@@ -13,7 +15,6 @@ function sanitize($input)
 	$input = htmlspecialchars($input);
 	return $input;
 }
-echo $_SERVER['REQUEST_METHOD'];
 if (
 	$_SERVER['REQUEST_METHOD'] === 'POST' &&
 	isset($_POST['submitBooking'], $_POST['name'], $_POST['surname'], $_POST['email'], $_POST['street'], $_POST['house'], $_POST['index'], $_POST['datepicker'], $_POST['time'], $_POST['service'], $_POST['price']) &&
@@ -81,8 +82,7 @@ if (
 		$error_messages[] = "Invalid date. Date provided is in the past.";
 	}
     $_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
-	echo "Selector array content: ";
-print_r($_SESSION['selector']);  
+
 	// Should exist
 	if (!checkdate($month, $day, $year)) {
 		$error_messages[] = "Invalid date. Not existing date.";
@@ -121,6 +121,8 @@ print_r($_SESSION['selector']);
 		if (!preg_match("/^[\w\s\.,'\-\#\@\;\$\%\^\:\=\(\)\~\&\€\>\+=\*\/\<\?!{}\[\]]+$/", $comment)) {
 			$error_messages[] = "Something strange in comments.";
 		}
+	} else {
+		$comment = '';
 	}
 
 	if (isset($_POST['selector']) && !empty($_POST['phone'])) {
@@ -130,6 +132,8 @@ print_r($_SESSION['selector']);
 		if (!preg_match("/^[0-9\-\+ ]{7,15}$/", $phone)) {
 			$error_messages[] = "Invalid phone number. There can only be +, - or numbers.";
 		}
+	} else {
+		$phone = '';
 	}
 	if (!empty($error_messages)) {
 		echo '<div class="error-messages">';
@@ -143,7 +147,6 @@ print_r($_SESSION['selector']);
 	}
 	// If validation don't fail
 	if (empty($error_messages)) {
-		echo "no errors detected\n";
 		$_SESSION['booking_made'] = true;
 		// Calculate total price based on service type and selected items
 		$price = 0;
@@ -179,9 +182,9 @@ print_r($_SESSION['selector']);
 		$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
 		// Include booking-backend.php and insert the data into the database
 		
-		$clientId = explode(':', base64_decode($_SESSION['client_key']))[0];
-		echo $clientId;
-		if ($clientId !== null) {
+		$clientId = getClientId();
+
+		if ($clientId != null) {
 			// Call insertOrder with the retrieved client_id
 			insertOrder(
 				$clientId,

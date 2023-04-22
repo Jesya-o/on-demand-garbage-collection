@@ -68,8 +68,10 @@ CREATE TABLE Orders
 
 CREATE TABLE Bulk_items
 (
+  bulk_items_id int(11) NOT NULL AUTO_INCREMENT,
   number_of_items int(11) NOT NULL,
-  total_weight int(11) NOT NULL,
+  total_weight varchar(255) NOT NULL,
   order_id int(11) NOT NULL,
+  PRIMARY KEY (bulk_items_id),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 ) ENGINE=InnoDB;

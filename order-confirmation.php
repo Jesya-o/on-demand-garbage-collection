@@ -1,5 +1,5 @@
 <?php require_once('session.php'); ?>
-<?php require_once('book-validation.php'); ?>
+<?php //require_once('book-validation.php'); ?>
 <?php
 // Check if booking has been made
 if (!isset($_SESSION['booking_made']) || $_SESSION['booking_made'] !== true) {

@@ -1,11 +1,11 @@
 <?php
-
+require_once('session.php');
 require_once('db-connection.php');
 
 function updateClientData($client_id, $name, $surname, $email, $phone)
 {
     $link = connectDatabase();
-    $query = "UPDATE clients SET name = ?, surname = ?, email = ?, phone_number = ? WHERE client_id = ?";
+    $query = "UPDATE Clients SET name = ?, surname = ?, email = ?, phone_number = ? WHERE client_id = ?";
     $stmt = $link->prepare($query);
     $stmt->bind_param("ssssi", $name, $surname, $email, $phone, $client_id);
     $updated = $stmt->execute();
@@ -21,18 +21,17 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
     if (!updateClientData($client_id, $name, $surname, $email, $phone)) {
         return false;
     }
-
+ 
     // Insert data into orders table
-    $insertOrderQuery = "INSERT INTO orders (client_id, driver_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $insertOrderQuery = "INSERT INTO Orders (client_id, driver_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $orderStmt = $link->prepare($insertOrderQuery);
     $driver_id = 1; // You can assign a driver ID here
-    $orderStmt->bind_param("iiississsd", $client_id, $driver_id, $street, $house, $index, $date, $time, $service, $price, $comment);
+    $orderStmt->bind_param("iississsds", $client_id, $driver_id, $street, $house, $index, $date, $time, $service, $price, $comment);
     $orderInserted = $orderStmt->execute();
 
     if ($orderInserted) {
         // Get the order ID
         $orderId = $orderStmt->insert_id;
-
         // Insert data into bulk_items table if service is 'Bulk Waste Removal'
         if ($service === 'Bulk Waste Removal') {
             $selectedItemsArray = explode('|', $selectedItems);
@@ -73,11 +72,10 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
 
             $totalWeight = $totalWeightLow . '-' . $totalWeightHigh . ' kg';
 
-            $insertBulkItemQuery = "INSERT INTO bulk_items (order_id, number_of_items, total_weight) VALUES (?, ?, ?)";
+            $insertBulkItemQuery = "INSERT INTO Bulk_items (order_id, number_of_items, total_weight) VALUES (?, ?, ?)";
             $bulkStmt = $link->prepare($insertBulkItemQuery);
             $bulkStmt->bind_param("iis", $orderId, $numberOfItems, $totalWeight);
             $itemInserted = $bulkStmt->execute();
-            
             if (!$itemInserted) {
                 $bulkStmt->close();
                 return false;

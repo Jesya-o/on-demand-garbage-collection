@@ -1,5 +1,4 @@
 <?php require_once('session.php');
-require_once('booking-backend.php');
 
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
@@ -45,7 +44,7 @@ $selectedDate = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : date(
                 <span id="date-time" class="booking-header-timestamp"></span>
             </div>
             <!-- Booking form -->
-            <form action="order-confirmation.php" name="booking" method="post" class="form-rows">
+            <form action="book-validation.php" name="booking" method="post" class="form-rows">
                 <div class="order-form line time">
                     <!-- First row of booking form -->
                     <div class="user-info-disclaimer">
