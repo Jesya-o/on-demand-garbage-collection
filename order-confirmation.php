@@ -15,7 +15,8 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 $street = isset($_SESSION['street']) ? $_SESSION['street'] : '';
 $house = isset($_SESSION['house']) ? $_SESSION['house'] : '';
 $index = isset($_SESSION['index']) ? $_SESSION['index'] : '';
-$datepicker = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : '';
+$datepicker = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : null;
+$timestamp = !empty($datepicker) ? strtotime($datepicker) : '';
 $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
 $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
@@ -82,7 +83,7 @@ $_SESSION['confirmation'] = true;
                     <?php if ($service === 'Bulk Waste Removal') : ?>
                         Number of items to be removed:
                         &nbsp;
-                        <?= count($_POST['selector']) ?><br>
+                        <?= count($_SESSION['selector']) ?><br>
                 </p>
                 <p>
                     Weights of items to be removed:

@@ -13,13 +13,7 @@ function sanitize($input)
 	$input = htmlspecialchars($input);
 	return $input;
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitBooking'])) {
-	echo "yes";
-	// rest of the code
-} else {
-	echo "no";
-}
-
+echo $_SERVER['REQUEST_METHOD'];
 if (
 	$_SERVER['REQUEST_METHOD'] === 'POST' &&
 	isset($_POST['submitBooking'], $_POST['name'], $_POST['surname'], $_POST['email'], $_POST['street'], $_POST['house'], $_POST['index'], $_POST['datepicker'], $_POST['time'], $_POST['service'], $_POST['price']) &&
@@ -27,7 +21,6 @@ if (
 ) {
 	// array for errors
 	$error_messages = array();
-
 	// form data written to variables
 	$name = sanitize($_POST['name']);
 	$surname = sanitize($_POST['surname']);
@@ -47,7 +40,6 @@ if (
 	$_SESSION['date'] = $date;
 	$_SESSION['time'] = $time;
 	$_SESSION['service'] = $service;
-}
 	// Validation
 	// First name check: contains only letters
 	if (!preg_match("/^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$/", $name)) {
@@ -88,7 +80,9 @@ if (
 	if ($timestamp < $current_date) {
 		$error_messages[] = "Invalid date. Date provided is in the past.";
 	}
-
+    $_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
+	echo "Selector array content: ";
+print_r($_SESSION['selector']);  
 	// Should exist
 	if (!checkdate($month, $day, $year)) {
 		$error_messages[] = "Invalid date. Not existing date.";
@@ -119,6 +113,7 @@ if (
 				break;
 			}
 		}
+		
 	}
 
 	if (isset($_POST['selector']) && !empty($_POST['comment'])) {
@@ -209,4 +204,6 @@ if (
 		} else {
 			$errors['session'] = "Invalid session.";
 		}
+}
+	
 }
