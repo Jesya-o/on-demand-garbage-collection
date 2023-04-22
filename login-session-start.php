@@ -8,9 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Check if the entered username and password are valid
-    if (preg_match('/^[A-Za-z][A-Za-z0-9_.]{4,14}$/', $username) && 
-        preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_!%*?&])[A-Za-z\d@_!%*?&]{8,15}$/', $password)) {
-
+    if (preg_match('/^[A-Za-z][A-Za-z0-9_.]{4,14}$/', $username)
+    ){
         // Connect to the database
         $link = connectDatabase();
 
@@ -30,9 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (password_verify($password, $hash)) {
                 // Regenerate the session ID
                 session_regenerate_id(true);
-
-                // Set the session variable
-                $_SESSION['loggedIn'] = true;
 
                 // Generate token
                 require_once('token-management.php');

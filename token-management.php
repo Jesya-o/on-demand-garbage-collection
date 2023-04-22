@@ -55,26 +55,31 @@ function authenticateUser($username, $password)
     return false;
 }
 
+$clientKeyValid = null;
 function validateClientKey($clientKey)
 {
-    // decode clientKey
-    list($clientId, $token) = explode(':', base64_decode($clientKey));
-    // select by client_id, token, ip
-    $link = connectDatabase();
-    $query = "SELECT client_id, token, ip FROM Clients WHERE client_id = ? AND token = ? AND ip = ?";
-    $statement = $link->prepare($query);
-    $statement->bind_param(
-        'iss',
-        $clientId,
-        $token,
-        $_SERVER['REMOTE_ADDR']
-    );
+    global $clientKeyValid;
+    if ($clientKeyValid === null) {
+        // decode clientKey
+        list($clientId, $token) = explode(':', base64_decode($clientKey));
+        // select by client_id, token, ip
+        $link = connectDatabase();
+        $query = "SELECT client_id, token, ip FROM Sessions WHERE client_id = ? AND token = ? AND ip = ?";
+        $statement = $link->prepare($query);
+        $statement->bind_param(
+            'iss',
+            $clientId,
+            $token,
+            $_SERVER['REMOTE_ADDR']
+        );
 
-    $statement->execute();
-    $result = false;
-    if ($statement->get_result()->num_rows > 0) {
-        $result = true;
-    } 
-    $statement->close();
-    return $result;
+        $statement->execute();
+        $result = false;
+        if ($statement->get_result()->num_rows > 0) {
+            $result = true;
+        }
+        $statement->close();
+        $clientKeyValid = $result;
+    }
+    return $clientKeyValid;
 }

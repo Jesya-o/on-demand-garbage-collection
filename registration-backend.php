@@ -8,9 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Check if the entered username and password are valid
   if (
-    preg_match('/^[A-Za-z][A-Za-z0-9_.]{4,14}$/', $username) &&
-    preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+?.>,<|\/\\])[A-Za-z\d!@#$%^&*()-_=+?.>,<|\/\\]{8,45}$/', $password)
-  ) {
+    preg_match('/^[A-Za-z][A-Za-z0-9_.]{4,14}$/', $username)  ) {
     require_once('db-register-user.php');
     if (checkUsernameUnique($username)) {
         registerUser($username, $password);
