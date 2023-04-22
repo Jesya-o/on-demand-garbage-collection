@@ -52,11 +52,12 @@ require_once('orders-backend.php');
                             </h2>
                             <!-- Cancel button is available only for some time -->
                             <p>
+                                <?php $dateObj = date_create($order['date']) ?>
                                 <?php if ($order['status'] == 'Ongoing') : ?>
-                                    <?= 'Ongoing by ' . $order['date'] ?>
+                                    <?= 'Ongoing by ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] . ':00'?>
                                     <button type="submit" onclick="cancelOrder(this, <?= $order['order_id'] ?>)" name="submitCancelling" class="cancel-btn">Cancel</button>
                                 <?php elseif ($order['status'] == 'Completed') : ?>
-                                    <?= 'Completed on ' . $order['date'] ?>
+                                    <?= 'Completed on ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] . ':00' ?>
                                 <?php elseif ($order['status'] == 'Cancelled') : ?>
                                     <span class="cancelled">Cancelled</span>
                                 <?php endif; ?>
