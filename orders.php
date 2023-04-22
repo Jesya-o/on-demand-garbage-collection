@@ -1,4 +1,12 @@
-<?php require_once('session.php');?>
+<?php
+require_once('session.php');
+require_once('orders-backend.php');
+
+// foreach (fetchOrders(explode(':', base64_decode($_SESSION['client_key']))) as $order) {
+//     print_r($order);
+//     echo '<br>';
+// }
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -29,68 +37,44 @@
         <!-- Content of the page -->
         <div id="main" class="orders">
             <h1>See all the orders</h1>
-            <!-- Slider container -->
-            <div class="slider-container">
-
-                <!-- caption text -->
-                <div class="slider fade">
-                    <div class="row">
-                        <div class="slider-text">
-                            <h2>
-                                #3 Regular pickup
-                            </h2>
-                            <!-- Cancel button is available only for some time -->
-                            <p>Ongoing order <button type="submit" onclick="alert('Order #3 cancelled!')" name="submitCancelling" class="cancel-btn">Cancel</button></p>
-                            <p>Driver: Sarah Johnson</p>
-                        </div>
-                        <div class="price">
-                            10 EUR
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slider fade">
-                    <div class="row">
-                        <div class="slider-text">
-                            <h2>
-                                #2 Bulk waste removal
-                            </h2>
-                            <p>Completed on 14 February 2023</p>
-                            <p>Driver: Sarah Johnson</p>
-                        </div>
-                        <div class="price">
-                            15 EUR
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slider fade">
-                    <div class="row">
-                        <div class="slider-text">
-                            <h2>
-                                #1 Recycling
-                            </h2>
-                            <p>Completed on 1 February 2023</p>
-                            <p>Driver: Sarah Johnson</p>
-                        </div>
-                        <div class="price">
-                            10 EUR
+            <?php $index = 1; ?>
+                <?php foreach (fetchOrders(getClientId()) as $order) : ?>
+                    <!-- caption text -->
+                    <div class="order-record">
+                        <div class="row">
+                            <div >
+                                <h2>
+                                    #
+                                    <?= $index ?>
+                                    <?= $order['order_type'] ?>
+                                </h2>
+                                <!-- Cancel button is available only for some time -->
+                                <p><?= $order['status'] . ' order' ?>
+                                    <?php if ($order['status'] == 'Ongoing') : ?>
+                                        <?= ' by ' . $order['date'] ?>
+                                    <?php elseif ($order['status'] == 'Completed') : ?>
+                                        <?= ' on ' . $order['date'] ?>
+                                    <?php endif; ?>
+                                <?php if ($order['status'] == 'Ongoing') : ?>
+                                    <button type="submit" onclick="alert('Order #3 cancelled!')" name="submitCancelling" class="cancel-btn">Cancel</button>
+                                <?php endif; ?>
+                                </p>
+                                <p>
+                                    Driver:
+                                    <?= $order['name'] . ' ' . $order['surname'] ?>
+                                </p>
+                            </div>
+                            <div class="price">
+                                <?= $order['price'] ?>
+                                EUR
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                <div class="dots">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                </div>
-            </div>
-            <br>
+                    <?php $index++; ?>
+                <?php endforeach; ?>
 
-            <!-- Animation -->
-            <script src="js/orders-slider.js"></script>
+
+            <script src="js/dashboard-navigation.js"></script>
         </div>
 
     </div>

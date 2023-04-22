@@ -35,32 +35,6 @@ VALUES ("Diego", "Brown", "diego@gmail.com", "+37289382939");
 INSERT INTO Drivers (name, surname, email, phone_number)
 VALUES ("Mary", "Wolf", "mary@gmail.com", "+37289382939");
 
-CREATE TABLE Orders
-(
-  order_id int(11) NOT NULL AUTO_INCREMENT,
-  date DATE NOT NULL,
-  time_slot varchar(255) NOT NULL,
-  order_type varchar(255) NOT NULL,
-  price float(11, 2) NOT NULL,
-  comment varchar(255),
-  street varchar(255) NOT NULL,
-  house varchar(255) NOT NULL,
-  postcode int(5) NOT NULL,
-  driver_id int(11) NOT NULL,
-  client_id int(11) NOT NULL,
-  PRIMARY KEY (order_id),
-  FOREIGN KEY (driver_id) REFERENCES drivers(driver_id),
-  FOREIGN KEY (client_id) REFERENCES clients(client_id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Bulk_items
-(
-  number_of_items int(11) NOT NULL,
-  total_weight int(11) NOT NULL,
-  order_id int(11) NOT NULL,
-  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
-) ENGINE=InnoDB;
-
 CREATE TABLE Sessions
 (
   session_id int(11) NOT NULL AUTO_INCREMENT,
@@ -71,4 +45,31 @@ CREATE TABLE Sessions
   UNIQUE KEY token_unique (token),
   PRIMARY KEY (session_id),
   FOREIGN KEY (client_id) REFERENCES Clients(client_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE Orders
+(
+  order_id int(11) NOT NULL AUTO_INCREMENT,
+  date DATE NOT NULL,
+  time_slot varchar(255) NOT NULL,
+  status VARCHAR(255) NOT NULL DEFAULT 'Ongoing',
+  order_type varchar(255) NOT NULL,
+  price float(11, 2) NOT NULL,
+  comment varchar(255),
+  street varchar(255) NOT NULL,
+  house varchar(255) NOT NULL,
+  postcode int(5) NOT NULL,
+  driver_id int(11) NOT NULL,
+  client_id int(11) NOT NULL,
+  PRIMARY KEY (order_id),
+  FOREIGN KEY (driver_id) REFERENCES Drivers(driver_id),
+  FOREIGN KEY (client_id) REFERENCES Clients(client_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE Bulk_items
+(
+  number_of_items int(11) NOT NULL,
+  total_weight int(11) NOT NULL,
+  order_id int(11) NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 ) ENGINE=InnoDB;
