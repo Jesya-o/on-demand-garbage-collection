@@ -1,5 +1,5 @@
 <?php
-
+require_once('booking-backend.php');
 // Function to sanitize user inputs
 function sanitize($input)
 {
@@ -13,6 +13,7 @@ function sanitize($input)
 	$input = htmlspecialchars($input);
 	return $input;
 }
+
 if (
 	$_SERVER['REQUEST_METHOD'] === 'POST' &&
 	isset($_POST['submitBooking'], $_POST['name'], $_POST['surname'], $_POST['email'], $_POST['street'], $_POST['house'], $_POST['index'], $_POST['datepicker'], $_POST['time'], $_POST['service'], $_POST['price']) &&
@@ -32,7 +33,7 @@ if (
 	$date = sanitize($_POST['datepicker']);
 	$time = sanitize($_POST['time']);
 	$service = sanitize($_POST['service']);
-    
+
 	$_SESSION['name'] = $name;
 	$_SESSION['email'] = $email;
 	$_SESSION['surname'] = $surname;
@@ -143,7 +144,8 @@ if (
 	}
 	// If validation don't fail
 	if (empty($error_messages)) {
-		
+		echo "no errors detected\n";
+		$_SESSION['booking_made'] = true;
 		// Calculate total price based on service type and selected items
 		$price = 0;
 		if ($service === 'Regular Pickup') {
@@ -173,38 +175,34 @@ if (
 				}
 			}
 		}
-	
 		$_SESSION['price'] = $price;
 	    $selectedItems = implode('|', $_POST['selector']);
 		$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
 		// Include booking-backend.php and insert the data into the database
-		require_once('booking-backend.php');
-		$inserted = insertOrder(
-            $name,
-            $surname,
-            $email,
-            $street,
-            $house,
-            $index,
-            $date,
-            $time,
-            $service,
-            $price,
-            $phone,
-            $comment,
-            $selectedItems
-        );
-
-        if ($inserted) {
-            $_SESSION['booking_made'] = true;
-            header('Location: confirmation.php');
-            exit();
-        } else {
-            echo '<div class="error-messages">';
-            echo '<p>The following errors occurred:</p>';
-            echo '<ul>';
-            echo '<li>Failed to insert data into the database.</li>';
-            echo '</ul>';
-            echo '</div>';
-        }
+		
+		$clientId = explode(':', base64_decode($_SESSION['client_key']))[0];
+		echo $clientId;
+		if ($clientId !== null) {
+			// Call insertOrder with the retrieved client_id
+			insertOrder(
+				$clientId,
+				$name,
+				$surname,
+				$email,
+				$street,
+				$house,
+				$index,
+				$date,
+				$time,
+				$service,
+				$price,
+				$phone,
+				$comment,
+				$selectedItems
+			);
+			$_SESSION['success'] = "Your booking was successfully created.";
+			header("Location: order-confirmation.php");
+		} else {
+			$errors['session'] = "Invalid session.";
+		}
 }
