@@ -1,39 +1,37 @@
 export const orderData = {
-    ordersNumber: null,
-    ordersBuffer: [],
     url: null,
 
     getUrl: function () {
         if (this.url === null) {
-            this.url = url.substring(0, url.lastIndexOf('/')) + '/api/fetch-orders.php';
+            const currentUrl = window.location.href;
+            this.url = currentUrl.substring(0, currentUrl.lastIndexOf('/')) + '/api/fetch-orders.php';
         }
         return this.url;
     },
-    
+
     fetchOrdersByPage: function (desiredPage, ordersPerPage) {
         const clientKeyElement = $('#client_key');
         const clientKey = clientKeyElement.length > 0 ? clientKeyElement.text() : null;
-
+        const self = this;
         // ajax request
-        $.ajax({
-            type: 'GET',
-            url: url.substring(0, url.lastIndexOf('/')) + '/api/fetch-orders.php',
-            data: { desiredPage: desiredPage, ordersPerPage: ordersPerPage },
-            beforeSend: (xhr) => {
-                xhr.setRequestHeader ("Authorization", clientKey);
-            },
-            success: (data) => {
-                console.log('success');
-                console.log(data);
-            },
-            error: (data) => {
-                console.log('error');
-                console.log(data);
-            }
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'GET',
+                url: self.getUrl(),
+                data: { desiredPage: desiredPage, ordersPerPage: ordersPerPage },
+                beforeSend: (xhr) => {
+                    xhr.setRequestHeader ("Authorization", clientKey);
+                },
+                success: (response) => {
+                    resolve(response);
+                },
+                error: (data) => {
+                    // Handle error...
+                    reject(':(((');
+                    console.log('error');
+                    console.log(data);
+                }
+            });
         });
-    },
-
-    getTotalOrders: function () {
-        return this.ordersNumber;
     }
 };
