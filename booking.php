@@ -127,11 +127,11 @@ $selectedDate = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : date(
                             <div class="form-line">
                                 <label for="selector1" class="item">Item 1</label>
                                 <select name="selector[]">
-                                    <option value="option1">10 - 20 kg</option>
-                                    <option value="option2">20 - 50 kg</option>
-                                    <option value="option3">50 - 100 kg</option>
-                                    <option value="option4">100 - 200 kg</option>
-                                    <option value="option5">200 - 500 kg</option>
+                                    <option value="option1">0 - 20 kg</option>
+                                    <option value="option2">21 - 50 kg</option>
+                                    <option value="option3">51 - 100 kg</option>
+                                    <option value="option4">101 - 200 kg</option>
+                                    <option value="option5">201 - 500 kg</option>
                                 </select>
                                 <button type="button" class="remove-btn">&minus;</button>
                             </div>

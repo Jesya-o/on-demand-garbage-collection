@@ -25,7 +25,8 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
     // Insert data into orders table
     $insertOrderQuery = "INSERT INTO Orders (client_id, driver_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $orderStmt = $link->prepare($insertOrderQuery);
-    $driver_id = 1; // You can assign a driver ID here
+
+    $driver_id = assignDriver($date, $time); // You can assign a driver ID here
     $orderStmt->bind_param("iississsds", $client_id, $driver_id, $street, $house, $index, $date, $time, $service, $price, $comment);
     $orderInserted = $orderStmt->execute();
 
@@ -45,11 +46,11 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
                 
                 switch ($item) {
                     case 'option1':
-                        $itemWeightLow = 0;
-                        $itemWeightHigh = 10;
+                        $itemWeightLow = 10;
+                        $itemWeightHigh = 20;
                         break;
                     case 'option2':
-                        $itemWeightLow = 11;
+                        $itemWeightLow = 21;
                         $itemWeightHigh = 50;
                         break;
                     case 'option3':
@@ -90,4 +91,8 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
     
     $orderStmt->close();
     return true;
+}
+
+function assignDriver($date, $time) {
+    return 1;
 }

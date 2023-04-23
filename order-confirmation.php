@@ -90,11 +90,11 @@ $_SESSION['confirmation'] = true;
                     &nbsp;
                     <?php
                         $option_weights = [
-                            'option1' => '10-20 kg',
-                            'option2' => '20-50 kg',
-                            'option3' => '50-100 kg',
-                            'option4' => '100-200 kg',
-                            'option5' => '100-500 kg'
+                            'option1' => '0-20 kg',
+                            'option2' => '21-50 kg',
+                            'option3' => '51-100 kg',
+                            'option4' => '101-200 kg',
+                            'option5' => '201-500 kg'
                         ];
                         $weights = array();
                         foreach ($_POST['selector'] as $selected) {
