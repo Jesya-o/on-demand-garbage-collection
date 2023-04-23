@@ -25,6 +25,7 @@ require_once('orders-backend.php');
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/booking.css">
+    <link rel="stylesheet" href="styles/order-confirmation.css">
     <link rel="stylesheet" href="styles/orders.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -38,7 +39,7 @@ require_once('orders-backend.php');
         <?php require_once('open-btn.php'); ?>
         <!-- Content of the page -->
         <div id="main" class="orders">
-            <h1>See all the orders</h1>
+            <h1>Your orders</h1>
             <?php $index = 1; ?>
             <?php foreach (fetchOrders(getClientId()) as $order) : ?>
                 <!-- caption text -->
@@ -54,10 +55,10 @@ require_once('orders-backend.php');
                             <p>
                                 <?php $dateObj = date_create($order['date']) ?>
                                 <?php if ($order['status'] == 'Ongoing') : ?>
-                                    <?= 'Ongoing by ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] . ':00'?>
+                                    <?= 'Ongoing by ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] ?>
                                     <button type="submit" onclick="cancelOrder(this, <?= $order['order_id'] ?>)" name="submitCancelling" class="cancel-btn">Cancel</button>
                                 <?php elseif ($order['status'] == 'Completed') : ?>
-                                    <?= 'Completed on ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] . ':00' ?>
+                                    <?= 'Completed on ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] ?>
                                 <?php elseif ($order['status'] == 'Cancelled') : ?>
                                     <span class="cancelled">Cancelled</span>
                                 <?php endif; ?>
@@ -75,6 +76,13 @@ require_once('orders-backend.php');
                 </div>
                 <?php $index++; ?>
             <?php endforeach; ?>
+
+            <?php if ($index == 1) : ?>
+                <h3 class="order-record">You have no orders at the moment</h3>
+                <div class="buttons">
+                    <a href="booking.php" class="back-btn">Book!</a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

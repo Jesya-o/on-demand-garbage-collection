@@ -191,9 +191,17 @@
     margin-left: 20px;
     border-radius: 10px;
 }
+.cancel-btn:hover {
+    background-color: var(--white);
+    cursor: pointer;
+}
 
 .cancelled {
     color: #bb0404;
+}
+
+.buttons {
+    margin: 10px 20px 20px 0px;
 }
 
 @media screen and (max-width: 555px) {

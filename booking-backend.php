@@ -21,7 +21,7 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
     if (!updateClientData($client_id, $name, $surname, $email, $phone)) {
         return false;
     }
- 
+
     // Insert data into orders table
     $insertOrderQuery = "INSERT INTO Orders (client_id, driver_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $orderStmt = $link->prepare($insertOrderQuery);
@@ -87,7 +87,7 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
         $orderStmt->close();
         return false;
     }
-
+    
     $orderStmt->close();
     return true;
 }
