@@ -1,12 +1,14 @@
 <?php require_once('session.php');?>
+
 <?php require_once('settings-validation.php'); ?>
+<?php require_once('settings-backend.php'); ?>
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Booking Form</title>
+    <title>Settings</title>
     <meta name="description" content="Tallinn University of Technology – Web Technologies Project - HTML & CSS">
     <meta name="keywords" content="web_project, Throw It, book a collection">
     <meta name="author" content="Dark Side">
