@@ -27,6 +27,10 @@ function fetchOrders($clientId)
     }
 }
 
+function fetchOrdersByPage($desiredPage, $ordersPerPage) {
+    
+}
+
 // Update orders statuses
 $link = connectDatabase();
 $query = "UPDATE Orders SET status = 'Completed' 

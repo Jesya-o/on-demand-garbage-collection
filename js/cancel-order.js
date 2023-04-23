@@ -3,8 +3,10 @@ const cancelOrder = (button, orderId) => {
     const clientKey = clientKeyElement.length > 0 ? clientKeyElement.text() : null;
 
     if (confirm("Are you sure you want to cancel this order?") && clientKey) {
-        $.ajax('/api/cancel-order.php', {
+        const url = window.location.href;
+        $.ajax({
             type: 'POST',
+            url: url.substring(0, url.lastIndexOf('/')) + '/api/cancel-order.php',
             data: { orderId: orderId },
             beforeSend: (xhr) => {
                 xhr.setRequestHeader ("Authorization", clientKey);

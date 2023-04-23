@@ -40,6 +40,7 @@ require_once('orders-backend.php');
         <!-- Content of the page -->
         <div id="main" class="orders">
             <h1>Your orders</h1>
+            <div id="order-paginator"></div>
             <?php $index = 1; ?>
             <?php foreach (fetchOrders(getClientId()) as $order) : ?>
                 <!-- caption text -->
@@ -89,6 +90,7 @@ require_once('orders-backend.php');
     <div id="client_key" style="display: none"><?= $_SESSION['client_key'] ?? '' ?></div>
     <script src="js/dashboard-navigation.js"></script>
     <script src="js/cancel-order.js"></script>
+    <script type="module" src="js/orders-pagination.js"></script>
 </body>
 
 </html>
