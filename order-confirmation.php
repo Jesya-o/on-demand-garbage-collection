@@ -16,7 +16,6 @@ $street = isset($_SESSION['street']) ? $_SESSION['street'] : '';
 $house = isset($_SESSION['house']) ? $_SESSION['house'] : '';
 $index = isset($_SESSION['index']) ? $_SESSION['index'] : '';
 $datepicker = isset($_SESSION['date']) ? $_SESSION['date'] : null;
-echo $datepicker;
 $timestamp = !empty($datepicker) ? strtotime($datepicker) : null;
 $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
