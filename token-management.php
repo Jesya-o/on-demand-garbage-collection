@@ -84,6 +84,10 @@ function validateClientKey($clientKey)
     return $clientKeyValid;
 }
 
+function getClientIdFromClientKey($clientKey) {
+    return explode(':', base64_decode($clientKey))[0];
+}
+
 function getClientId() {
-    return explode(':', base64_decode($_SESSION['client_key']))[0];
+    return getClientIdFromClientKey($_SESSION['client_key']);
 }

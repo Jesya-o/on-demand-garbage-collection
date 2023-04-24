@@ -40,55 +40,14 @@ require_once('orders-backend.php');
         <!-- Content of the page -->
         <div id="main" class="orders">
             <h1>Your orders</h1>
-            <?php $index = 1; ?>
-            <?php foreach (fetchOrders(getClientId()) as $order) : ?>
-                <!-- caption text -->
-                <div class="order-record">
-                    <div class="row">
-                        <div>
-                            <h2>
-                                #
-                                <?= $index ?>
-                                <?= $order['order_type'] ?>
-                            </h2>
-                            <!-- Cancel button is available only for some time -->
-                            <p>
-                                <?php $dateObj = date_create($order['date']) ?>
-                                <?php if ($order['status'] == 'Ongoing') : ?>
-                                    <?= 'Ongoing by ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] ?>
-                                    <button type="submit" onclick="cancelOrder(this, <?= $order['order_id'] ?>)" name="submitCancelling" class="cancel-btn">Cancel</button>
-                                <?php elseif ($order['status'] == 'Completed') : ?>
-                                    <?= 'Completed on ' . date_format($dateObj, "d M Y") . ' at ' . $order['time_slot'] ?>
-                                <?php elseif ($order['status'] == 'Cancelled') : ?>
-                                    <span class="cancelled">Cancelled</span>
-                                <?php endif; ?>
-                            </p>
-                            <p>
-                                Driver:
-                                <?= $order['name'] . ' ' . $order['surname'] ?>
-                            </p>
-                        </div>
-                        <div class="price">
-                            <?= $order['price'] ?>
-                            EUR
-                        </div>
-                    </div>
-                </div>
-                <?php $index++; ?>
-            <?php endforeach; ?>
-
-            <?php if ($index == 1) : ?>
-                <h3 class="order-record">You have no orders at the moment</h3>
-                <div class="buttons">
-                    <a href="booking.php" class="back-btn">Book!</a>
-                </div>
-            <?php endif; ?>
+            <div id="order-paginator"></div>
         </div>
     </div>
 
     <div id="client_key" style="display: none"><?= $_SESSION['client_key'] ?? '' ?></div>
     <script src="js/dashboard-navigation.js"></script>
     <script src="js/cancel-order.js"></script>
+    <script type="module" src="js/orders-pagination.js"></script>
 </body>
 
 </html>

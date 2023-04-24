@@ -10,7 +10,7 @@ function fetchOrders($clientId)
     FROM Orders as o
     INNER JOIN Drivers as d ON o.driver_id = d.driver_id
     WHERE o.client_id = ?
-    ORDER BY o.date DESC, CAST(o.time_slot AS FLOAT) DESC";
+    ORDER BY o.date DESC, CAST(o.time_slot AS FLOAT) DESC, o.order_id DESC";
     $statement = $link->prepare($query);
 
     $statement->bind_param(
@@ -25,6 +25,48 @@ function fetchOrders($clientId)
     while($order = $result->fetch_assoc()) {
         yield $order;
     }
+}
+
+function getOrdersNumber($clientId) {
+    $link = connectDatabase();
+    $query = "SELECT COUNT(*) as orders_number FROM Orders WHERE client_id = ?";
+    $statement = $link->prepare($query);
+
+    $statement->bind_param(
+        'i',
+        $clientId
+    );
+
+    $statement->execute();
+    $result = $statement->get_result()->fetch_assoc()['orders_number'] ?? 0;
+    $statement->close();
+    return $result;
+}
+
+function fetchOrdersByPage($clientId, $desiredPage, $ordersPerPage) {
+    $link = connectDatabase();
+    $query = "SELECT o.order_id, o.date, o.order_type, o.time_slot, o.status, o.price, d.name, d.surname
+    FROM Orders as o
+    INNER JOIN Drivers as d ON o.driver_id = d.driver_id
+    WHERE o.client_id = ?
+    ORDER BY o.date DESC, CAST(o.time_slot AS FLOAT) DESC, o.order_id DESC
+    LIMIT " . (int)$ordersPerPage . "  OFFSET " . (int)(($desiredPage - 1) * $ordersPerPage);
+    $statement = $link->prepare($query);
+
+    $statement->bind_param(
+        'i',
+        $clientId
+    );
+
+    $statement->execute();
+    $result = $statement->get_result();
+    $statement->close();
+
+    $orders = [];
+    while($order = $result->fetch_assoc()) {
+        $orders[] = $order;
+    }
+    return $orders;
 }
 
 // Update orders statuses
