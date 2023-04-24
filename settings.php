@@ -1,7 +1,7 @@
 <?php require_once('session.php');?>
 
 <?php require_once('settings-validation.php'); ?>
-<?php require_once('settings-backend.php'); ?>
+<?php require_once('settings-backend-username.php'); ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -90,7 +90,7 @@
                             <!-- Username -->
                             <p class="booking-form-title">Account information</p>
                             <label for="username">Username</label>
-                            <input type="text" id="username" name="username" class="field" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{2,200}$">
+                            <input type="text" id="username" name="username" class="field" required value="<?php echo $username; ?>" pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{2,200}$">
 
                             <!-- Change password -->
                             <p class="booking-form-title">Change password</p>

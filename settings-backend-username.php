@@ -23,6 +23,4 @@ $username = $data['username'];
 $statement->close();
 $link->close();
 
-// Autofill the username field
-echo $username;
 ?>
