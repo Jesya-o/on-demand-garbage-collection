@@ -2,6 +2,8 @@
 
 <?php require_once('settings-validation.php'); ?>
 <?php require_once('settings-backend-username.php'); ?>
+
+<?php require_once('settings-backend-personalinfo.php'); ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -49,30 +51,34 @@
                         <!-- User info fields -->
                         <p class="booking-form-title">Personal information</p>
                         <div class="input-lines">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" class="field" placeholder=" Name" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$">
-                            <label for="surname">Surname</label>
-                            <input type="text" id="surname" name="surname" class="field" placeholder=" Surname" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$">
-                            <label for="phone">Phone (optional)</label>
-                            <input type="text" id="phone" name="phone" class="field" placeholder=" +372 58678900" pattern="^[0-9\-\+ ]{7,15}$">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="field" placeholder=" name@example.com" pattern="^[\w\-\.]{1,50}@([\w-]{1,50}\.){1,50}[\w-]{2,4}$">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="field" placeholder=" Name" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($name) ? '' : $name; ?>">
 
-                            <span class="Tallinn">Address: &nbsp;Tallinn, Estonia</span>
-                            <div class="line">
-                                <div class="address-group street">
-                                    <label for="street">Street name</label>
-                                    <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$">
-                                </div>
-                                <div class="address-group house">
-                                    <label for="house">House</label>
-                                    <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$">
-                                </div>
-                                <div class="address-group index">
-                                    <label for="index">Postcode</label>
-                                    <input type="text" id="index" name="index" class="field" placeholder=" 21800" pattern="\d{5}">
-                                </div>
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" name="surname" class="field" placeholder=" Surname" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($surname) ? '' : $surname; ?>">
+
+                        <label for="phone">Phone (optional)</label>
+                        <input type="text" id="phone" name="phone" class="field" placeholder=" +372 58678900" pattern="^[0-9\-\+ ]{7,15}$" value="<?php echo empty($phone) ? '' : $phone; ?>">
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="field" placeholder=" name@example.com" pattern="^[\w\-\.]{1,50}@([\w-]{1,50}\.){1,50}[\w-]{2,4}$" value="<?php echo empty($email) ? '' : $email; ?>">
+
+                        <span class="Tallinn">Address: &nbsp;Tallinn, Estonia</span>
+                        <div class="line">
+                            <div class="address-group street">
+                                <label for="street">Street name</label>
+                                <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$" value="<?php echo empty($street) ? '' : $street; ?>">
                             </div>
+                            <div class="address-group house">
+                                <label for="house">House</label>
+                                <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$" value="<?php echo empty($house) ? '' : $house; ?>">
+                            </div>
+                            <div class="address-group index">
+                                <label for="index">Postcode</label>
+                                <input type="text" id="index" name="index" class="field" placeholder=" 21800" pattern="\d{5}" value="<?php echo empty($index) ? '' : $index; ?>">
+                            </div>
+                        </div>
+
                             <button type="submit" name="submitSettings" class="settings-save-btn personal-settings-save-btn">Submit and save</button>
                         </div>
                     </div>
