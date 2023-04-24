@@ -3,7 +3,7 @@
 <?php require_once('settings-validation.php'); ?>
 <?php require_once('settings-backend-username.php'); ?>
 
-<?php require_once('settings-backend-personalinfo.php'); ?>
+<?php require_once('backend-personalinfo.php'); ?>
 <!DOCTYPE html>
 
 <html lang="en">

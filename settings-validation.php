@@ -20,9 +20,10 @@ if (
 		$_POST['email'],
 		$_POST['street'],
 		$_POST['house'],
+		$_POST['phone'],
 		$_POST['index']
 	) &&
-	!empty($_POST['name'] && $_POST['surname'] && $_POST['email'] && $_POST['street'] &&
+	!empty($_POST['name'] && $_POST['surname'] && $_POST['email'] && $_POST['phone'] && $_POST['street'] &&
 		$_POST['house'] && $_POST['index'])
 ) {
 	// array for errors
@@ -31,6 +32,7 @@ if (
 	// form data writed to variables
 	$name = sanitize($_POST['name']);
 	$surname = sanitize($_POST['surname']);
+	$phone = sanitize($_POST['phone']);
 	$email = sanitize($_POST['email']);
 	$street = sanitize($_POST['street']);
 	$house = sanitize($_POST['house']);
@@ -62,16 +64,22 @@ if (
 		$error_messages[] = "Invalid index.";
 	}
 
-	if (isset($_POST['selector']) && !empty($_POST['phone'])) {
-		$phone = sanitize($_POST['phone']);
+	if (!empty($_POST['phone'])) {
 		if (!preg_match("/^[0-9\-\+ ]{7,15}$/", $phone)) {
 			$error_messages[] = "Invalid phone number. There can only be +, - or numbers.";
 		}
 	}
 
-	// // If validation don't fail
-	// if (empty($error_messages)) {
-    //}
+	// If validation don't fail
+    if (empty($error_messages)) {
+		require_once('booking-backend.php');
+		$clientId = getClientId();
+
+		if ($clientId != null) {
+			// Update client data
+			updateClientData($clientId, $name, $surname, $email, $phone, $street, $house, $index);
+		}
+    }
 }
 
 // For submitted user settings form: if all mandatory inputs are filled - validate them and write to csv
