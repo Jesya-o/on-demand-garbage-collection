@@ -12,6 +12,9 @@ CREATE TABLE Clients
   surname varchar(255),
   email varchar(255),
   phone_number varchar(255),
+  street varchar(255) NOT NULL,
+  house varchar(255) NOT NULL,
+  postcode int(5) NOT NULL,
   PRIMARY KEY (client_id),
   UNIQUE KEY username_unique (username)
 ) ENGINE=InnoDB;

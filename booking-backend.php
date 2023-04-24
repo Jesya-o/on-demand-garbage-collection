@@ -2,12 +2,12 @@
 require_once('session.php');
 require_once('db-connection.php');
 
-function updateClientData($client_id, $name, $surname, $email, $phone)
+function updateClientData($client_id, $name, $surname, $email, $phone, $street, $house, $postcode)
 {
     $link = connectDatabase();
-    $query = "UPDATE Clients SET name = ?, surname = ?, email = ?, phone_number = ? WHERE client_id = ?";
+    $query = "UPDATE Clients SET name = ?, surname = ?, email = ?, phone_number = ?, street = ?, house = ?, postcode = ? WHERE client_id = ?";
     $stmt = $link->prepare($query);
-    $stmt->bind_param("ssssi", $name, $surname, $email, $phone, $client_id);
+    $stmt->bind_param("ssssssii", $name, $surname, $email, $phone, $street, $house, $postcode, $client_id);
     $updated = $stmt->execute();
     $stmt->close();
     return $updated;
@@ -16,11 +16,6 @@ function updateClientData($client_id, $name, $surname, $email, $phone)
 function insertOrder($client_id, $name, $surname, $email, $street, $house, $index, $date, $time, $service, $price, $phone, $comment, $selectedItems)
 {
     $link = connectDatabase();
-
-    // Update the client's data
-    if (!updateClientData($client_id, $name, $surname, $email, $phone)) {
-        return false;
-    }
 
     // Insert data into orders table
     $insertOrderQuery = "INSERT INTO Orders (client_id, driver_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

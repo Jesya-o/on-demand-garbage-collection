@@ -180,11 +180,17 @@ if (
 		$_SESSION['price'] = $price;
 	    $selectedItems = implode('|', $_POST['selector']);
 		$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
-		// Include booking-backend.php and insert the data into the database
+		$saveDataChecked = isset($_POST['saveData']) && $_POST['saveData'] === 'saveData';
+		// insert the data into the database
 		
 		$clientId = getClientId();
 
 		if ($clientId != null) {
+			// Update client data if checkbox is checked
+			if ($saveDataChecked) {
+				updateClientData($clientId, $name, $surname, $email, $phone, $street, $house, $index);
+			}
+	
 			// Call insertOrder with the retrieved client_id
 			insertOrder(
 				$clientId,
@@ -202,6 +208,7 @@ if (
 				$comment,
 				$selectedItems
 			);
+
 			$_SESSION['success'] = "Your booking was successfully created.";
 			header("Location: order-confirmation.php");
 		} else {
