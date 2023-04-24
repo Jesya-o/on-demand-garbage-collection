@@ -40,7 +40,16 @@ require_once('orders-backend.php');
         <!-- Content of the page -->
         <div id="main" class="orders">
             <h1>Your orders</h1>
-            <div id="order-paginator"></div>
+            <div id="no-orders" class="no-orders">
+                <h3 class="order-record">You have no orders at the moment</h3>
+                <div class="buttons">
+                    <a href="booking.php" class="back-btn">Book!</a>
+                </div>
+            </div>
+            <div id="order-pagination">
+                <div id="container"></div>
+                <div id="order-pager"></div>
+            </div>
         </div>
     </div>
 
