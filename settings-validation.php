@@ -135,5 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitUserSettings'])
 	// If validation don't fail
 	if (empty($error_messages)) {
 		require_once('settings-backend-change-password.php');
+		echo "<script>alert('" . $Message . "');</script>";
 	}
 }
