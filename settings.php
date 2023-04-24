@@ -73,11 +73,6 @@
                                     <input type="text" id="index" name="index" class="field" placeholder=" 21800" pattern="\d{5}">
                                 </div>
                             </div>
-                            <!-- Checkbox for saving user data -->
-                            <div class="save-settings-checkbox">
-                                <input type="checkbox" id="savePersonalData" name="saveData" value="saveData">
-                                <label for="saveData">&nbsp;&nbsp;I confirm saving this info</label>
-                            </div>
                             <button type="submit" name="submitSettings" class="settings-save-btn personal-settings-save-btn">Submit and save</button>
                         </div>
                     </div>
@@ -95,17 +90,23 @@
                             <!-- Change password -->
                             <p class="booking-form-title">Change password</p>
                             <label for="old-password">Old password</label>
-                            <input type="password" id="old-password" class="field" name="old-password" required pattern="[A-Za-z0-9!@#%^&*()_+-=]{8,15}">
-                            <label for="new-password">New password</label>
-                            <input type="password" id="new-password" class="field" name="new-password" required pattern="[A-Za-z0-9!@#%^&*()_+-=]{8,15}">
-                            <label for="repeat-password">Repeat password</label>
-                            <input type="password" id="repeat-password" class="field" name="repeat-password" required pattern="[A-Za-z0-9!@#%^&*()_+-=]{8,15}">
-
-                            <!-- Checkbox for saving user data -->
-                            <div class="save-settings-checkbox">
-                                <input type="checkbox" id="saveUserData" name="saveData" value="saveData">
-                                <label for="saveData">&nbsp;&nbsp;I confirm saving this info</label>
+                            <div id="old-password-group">
+                                <input type="password" id="old-password" class="field" name="old-password" required pattern="[A-Za-z0-9!@#%^&*()_+-=]{8,15}">
+                                <button type="button" id="show-old-password">Show</button>
                             </div>
+                            <br>
+                            <label for="new-password">New password</label>
+                            <div id="new-password-group">
+                                <input type="password" id="new-password" class="field" name="new-password" required pattern="[A-Za-z0-9!@#%^&*()_+-=]{8,15}">
+                                <button type="button" id="show-new-password">Show</button>
+                            </div>
+                            <br>
+                            <label for="repeat-password">Repeat password</label>
+                            <div id="repeat-password-group">
+                                <input type="password" id="repeat-password" class="field" name="repeat-password" required pattern="[A-Za-z0-9!@#%^&*()_+-=]{8,15}">
+                                <button type="button" id="show-repeat-password">Show</button>
+                            </div>
+
                             <!-- Submit form button -->
                             <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn" style="position: absolute; bottom: -110px;">Submit and save</button>
                         </div>
@@ -117,6 +118,8 @@
 
     <script src="js/dashboard-navigation.js"></script>
     <script src="js/current-date.js"></script>
+    <script src="js/show-passwords-settings.js"></script>
+    <script src="js/error-messages-settings.js"></script>
 </body>
 
 </html>

@@ -19,12 +19,12 @@ require_once('db-connection.php');
         $hash = $data['password'];
         if (!password_verify($old_password, $hash)) {
             // Display error message if the old password is incorrect
-            $errorMessage = "Old password is incorrect.";
+            $Message = "Old password is incorrect.";
         } else {
             // Check if the new password and repeat password coincide
             if ($new_password !== $repeat_password) {
                 // Display error message if the new password and repeat password do not coincide
-                $errorMessage = "New password and repeated password do not match.";
+                $Message = "New password and repeated password do not match.";
             } else {
                 // Update the password in the database
                 $new_hash = password_hash($new_password, PASSWORD_DEFAULT);
@@ -34,7 +34,7 @@ require_once('db-connection.php');
                 $statement->execute();
 
                 // Display success message if the password is updated successfully
-                $successMessage = "Password updated successfully.";
+                $Message = "Password updated successfully.";
             }
         }
     }
