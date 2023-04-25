@@ -13,11 +13,12 @@ function updateClientData($client_id, $name, $surname, $email, $phone, $street, 
     return $updated;
 }
 
-function updateDriverSchedule($order_id, $date, $time_slot, $driver_id) {
+function updateDriverSchedule($orderId, $date, $timeSlot, $driverId)
+{
     $link = connectDatabase();
     $query = "UPDATE driver_schedule SET order_id = ? WHERE date = ? AND time_slot = ? AND driver_id = ?";
     $stmt = $link->prepare($query);
-    $stmt->bind_param("isii", $order_id, $date, $time_slot, $driver_id);
+    $stmt->bind_param("issi", $orderId, $date, $timeSlot, $driverId);
     $updated = $stmt->execute();
     $stmt->close();
     return $updated;
@@ -31,18 +32,20 @@ function insertOrder($client_id, $street, $house, $index, $date, $time, $service
     $insertOrderQuery = "INSERT INTO Orders (client_id, driver_id, street, house, postcode, date, time_slot, order_type, price, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $orderStmt = $link->prepare($insertOrderQuery);
 
-    $driver_id = assignDriver($date, $time);
-    if ($driver_id === null) {
+    $driverId = findDriver($date, $time);
+    if ($driverId === null) {
         $orderStmt->close();
         return false; // No available drivers
     }
 
-    $orderStmt->bind_param("iississsds", $client_id, $driver_id, $street, $house, $index, $date, $time, $service, $price, $comment);
+    $orderStmt->bind_param("iississsds", $client_id, $driverId, $street, $house, $index, $date, $time, $service, $price, $comment);
     $orderInserted = $orderStmt->execute();
     if ($orderInserted) {
         // Get the order ID
         $orderId = $orderStmt->insert_id;
-        updateDriverSchedule($orderId, $date, $time, $driver_id);
+
+        // Update driver schedule
+        updateDriverSchedule($orderId, $date, $time, $driverId);
         // Insert data into bulk_items table if service is 'Bulk Waste Removal'
         if ($service === 'Bulk Waste Removal') {
             $selectedItemsArray = explode('|', $selectedItems);
@@ -102,7 +105,8 @@ function insertOrder($client_id, $street, $house, $index, $date, $time, $service
     }
 }
 
-function assignDriver($date, $time) {
+function findDriver($date, $time)
+{
     $link = connectDatabase();
     $query = "SELECT driver_id FROM driver_schedule WHERE date = ? AND time_slot = ? AND order_id IS NULL";
     $stmt = $link->prepare($query);
@@ -110,7 +114,7 @@ function assignDriver($date, $time) {
     $stmt->execute();
     $result = $stmt->get_result();
     $availableDrivers = [];
-    
+
     while ($row = $result->fetch_assoc()) {
         $availableDrivers[] = $row['driver_id'];
     }

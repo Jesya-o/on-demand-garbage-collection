@@ -61,7 +61,7 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                             </div>
                             <div class="address-group house">
                                 <label for="house">House</label>
-                                <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$" value="<?php echo empty($house) ? '' : $house; ?>">
+                                <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]\\\]+$" value="<?php echo empty($house) ? '' : $house; ?>">
                             </div>
                             <div class="address-group index">
                                 <label for="index">Postcode</label>
@@ -107,11 +107,11 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                         <!-- Selecting service to order -->
                         <p class="booking-form-title">Select the service you want</p>
                         <div class="service-selector">
-                            <input type="radio" id="regular" name="service" value="Regular Pickup" <?= (isset($_SESSION['service']) && $_SESSION['service'] === 'Regular Pickup') ? 'checked' : ''; ?>>
+                            <input type="radio" id="regular" name="service" value="Regular Pickup" <?= (isset($_SESSION['service']) && $_SESSION['service'] === 'Regular Pickup') ? 'checked' : ''; ?> required>
                             <label for="regular">Regular pickup</label><br>
-                            <input type="radio" id="recycling" name="service" value="Recycling" <?= (isset($_SESSION['service']) && $_SESSION['service'] === 'Recycling') ? 'checked' : ''; ?>>
+                            <input type="radio" id="recycling" name="service" value="Recycling" <?= (isset($_SESSION['service']) && $_SESSION['service'] === 'Recycling') ? 'checked' : ''; ?> required>
                             <label for="recycling">Recycling</label><br>
-                            <input type="radio" id="bulk" name="service" value="Bulk Waste Removal" <?= (isset($_SESSION['service']) && $_SESSION['service'] === 'Bulk Waste Removal') ? 'checked' : ''; ?>>
+                            <input type="radio" id="bulk" name="service" value="Bulk Waste Removal" <?= (isset($_SESSION['service']) && $_SESSION['service'] === 'Bulk Waste Removal') ? 'checked' : ''; ?> required>
                             <label for="bulk">Bulk waste removal</label>
                         </div>
                         <!-- Bulk waste removal items item-weight form -->

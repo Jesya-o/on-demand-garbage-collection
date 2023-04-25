@@ -61,18 +61,25 @@ function updateFormLineLabels() {
   });
 }
 
-// Restore form lines based on stored session values
-document.addEventListener('DOMContentLoaded', () => {
-  const selectedItems = '<?= $selectedItems ?>'.split('|');
-  const formContainer = document.querySelector('.form-container');
-  const addButton = document.querySelector('.add-btn');
+// Fields appear only when bulk waste removal is checked
+// Hide the form container by default
+formContainer.style.display = 'none';
 
-  selectedItems.forEach((item, index) => {
-    if (index > 0) {
-      addButton.click();
-    }
-    const formLine = formContainer.querySelector(`.form-line:nth-child(${index + 1})`);
-    const selectElement = formLine.querySelector('select');
-    selectElement.value = item;
-  });
+// Get a reference to the radio buttons
+const regularRadio = document.getElementById('regular');
+const recyclingRadio = document.getElementById('recycling');
+const bulkRadio = document.getElementById('bulk');
+
+// Add an event listener to each radio button
+regularRadio.addEventListener('change', () => {
+  formContainer.style.display = 'none';
 });
+
+recyclingRadio.addEventListener('change', () => {
+  formContainer.style.display = 'none';
+});
+
+bulkRadio.addEventListener('change', () => {
+  formContainer.style.display = 'block';
+});
+
