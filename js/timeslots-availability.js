@@ -1,13 +1,18 @@
+function getUrl(date) {
+    const currentUrl = window.location.href;
+    return currentUrl.substring(0, currentUrl.lastIndexOf('/')) + '/api/booking-slots-availability.php?date=' + date;
+}
+
 function updateAvailableTimeSlots() {
     var date = document.getElementById("datepicker").value;
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             var availableSlots = JSON.parse(this.responseText);
             updateSlotStatus(availableSlots);
         }
     };
-    xhttp.open("GET", "booking-slots-availability.php?date=" + date, true);
+    xhttp.open("GET", getUrl(date), true);
     xhttp.send();
 }
 
