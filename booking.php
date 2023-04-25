@@ -118,7 +118,7 @@ require_once('backend-personalinfo.php');
                             <div class="form-line">
                                 <label for="selector1" class="item">Item 1</label>
                                 <select name="selector[]">
-                                    <option value="option1">0 - 20 kg</option>
+                                    <option value="option1">1 - 20 kg</option>
                                     <option value="option2">21 - 50 kg</option>
                                     <option value="option3">51 - 100 kg</option>
                                     <option value="option4">101 - 200 kg</option>
