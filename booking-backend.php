@@ -56,7 +56,7 @@ function insertOrder($client_id, $street, $house, $index, $date, $time, $service
 
                 switch ($item) {
                     case 'option1':
-                        $itemWeightLow = 10;
+                        $itemWeightLow = 1;
                         $itemWeightHigh = 20;
                         break;
                     case 'option2':

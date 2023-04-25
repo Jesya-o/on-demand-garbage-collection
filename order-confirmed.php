@@ -1,5 +1,5 @@
 <?php require_once('session.php'); ?>
-<?php require_once('book-validation.php'); ?>
+<?php require_once('booking-backend.php'); ?>
 <?php
 // Check if the user accessed order-confirmed.php from order-confirmation.php
 if (!isset($_SESSION['confirmation']) || $_SESSION['confirmation'] != true) {
@@ -21,6 +21,7 @@ $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
 $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
 $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
+$selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
 $clientId = intval(getClientId());
 // Call insertOrder with the retrieved client_id
 $orderId = insertOrder(
