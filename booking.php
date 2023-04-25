@@ -81,8 +81,7 @@ require_once('backend-personalinfo.php');
                                     </div>
                                     <div class="calendar-days"></div>
                                 </div>
-                                <input type="hidden" id="datepicker" name="datepicker" required value="<?= isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : ''; ?>">
-                            </div>
+                                <input type="hidden" id="datepicker" name="datepicker" required value="<?= isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : ''; ?>">                            </div>
                             <!-- Available time slots -->
                             <div class="date-row">
                                 <label for="datepicker" class="calendar-label time-slots">Free slots:</label>
@@ -119,7 +118,7 @@ require_once('backend-personalinfo.php');
                             <div class="form-line">
                                 <label for="selector1" class="item">Item 1</label>
                                 <select name="selector[]">
-                                    <option value="option1">0 - 20 kg</option>
+                                    <option value="option1">1 - 20 kg</option>
                                     <option value="option2">21 - 50 kg</option>
                                     <option value="option3">51 - 100 kg</option>
                                     <option value="option4">101 - 200 kg</option>
@@ -155,6 +154,7 @@ require_once('backend-personalinfo.php');
 
     </div>
 
+    <script src="js/timeslots-availability.js"></script>
     <script src="js/dashboard-navigation.js"></script>
     <script src="js/bulk-waste-add-item.js"></script>
     <script src="js/dashboard-calendar.js"></script>

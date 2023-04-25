@@ -108,4 +108,5 @@ calendarDays.addEventListener('click', function (event) {
     updateCalendar();
     datepicker.value = selectedDate.toLocaleDateString();
     calendarContainer.classList.remove('show');
+    updateAvailableTimeSlots(); // call the function after setting the new date value
 });

@@ -21,7 +21,7 @@ $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
 $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
 $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
-$selector = isset($_SESSION['selector']) ? $_SESSION['selector'] : array();
+$selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
 $_SESSION['confirmation'] = true;
 
 ?>
@@ -82,29 +82,34 @@ $_SESSION['confirmation'] = true;
                     <?= ucfirst((string)$service); ?>
                 </p>
                 <p>
-                    <?php if ($service === 'Bulk Waste Removal') : ?>
-                        Number of items to be removed:
-                        &nbsp;
-                        <?= count($_SESSION['selector']) ?><br>
-                </p>
-                <p>
-                    Weights of items to be removed:
-                    &nbsp;
-                    <?php
-                        $option_weights = [
-                            'option1' => '0-20 kg',
-                            'option2' => '21-50 kg',
-                            'option3' => '51-100 kg',
-                            'option4' => '101-200 kg',
-                            'option5' => '201-500 kg'
-                        ];
-                        $weights = array();
-                        foreach ($_POST['selector'] as $selected) {
-                            $weights[] = $option_weights[$selected];
-                        }
-                        echo implode(', ', $weights);
-                    ?><br>
-                <?php endif; ?>
+                <?php if ($service === 'Bulk Waste Removal') : ?>
+    <p>
+        Number of items to be removed:
+        &nbsp;
+        <?php
+        $selectedItemsArray = explode('|', $selectedItems);
+        echo count($selectedItemsArray);
+        ?><br>
+        </p>
+        <p>
+            Weights of items to be removed:
+            &nbsp;
+            <?php
+            $option_weights = [
+                'option1' => '1-20 kg',
+                'option2' => '21-50 kg',
+                'option3' => '51-100 kg',
+                'option4' => '101-200 kg',
+                'option5' => '201-500 kg'
+            ];
+            $weights = array();
+            foreach ($selectedItemsArray as $selected) {
+                $weights[] = $option_weights[$selected];
+            }
+            echo implode(', ', $weights);
+            ?><br>
+        </p>
+    <?php endif; ?>
                 </p>
                 <p>
                     Total price:
