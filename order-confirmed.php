@@ -74,7 +74,7 @@ unset($_SESSION['confirmation']);
 
             <div class="buttons">
                 <a href="order-cancelled.php" class="confirm-btn">Cancel the order</a>
-                <a href="booking.php" class="back-btn">Back to booking</a>
+                <a href="orders.php" class="back-btn">View orders</a>
             </div>
         </div>
 

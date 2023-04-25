@@ -41,6 +41,7 @@ if (
 	$_SESSION['date'] = $date;
 	$_SESSION['time'] = $time;
 	$_SESSION['service'] = $service;
+	$_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
 	// Validation
 	// First name check: contains only letters
 	if (!preg_match("/^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$/", $name)) {
@@ -182,7 +183,6 @@ if (
 		$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
 		$saveDataChecked = isset($_POST['saveData']) && $_POST['saveData'] === 'saveData';
 		// insert the data into the database
-		
 		$clientId = getClientId();
 
 		if ($clientId != null) {

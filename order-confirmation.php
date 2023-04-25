@@ -21,6 +21,7 @@ $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
 $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
 $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
+$selector = isset($_SESSION['selector']) ? $_SESSION['selector'] : array();
 $_SESSION['confirmation'] = true;
 ?>
 
@@ -118,7 +119,7 @@ $_SESSION['confirmation'] = true;
         </div>
         <div class="buttons">
             <a href="order-confirmed.php" class="confirm-btn">Confirm the order</a>
-            <a href="orders.php" class="back-btn">View orders</a>
+            <a href="booking.php" class="back-btn">Back to booking</a>
         </div>
     </div>
 

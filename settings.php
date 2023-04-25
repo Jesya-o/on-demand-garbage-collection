@@ -126,6 +126,8 @@
     <script src="js/current-date.js"></script>
     <script src="js/show-passwords-settings.js"></script>
     <script src="js/error-messages-settings.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUUbQx_beVyNpZ1KjcZma3KZHDGbC68U&libraries=places"></script>
+    <script src="js/address-suggestions.js"></script>
 </body>
 
 </html>
