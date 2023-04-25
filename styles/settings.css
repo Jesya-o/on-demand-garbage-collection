@@ -36,3 +36,12 @@
     border: none;
     cursor: pointer;
 }
+
+
+.error {
+	color: red;
+	display: block;
+	width: 300px;
+	padding: auto;
+	padding-top: 10px;
+}

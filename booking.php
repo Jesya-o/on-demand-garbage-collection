@@ -57,11 +57,11 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                         <div class="line">
                             <div class="address-group street">
                                 <label for="street">Street name</label>
-                                <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$" value="<?php echo empty($street) ? '' : $street; ?>">
+                                <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" pattern="^[\w\s\.,'\-#;^:=()~&amp;&gt;+=*\/&lt;?!{}[\]]+$" value="<?php echo empty($street) ? '' : $street; ?>">
                             </div>
                             <div class="address-group house">
                                 <label for="house">House</label>
-                                <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]\\\]+$" value="<?php echo empty($house) ? '' : $house; ?>">
+                                <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-#;^:=()~&amp;&gt;+=*\/&lt;?!{}[\]]+$" value="<?php echo empty($house) ? '' : $house; ?>">
                             </div>
                             <div class="address-group index">
                                 <label for="index">Postcode</label>
