@@ -1,7 +1,5 @@
 <?php require_once('session.php');
 require_once('backend-personalinfo.php'); 
-
-$selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
 ?>
 
 <!DOCTYPE html>
