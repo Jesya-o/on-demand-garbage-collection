@@ -21,7 +21,8 @@ $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
 $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
 $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
-$selector = isset($_SESSION['selector']) ? $_SESSION['selector'] : array();
+$selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
+echo $selectedItems;
 $_SESSION['confirmation'] = true;
 ?>
 
@@ -84,7 +85,7 @@ $_SESSION['confirmation'] = true;
                     <?php if ($service === 'Bulk Waste Removal') : ?>
                         Number of items to be removed:
                         &nbsp;
-                        <?= count($_SESSION['selector']) ?><br>
+                        <?= count($selectedItems) ?><br>
                 </p>
                 <p>
                     Weights of items to be removed:
