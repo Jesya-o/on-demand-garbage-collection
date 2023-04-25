@@ -45,8 +45,7 @@ if (isset($_GET['date'])) {
     
     // Save the result to a JSON file
     $jsonData = json_encode($availableTimeSlots);
-    file_put_contents("available_slots.json", $jsonData);
-
+    
     // Output the result
     echo $jsonData;
 }
