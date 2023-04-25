@@ -1,58 +1,93 @@
 import { orderData } from "./resource/order-fetch.js";
 
-const formatDate = (date) => {
-    const dateObj = new Date(date);
-    return dateObj.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'});
+function hideNoOrdersCase() {
+    var element = document.getElementById('no-orders');
+    if (element) {
+        element.style.display = 'none';
+    }
 }
 
-const container = $('#order-paginator'),
+// Call the function to hide the specified div
+
+const container = $('#container'),
+    pager = $('#order-pager'),
     perPage = 5;
 
-let currentPage = 1;
+let pagesNumber;
 
+const formatDate = (date) => {
+    const dateObj = new Date(date);
+    return dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
 
-orderData.fetchOrdersByPage(currentPage, perPage)
-    .then((orderData) => {
-        // Clean container before rendering
-        container.empty();
+const renderOrders = (desiredPage, perPage) => {
 
-        const {ordersNumber, orders} = orderData;
-        let index = perPage * (currentPage - 1) + 1;
-        orders.forEach((order) => {
-            const captionText = $('<div>').addClass('order-record');
-            const row = $('<div>').addClass('row');
-            const info = $('<div>').addClass('info');
-            const h2 = $('<h2>').text('#' + index + ' ' + order.order_type);
-            const p1 = $('<p>');
-            const status = order.status;
-            
-            if (status === 'Ongoing') {
-                p1.append('Ongoing by ' + formatDate(order.date) + ' at ' + order.time_slot);
-                const cancelBtn = $('<button>').attr({
-                    type: 'submit',
-                    name: 'submitCancelling',
-                    class: 'cancel-btn'
-                }).text('Cancel');
-                cancelBtn.click(function() {
-                    cancelOrder(this, order.order_id);
+    const updatePager = (ordersNumber) => {
+        const pagesNumberBuffer = Math.ceil(ordersNumber / perPage);
+
+        if (pagesNumberBuffer !== pagesNumber && pagesNumberBuffer > 1) {
+            pagesNumber = pagesNumberBuffer;
+            pager.empty();
+            const list = $('<ul>');
+            for (let i = 0; i < pagesNumber; i++) {
+                const currentPage = i + 1;
+                const listItem = $('<li>');
+
+                listItem.on('click', function () {
+                    renderOrders(currentPage, perPage);
                 });
-                p1.append(cancelBtn);
-            } else if (status === 'Completed') {
-                p1.text('Completed on ' + formatDate(order.date) + ' at ' + order.time_slot);
-            } else if (status === 'Cancelled') {
-                const span = $('<span>').addClass('cancelled').text('Cancelled');
-                p1.append(span);
+                listItem.text(currentPage);
+                list.append(listItem);
             }
-            
-            const p2 = $('<p>').text('Driver: ' + order.name + ' ' + order.surname);
-            const price = $('<div>').addClass('price').text(order.price + ' EUR');
-            
-            info.append(h2, p1, p2);
-            row.append(info, price);
-            captionText.append(row);
-            container.append(captionText);
-            
-            index++;
-        });
-    });
+            pager.append(list);
+        }
+    }
 
+    orderData.fetchOrdersByPage(desiredPage, perPage)
+        .then((data) => {
+            hideNoOrdersCase();
+            // Clean container before rendering
+            container.empty();
+            const { ordersNumber, orders } = data;
+            updatePager(ordersNumber);
+            let index = perPage * (desiredPage - 1) + 1;
+            orders.forEach((order) => {
+                const captionText = $('<div>').addClass('order-record');
+                const row = $('<div>').addClass('row');
+                const info = $('<div>').addClass('info');
+                const h2 = $('<h2>').text('#' + index + ' ' + order.order_type);
+                const p1 = $('<p>');
+                const status = order.status;
+
+                if (status === 'Ongoing') {
+                    p1.append('Ongoing by ' + formatDate(order.date) + ' at ' + order.time_slot);
+                    const cancelBtn = $('<button>').attr({
+                        type: 'submit',
+                        name: 'submitCancelling',
+                        class: 'cancel-btn'
+                    }).text('Cancel');
+                    cancelBtn.click(function () {
+                        cancelOrder(this, order.order_id);
+                    });
+                    p1.append(cancelBtn);
+                } else if (status === 'Completed') {
+                    p1.text('Completed on ' + formatDate(order.date) + ' at ' + order.time_slot);
+                } else if (status === 'Cancelled') {
+                    const span = $('<span>').addClass('cancelled').text('Cancelled');
+                    p1.append(span);
+                }
+
+                const p2 = $('<p>').text('Driver: ' + order.name + ' ' + order.surname);
+                const price = $('<div>').addClass('price').text(order.price + ' EUR');
+
+                info.append(h2, p1, p2);
+                row.append(info, price);
+                captionText.append(row);
+                container.append(captionText);
+
+                index++;
+            });
+        });
+}
+
+renderOrders(1, perPage);
