@@ -207,9 +207,8 @@
 .pager ul {
     color: var(--black);
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-direction: row;
-
     padding-left: 0;
     margin-left: 30px;
     margin-top: 20px;
@@ -218,6 +217,7 @@
 .pager ul li {
     list-style-type: none;
     padding: 5px;
+    margin-right: 5px;
 }
 
 .pager ul li:hover {

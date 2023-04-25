@@ -23,6 +23,7 @@ $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
 $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
 $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
 $_SESSION['confirmation'] = true;
+
 ?>
 
 <!DOCTYPE html>

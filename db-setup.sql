@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS Bulk_items;
+DROP TABLE IF EXISTS driver_schedule;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Drivers;
 DROP TABLE IF EXISTS Sessions;
@@ -78,7 +79,6 @@ VALUES ("Diego", "Brown", "diego@gmail.com", "+37289382939");
 INSERT INTO Drivers (name, surname, email, phone_number)
 VALUES ("Mary", "Wolf", "mary@gmail.com", "+37289382939");
 
-DROP TABLE IF EXISTS driver_schedule;
 CREATE TABLE driver_schedule (
   id INT AUTO_INCREMENT PRIMARY KEY,
   date DATE NOT NULL,

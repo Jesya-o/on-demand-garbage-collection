@@ -88,15 +88,15 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                             <div class="date-row">
                                 <label for="datepicker" class="calendar-label time-slots">Free slots:</label>
                                 <div class="calendar-container time-slots time-selector">
-                                    <input type="radio" id="time1" name="time" value="10:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '10:00' ? 'checked' : ''; ?>>
+                                    <input type="radio" id="time1" name="time" value="10:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '10:00' ? 'checked' : ''; ?> required>
                                     <label for="time1">10:00</label><br>
-                                    <input type="radio" id="time2" name="time" value="11:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '11:00' ? 'checked' : ''; ?>>
+                                    <input type="radio" id="time2" name="time" value="11:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '11:00' ? 'checked' : ''; ?> required>
                                     <label for="time2" disabled>11:00</label><br>
-                                    <input type="radio" id="time3" name="time" value="12:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '12:00' ? 'checked' : ''; ?>>
+                                    <input type="radio" id="time3" name="time" value="12:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '12:00' ? 'checked' : ''; ?> required>
                                     <label for="time3">12:00</label><br>
-                                    <input type="radio" id="time4" name="time" value="13:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '13:00' ? 'checked' : ''; ?>>
+                                    <input type="radio" id="time4" name="time" value="13:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '13:00' ? 'checked' : ''; ?> required>
                                     <label for="time4" disabled>13:00</label><br>
-                                    <input type="radio" id="time5" name="time" value="14:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '14:00' ? 'checked' : ''; ?>>
+                                    <input type="radio" id="time5" name="time" value="14:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '14:00' ? 'checked' : ''; ?> required>
                                     <label for="time5">14:00</label>
                                 </div>
                             </div>

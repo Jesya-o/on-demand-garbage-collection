@@ -37,11 +37,12 @@ if (
 	$_SESSION['surname'] = $surname;
 	$_SESSION['street'] = $street;
 	$_SESSION['house'] = $house;
-	$_SESSION['index'] = $index;
+	$_SESSION['index'] = intval($index);
 	$_SESSION['date'] = $date;
 	$_SESSION['time'] = $time;
 	$_SESSION['service'] = $service;
 	$_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
+
 	// Validation
 	// First name check: contains only letters
 	if (!preg_match("/^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$/", $name)) {
@@ -77,12 +78,13 @@ if (
 	$month = $dateComponents[1];
 	$day = $dateComponents[2];
 
+	$_SESSION['date'] = $date;
 
 	// Should not be in the past
 	if ($timestamp < $current_date) {
 		$error_messages[] = "Invalid date. Date provided is in the past.";
 	}
-    $_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
+	$_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
 
 	// Should exist
 	if (!checkdate($month, $day, $year)) {
@@ -114,7 +116,6 @@ if (
 				break;
 			}
 		}
-		
 	}
 
 	if (isset($_POST['selector']) && !empty($_POST['comment'])) {
@@ -191,30 +192,11 @@ if (
 			if ($saveDataChecked) {
 				updateClientData($clientId, $name, $surname, $email, $phone, $street, $house, $index);
 			}
-	
-			// Call insertOrder with the retrieved client_id
-			insertOrder(
-				$clientId,
-				$name,
-				$surname,
-				$email,
-				$street,
-				$house,
-				$index,
-				$date,
-				$time,
-				$service,
-				$price,
-				$phone,
-				$comment,
-				$selectedItems
-			);
 
 			$_SESSION['success'] = "Your booking was successfully created.";
 			header("Location: order-confirmation.php");
 		} else {
 			$errors['session'] = "Invalid session.";
 		}
-}
-	
+	}
 }
