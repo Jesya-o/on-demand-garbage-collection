@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
 }
+
 .orders h1 {
     font-weight: 200;
     color: var(--shadowedblack);
@@ -24,16 +25,14 @@
     left: 0;
     top: 45px;
 }
+
 /* Display items in card in a row */
 .row {
     display: flex;
     margin-top: calc(var(--bs-gutter-y) * -1);
     margin-right: calc(var(--bs-gutter-x) * -.5);
     margin-left: 30px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-around;
+    flex-direction: column;
 }
 
 
@@ -55,13 +54,6 @@
     justify-content: space-around;
     align-items: stretch;
 }
-/* Display price in the right */
-.price {
-    position: absolute;
-    top: 80%;
-    right: -50%;
-}
-
 
 /* Hide the images by default */
 .slider {
@@ -73,7 +65,7 @@
 .next {
     cursor: pointer;
     position: absolute;
-    transform:rotate(90deg);
+    transform: rotate(90deg);
     width: auto;
     margin-top: -22px;
     padding: 16px;
@@ -89,7 +81,7 @@
 
 .next {
     border-radius: 3px 0 0 3px;
-    top:90%;
+    top: 90%;
 }
 
 /* Caption text */
@@ -107,6 +99,7 @@
     align-items: flex-start;
     margin-left: 9px;
 }
+
 .slider-text h2 {
     margin-block-start: 0;
     margin-block-end: 0;
@@ -114,6 +107,7 @@
     padding-top: 23px;
     padding-bottom: 30px;
 }
+
 .slider-text p {
     margin-block-start: 0;
     margin-block-end: 0;
@@ -147,23 +141,28 @@
     .slider-container {
         min-height: 350px;
     }
+
     .price {
         left: 2%;
         top: 70%;
     }
+
     .slider-text {
         position: relative;
     }
+
     .row {
-        flex-direction:inherit;
+        flex-direction: inherit;
     }
+
     .price {
         text-align: center;
         font-weight: bold;
-        top:85%;
+        top: 85%;
     }
+
     .next {
-        top:95%;
+        top: 95%;
     }
 }
 
@@ -179,9 +178,9 @@
 /* Cancel button */
 .cancel-btn {
     border: 1px solid;
-    font-family: "Nanum Myeongjo";;
+    font-family: "Nanum Myeongjo";
     background-color: none;
-    background-color: var(--snowwhite); 
+    background-color: var(--snowwhite);
     color: var(--shadowedblack);
     padding: 5px 15px;
     text-align: center;
@@ -191,6 +190,7 @@
     margin-left: 20px;
     border-radius: 10px;
 }
+
 .cancel-btn:hover {
     background-color: var(--white);
     cursor: pointer;
@@ -204,20 +204,47 @@
     margin: 10px 20px 20px 0px;
 }
 
+.pager ul {
+    color: var(--black);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+    padding-left: 0;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.pager ul li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.pager ul li:hover {
+    cursor: pointer;
+}
+
+.active-page {
+    border: 1px solid var(--black);
+    border-radius: 10px;
+}
 @media screen and (max-width: 555px) {
     .slider-text {
         position: relative;
     }
+
     .row {
-        flex-direction:inherit;
+        flex-direction: inherit;
     }
+
     .price {
         text-align: center;
         font-weight: bold;
-        top:95%;
+        top: 95%;
         right: -50%;
     }
+
     .next {
-        top:95%;
+        top: 95%;
     }
 }

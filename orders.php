@@ -48,7 +48,7 @@ require_once('orders-backend.php');
             </div>
             <div id="order-pagination">
                 <div id="container"></div>
-                <div id="order-pager"></div>
+                <div id="order-pager" class="pager"></div>
             </div>
         </div>
     </div>

@@ -45,7 +45,7 @@ require_once('login-session-start.php');
 			</script>
           <?php endif; ?>
           <div class="forgot-password">
-			<a href="#">Forgot password?</a>
+			<!-- <a href="#">Forgot password?</a> -->
 		  </div>
           <br>
           <button type="submit" class="login">Log in</button>
