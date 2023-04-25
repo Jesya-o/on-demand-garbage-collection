@@ -6,5 +6,6 @@
         <a href="settings.php">Settings</a>
         <a href="index.php">Home</a>
         <a href="logout.php" class="log-out">Log out</a>
+        <a href="delete-account.php" class="delete">Delete account</a>
     </nav>
 </aside>
