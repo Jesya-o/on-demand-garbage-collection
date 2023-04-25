@@ -1,12 +1,5 @@
 import { orderData } from "./resource/order-fetch.js";
 
-function hideNoOrdersCase() {
-    var element = document.getElementById('no-orders');
-    if (element) {
-        element.style.display = 'none';
-    }
-}
-
 // Call the function to hide the specified div
 
 const container = $('#container'),
@@ -22,21 +15,25 @@ const formatDate = (date) => {
 
 const renderOrders = (desiredPage, perPage) => {
 
-    const updatePager = (ordersNumber) => {
+    const updatePager = (ordersNumber, currentPage) => {
         const pagesNumberBuffer = Math.ceil(ordersNumber / perPage);
 
-        if (pagesNumberBuffer !== pagesNumber && pagesNumberBuffer > 1) {
+        if (pagesNumberBuffer > 1) {
             pagesNumber = pagesNumberBuffer;
             pager.empty();
             const list = $('<ul>');
             for (let i = 0; i < pagesNumber; i++) {
-                const currentPage = i + 1;
+                const page = i + 1;
                 const listItem = $('<li>');
 
                 listItem.on('click', function () {
-                    renderOrders(currentPage, perPage);
+                    renderOrders(page, perPage);
                 });
-                listItem.text(currentPage);
+
+                if (page == currentPage) {
+                    listItem.addClass('active-page');
+                }
+                listItem.text(page);
                 list.append(listItem);
             }
             pager.append(list);
@@ -45,11 +42,19 @@ const renderOrders = (desiredPage, perPage) => {
 
     orderData.fetchOrdersByPage(desiredPage, perPage)
         .then((data) => {
-            hideNoOrdersCase();
             // Clean container before rendering
             container.empty();
             const { ordersNumber, orders } = data;
-            updatePager(ordersNumber);
+
+            // Handle no orders case
+            if (ordersNumber != 0) {
+                    var element = document.getElementById('no-orders');
+                    if (element) {
+                        element.style.display = 'none';
+                    }
+            }
+
+            updatePager(ordersNumber, desiredPage);
             let index = perPage * (desiredPage - 1) + 1;
             orders.forEach((order) => {
                 const captionText = $('<div>').addClass('order-record');
@@ -78,7 +83,7 @@ const renderOrders = (desiredPage, perPage) => {
                 }
 
                 const p2 = $('<p>').text('Driver: ' + order.name + ' ' + order.surname);
-                const price = $('<div>').addClass('price').text(order.price + ' EUR');
+                const price = $('<div>').addClass('price').text('Price: ' + order.price + ' EUR');
 
                 info.append(h2, p1, p2);
                 row.append(info, price);
