@@ -30,11 +30,11 @@ require_once('login-session-start.php');
         <form id="login" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
           <div class="input-lines">
             <div class="username-container">
-              <input type="text" id="username" class="username" name="username" placeholder="Username" required pattern="^[A-Za-z][A-Za-z0-9_.]{4,14}$">
+              <input type="text" id="username" class="username" name="username" placeholder="Username" required pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]{4,45}">
               <div class="error-msg" id="username-error"></div>
             </div>
             <div class="password-container">
-              <input type="password" id="password" class="password" name="password" placeholder="Password" required>
+              <input type="password" id="password" class="password" name="password" placeholder="Password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}">
               <button type="button" id="show-password" class="show-password">Show</button>
               <div class="error-msg" id="password-error"></div>
             </div>

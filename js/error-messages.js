@@ -1,25 +1,21 @@
 const usernameInput = document.querySelector('#username');
-	const passwordInput = document.querySelector('#password');
+const passwordInput = document.querySelector('#password');
 
-	usernameInput.addEventListener('input', () => {
+usernameInput.addEventListener('input', (event) => {
 	const username = usernameInput.value.trim();
-	const pattern = /^[A-Za-z][A-Za-z0-9_.]{4,14}$/;
-	
-	if (username.length === 0) {
-		usernameInput.setCustomValidity('Username is required');
-	} else if (username.length < 5) {
-		usernameInput.setCustomValidity('Username must be at least 5 characters');
-	} else if (username.length > 15) {
-		usernameInput.setCustomValidity('Username cannot be more than 15 characters');
-	} else if (!pattern.test(username)) {
-		usernameInput.setCustomValidity('Username can only contain letters from English alphabet, numbers, dots, and underscores, and must start with a letter');
-	} else {
-		usernameInput.setCustomValidity('');
-	}
-	});
+	const pattern = /^[A-Za-z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]{4,45}$/;
 
-	passwordInput.addEventListener('input', () => {
+    if (!pattern.test(username)) {
+        event.target.setCustomValidity('Username must be between 4 and 15 characters, start with a letter, and contain only English letters, numbers, underscores, or periods.');
+    } else {
+        event.target.setCustomValidity('');
+    }
+});
+
+passwordInput.addEventListener('input', () => {
 	const password = passwordInput.value.trim();
+
+	const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$/;
 
 	if (password.length === 0) {
 		passwordInput.setCustomValidity('Password is required');
@@ -31,29 +27,31 @@ const usernameInput = document.querySelector('#username');
 		passwordInput.setCustomValidity('Password must contain at least one uppercase letter');
 	} else if (!/\d/.test(password)) {
 		passwordInput.setCustomValidity('Password must contain at least one number');
-	} else if (!/[!@#$%^&*()-_=+?.>,<|\/\\]/.test(password)) {
+	} else if (!/[\W_]/.test(password)) {
 		passwordInput.setCustomValidity('Password must contain at least one special character');
 	} else if (password.length > 45) {
 		passwordInput.setCustomValidity('Password cannot be more than 45 characters');
+	} else if (!passwordPattern.test(password)) {
+		passwordInput.setCustomValidity('Password should be 8-45 characters long, and contain lower-, uppercase letters, numbers and speacial characters');
 	} else {
 		passwordInput.setCustomValidity('');
 	}
-	});
+});
 
-	// add event listener for invalid event on username input
-	usernameInput.addEventListener('invalid', () => {
+// add event listener for invalid event on username input
+usernameInput.addEventListener('invalid', () => {
 	if (usernameInput.validity.valueMissing) {
 		usernameInput.setCustomValidity('Username is required');
 	} else {
 		usernameInput.setCustomValidity('');
 	}
-	});
+});
 
-	// add event listener for invalid event on password input
-	passwordInput.addEventListener('invalid', () => {
+// add event listener for invalid event on password input
+passwordInput.addEventListener('invalid', () => {
 	if (passwordInput.validity.valueMissing) {
 		passwordInput.setCustomValidity('Password is required');
 	} else {
 		passwordInput.setCustomValidity('');
 	}
-	});
+});
