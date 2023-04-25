@@ -13,7 +13,7 @@ function updateClientData($client_id, $name, $surname, $email, $phone, $street, 
     return $updated;
 }
 
-function insertOrder($client_id, $name, $surname, $email, $street, $house, $index, $date, $time, $service, $price, $phone, $comment, $selectedItems)
+function insertOrder($client_id, $street, $house, $index, $date, $time, $service, $price, $phone, $comment, $selectedItems)
 {
     $link = connectDatabase();
 
@@ -22,7 +22,7 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
     $orderStmt = $link->prepare($insertOrderQuery);
 
     $driver_id = assignDriver($date, $time); // You can assign a driver ID here
-    $orderStmt->bind_param("iississsds", $client_id, $driver_id, $street, $house, $index, $date, $time, $service, $price, $comment);
+    $orderStmt->bind_param("iississsds", $client_id, $driver_id, $street, $house, intval($index), $date, $time, $service, $price, $comment);
     $orderInserted = $orderStmt->execute();
 
     if ($orderInserted) {
@@ -34,11 +34,11 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
             $totalWeightLow = 0;
             $totalWeightHigh = 0;
             $numberOfItems = count($selectedItemsArray);
-            
+
             foreach ($selectedItemsArray as $item) {
                 $itemWeightLow = 0;
                 $itemWeightHigh = 0;
-                
+
                 switch ($item) {
                     case 'option1':
                         $itemWeightLow = 10;
@@ -61,7 +61,7 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
                         $itemWeightHigh = 500;
                         break;
                 }
-                
+
                 $totalWeightLow += $itemWeightLow;
                 $totalWeightHigh += $itemWeightHigh;
             }
@@ -79,13 +79,12 @@ function insertOrder($client_id, $name, $surname, $email, $street, $house, $inde
 
             $bulkStmt->close();
         }
+        $orderStmt->close();
+        return $orderId;
     } else {
         $orderStmt->close();
         return false;
     }
-    
-    $orderStmt->close();
-    return true;
 }
 
 function assignDriver($date, $time) {

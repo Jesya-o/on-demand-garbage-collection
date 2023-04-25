@@ -2,12 +2,12 @@
 <?php require_once('book-validation.php'); ?>
 <?php
 // Check if the user accessed order-confirmed.php from order-confirmation.php
-if(!isset($_SESSION['confirmation']) || $_SESSION['confirmation'] != true) {
+if (!isset($_SESSION['confirmation']) || $_SESSION['confirmation'] != true) {
     // Redirect the user to booking.php and display an alert message
     $_SESSION['error_message'] = "See your confirmed orders in Orders section on Dashboard. To make sure your ongoing order is confirmed, make a booking first!";
     header("Location: booking.php");
     exit();
-  }
+}
 // set variables
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
@@ -16,11 +16,26 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 $street = isset($_SESSION['street']) ? $_SESSION['street'] : '';
 $house = isset($_SESSION['house']) ? $_SESSION['house'] : '';
 $index = isset($_SESSION['index']) ? $_SESSION['index'] : '';
-$datepicker = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : '';
+$date = isset($_SESSION['date']) ? $_SESSION['date'] : '';
 $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
 $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
 $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
+$clientId = intval(getClientId());
+// Call insertOrder with the retrieved client_id
+$orderId = insertOrder(
+    $clientId,
+    $street,
+    $house,
+    $index,
+    $date,
+    $time,
+    $service,
+    $price,
+    $phone,
+    $comment,
+    $selectedItems
+);
 
 // destroy the variables
 unset($_SESSION['name']);
@@ -30,7 +45,7 @@ unset($_SESSION['email']);
 unset($_SESSION['street']);
 unset($_SESSION['house']);
 unset($_SESSION['index']);
-unset($_SESSION['datepicker']);
+unset($_SESSION['date']);
 unset($_SESSION['time']);
 unset($_SESSION['service']);
 unset($_SESSION['comment']);
@@ -73,7 +88,7 @@ unset($_SESSION['confirmation']);
             </div>
 
             <div class="buttons">
-                <a href="order-cancelled.php" class="confirm-btn">Cancel the order</a>
+                <a href="order-cancelled.php?orderId=<?= $orderId ?>" class="confirm-btn">Cancel the order</a>
                 <a href="orders.php" class="back-btn">View orders</a>
             </div>
         </div>
