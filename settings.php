@@ -114,10 +114,13 @@
                             </div>
 
                             <!-- Submit form button -->
-                            <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn" style="position: absolute; bottom: -110px;">Submit and save</button>
+                            <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn" style="position: absolute; bottom: -93px;">Submit and save</button>
+                        
                         </div>
+                        <a href="delete-account.php" class="delete">Delete account</a>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>

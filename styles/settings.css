@@ -14,13 +14,41 @@
 }
 
 .personal-settings-save-btn {
-    bottom: -108px;
+    bottom: -93px;
 }
 
 .user-settings-save-btn {
-    bottom: 0;
+    bottom: -20px !important;
 }
+.delete{
+    display: flex;
+    height: 40px;
+    text-decoration: none;
 
+    border-radius: 10px;
+    border: 1px solid var(--red);
+    background-color: var(--snowwhite);
+    opacity: 0.8;
+    color: var(--black);
+    font-size: 16px;
+    font-weight: 200;
+    font-family: "Nanum Myeongjo";
+    width: 140px;
+
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 33px;
+
+    color: red;
+    font-weight: 700;
+}
+.delete:hover{
+    border-color: var(--snowwhite);
+    color: var(--snowwhite);
+    background-color: var(--red);   
+}
 .line {
     margin-bottom: 0;
 }
