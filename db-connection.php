@@ -13,4 +13,3 @@ function connectDatabase() {
 
     return $link;
 }
-?>
