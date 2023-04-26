@@ -1,7 +1,8 @@
 @charset "utf-8";
 
 /* Background positioning fix */
-html, body {
+html,
+body {
     background: url("../img/background.jpg") scroll no-repeat center top;
 }
 
@@ -49,9 +50,10 @@ html, body {
     font-size: 16px;
     position: absolute;
     margin: 10px;
-    bottom:10px;
-    height:30%
+    bottom: 10px;
+    height: 30%
 }
+
 /* Make subtext and button be in the bottom */
 .card-col {
     position: relative;
@@ -63,11 +65,12 @@ html, body {
 .left-col {
     width: 60%;
     max-width: 560px;
-    min-width:200px;
+    min-width: 200px;
     min-height: 340px;
 }
+
 .right-col {
-    width:40%;
+    width: 40%;
     max-width: 310px;
     min-height: 280px;
 }
@@ -80,4 +83,3 @@ html, body {
 .what-included p {
     font-size: 18px;
 }
-

@@ -9,7 +9,7 @@ $response = [];
 
 if (
     ($desiredPage = $_GET['desiredPage'] ?? null) &&
-    ($ordersPerPage = $_GET['ordersPerPage'] ?? null) &&    
+    ($ordersPerPage = $_GET['ordersPerPage'] ?? null) &&
     $clientKey &&
     validateClientKey($clientKey)
 ) {

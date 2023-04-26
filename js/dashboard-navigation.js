@@ -9,7 +9,7 @@ function closeNav() {
     if (window.innerWidth < 420) {
         document.getElementById("booking-main").style.marginLeft = "10px";
         document.getElementById("openbutton").style.paddingBottom = "20px";
-    }else {
+    } else {
         document.getElementById("booking-main").style.marginLeft = "50px";
     }
 }

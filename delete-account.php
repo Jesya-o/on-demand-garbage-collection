@@ -8,4 +8,3 @@ $confirmation = "<script>
                         }
                     </script>";
 echo $confirmation;
-?>

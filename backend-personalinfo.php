@@ -29,5 +29,3 @@ $index = $data['postcode'];
 // Close the database connection and free the result set
 $statement->close();
 $link->close();
-
-?>

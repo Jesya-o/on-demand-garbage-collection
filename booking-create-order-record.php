@@ -1,12 +1,14 @@
 <?php
 require_once('db-connections.php');
 
-function createBooking($data) {
+function createBooking($data)
+{
     updateClientData($data);
     createOrder($data);
 }
 
-function updateClientData($data) {
+function updateClientData($data)
+{
     $link = connectDatabase();
     $query = "UPDATE Client 
     SET name = ?, surname = ?, email = ?, phone_number = ? WHERE client_id = ?";
@@ -27,7 +29,8 @@ function updateClientData($data) {
     return false;
 }
 
-function createOrder($data) {
+function createOrder($data)
+{
     $link = connectDatabase();
     $query = "UPDATE Client 
     SET name = ?, surname = ?, email = ?, phone_number = ? WHERE client_id = ?";
@@ -47,4 +50,3 @@ function createOrder($data) {
 
     return false;
 }
-?>

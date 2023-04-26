@@ -300,10 +300,11 @@
     margin-top: 150px;
     /* width: 80vw; */
 }
- .heart-container {
+
+.heart-container {
     max-width: 960px;
     margin: auto;
- }
+}
 
 .centered-content p {
     font-size: 30px;

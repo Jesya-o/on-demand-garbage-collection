@@ -17,7 +17,7 @@ if (
     $statement = $link->prepare($query);
     $statement->bind_param('i', $orderId);
     $statement->execute();
-    
+
     if ($statement->affected_rows > 0) {
         $header = "HTTP/1.1 200 OK";
     } else {

@@ -54,7 +54,7 @@ if (
 	// Street check
 	if (!preg_match("/^[\p{L}a-zA-Z\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$/u", $street)) {
 		$error_messages[] = "Invalid street name.";
-	}	
+	}
 	// House check
 	if (!preg_match("/^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$/", $house)) {
 		$error_messages[] = "Invalid street number.";
@@ -71,7 +71,7 @@ if (
 	}
 
 	// If validation don't fail
-    if (empty($error_messages)) {
+	if (empty($error_messages)) {
 		require_once('booking-backend.php');
 		$clientId = getClientId();
 
@@ -79,7 +79,7 @@ if (
 			// Update client data
 			updateClientData($clientId, $name, $surname, $email, $phone, $street, $house, $index);
 		}
-    }
+	}
 }
 
 // For submitted user settings form: if all mandatory inputs are filled - validate them and write to csv

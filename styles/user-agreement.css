@@ -1,23 +1,22 @@
 @charset "utf-8";
+
 @media screen {
-    html, body { 
-        /*background: url("../img/background.jpg") scroll no-repeat;
-        background-position: bottom center !important;*/
+
+    html,
+    body {
         background-image: none !important;
         background-color: var(--truewhite) !important;
     }
 }
-/*html, body {
-    justify-content: flex-start!important;
-}*/
 
-.agreement h1{
+.agreement h1 {
     margin-left: -1vw;
     margin-top: 5vw;
-    position: relative;  
+    position: relative;
     margin-bottom: 10vw;
 }
-.agreement{
+
+.agreement {
 
     font-family: 'NanumMyeongjo';
     font-style: normal;
@@ -25,21 +24,24 @@
     font-size: 32px;
     color: black;
 }
-#main{
+
+#main {
     padding: 1vw !important;
 }
-#main h2, .list-footer{
+
+#main h2,
+.list-footer {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     color: black;
 }
-#main ol{
+
+#main ol {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     color: black;
 }
-

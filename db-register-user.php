@@ -31,4 +31,3 @@ function checkUsernameUnique($username) {
     $statement->close();
     return !isset($data['username']);
 }
-?>

@@ -76,7 +76,7 @@ div {
 .input-lines {
 	position: relative;
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .username-container {
@@ -84,9 +84,9 @@ div {
 	margin-top: 70px;
 	display: flex;
 	flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
 }
 
 .password-container {
@@ -94,9 +94,9 @@ div {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
 }
 
 .show-password {
@@ -106,9 +106,9 @@ div {
 	background-color: #0d0d0d00;
 	opacity: 0.8;
 	border: none;
-	position:absolute;
-	top:25%;
-	left:64%;
+	position: absolute;
+	top: 25%;
+	left: 64%;
 }
 
 .password-visible {

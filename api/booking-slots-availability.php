@@ -35,5 +35,3 @@ if (isset($_GET['date'])) {
     // Output the result
     echo $jsonData;
 }
-
-?>
