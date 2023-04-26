@@ -1,4 +1,6 @@
 <?php
+require_once('booking-backend.php');
+require_once('token-management.php');
 
 // Function to sanitize user inputs
 function sanitize($input)
@@ -15,13 +17,11 @@ function sanitize($input)
 }
 if (
 	$_SERVER['REQUEST_METHOD'] === 'POST' &&
-	isset($_POST['submitBooking'], $_POST['name'], $_POST['surname'], $_POST['email'], $_POST['street'], $_POST['house'], $_POST['index'], $_POST['datepicker'], $_POST['time'], $_POST['service_type'], $_POST['price']) &&
-	!empty($_POST['name'] && $_POST['surname'] && $_POST['email'] && $_POST['street'] && $_POST['house'] && $_POST['index'] && $_POST['datepicker'] && $_POST['time'] && $_POST['service_type'])
+	isset($_POST['submitBooking'], $_POST['name'], $_POST['surname'], $_POST['email'], $_POST['street'], $_POST['house'], $_POST['index'], $_POST['datepicker'], $_POST['time'], $_POST['service'], $_POST['price']) &&
+	!empty($_POST['name'] && $_POST['surname'] && $_POST['email'] && $_POST['street'] && $_POST['house'] && $_POST['index'] && $_POST['datepicker'] && $_POST['time'] && $_POST['service'])
 ) {
-
 	// array for errors
 	$error_messages = array();
-
 	// form data written to variables
 	$name = sanitize($_POST['name']);
 	$surname = sanitize($_POST['surname']);
@@ -31,17 +31,18 @@ if (
 	$index = sanitize($_POST['index']);
 	$date = sanitize($_POST['datepicker']);
 	$time = sanitize($_POST['time']);
-	$service = sanitize($_POST['service_type']);
-    
+	$service = sanitize($_POST['service']);
 	$_SESSION['name'] = $name;
 	$_SESSION['email'] = $email;
 	$_SESSION['surname'] = $surname;
 	$_SESSION['street'] = $street;
 	$_SESSION['house'] = $house;
-	$_SESSION['index'] = $index;
+	$_SESSION['index'] = intval($index);
 	$_SESSION['date'] = $date;
 	$_SESSION['time'] = $time;
 	$_SESSION['service'] = $service;
+	$_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
+
 	// Validation
 	// First name check: contains only letters
 	if (!preg_match("/^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$/", $name)) {
@@ -57,7 +58,7 @@ if (
 		$error_messages[] = "Sorry, the email validation you provided is incorrect. Please enter a valid email address in the format of 'example@example.com'.";
 	}
 	// Street check
-	if (!preg_match("/^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$/", $street)) {
+	if (!preg_match("/^[\p{L}a-zA-Z\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$/u", $street)) {
 		$error_messages[] = "Invalid street name.";
 	}
 	// House check
@@ -77,11 +78,13 @@ if (
 	$month = $dateComponents[1];
 	$day = $dateComponents[2];
 
+	$_SESSION['date'] = $date;
 
 	// Should not be in the past
 	if ($timestamp < $current_date) {
 		$error_messages[] = "Invalid date. Date provided is in the past.";
 	}
+	$_SESSION['selector'] = isset($_POST['selector']) ? $_POST['selector'] : array();
 
 	// Should exist
 	if (!checkdate($month, $day, $year)) {
@@ -101,7 +104,7 @@ if (
 	}
 
 	// Service check
-	if (!in_array($_POST['service_type'], array('Regular Pickup', 'Recycling', 'Bulk Waste Removal'))) {
+	if (!in_array($_POST['service'], array('Regular Pickup', 'Recycling', 'Bulk Waste Removal'))) {
 		$error_messages[] = "Incorrect service provided.";
 	}
 	if (!isset($_POST['selector']) || empty($_POST['selector'])) {
@@ -120,6 +123,8 @@ if (
 		if (!preg_match("/^[\w\s\.,'\-\#\@\;\$\%\^\:\=\(\)\~\&\€\>\+=\*\/\<\?!{}\[\]]+$/", $comment)) {
 			$error_messages[] = "Something strange in comments.";
 		}
+	} else {
+		$comment = '';
 	}
 
 	if (isset($_POST['selector']) && !empty($_POST['phone'])) {
@@ -129,6 +134,8 @@ if (
 		if (!preg_match("/^[0-9\-\+ ]{7,15}$/", $phone)) {
 			$error_messages[] = "Invalid phone number. There can only be +, - or numbers.";
 		}
+	} else {
+		$phone = '';
 	}
 	if (!empty($error_messages)) {
 		echo '<div class="error-messages">';
@@ -142,18 +149,7 @@ if (
 	}
 	// If validation don't fail
 	if (empty($error_messages)) {
-		// Move the $data array initialization up here
-		$data = array();
-		$data[0] = $name;
-		$data[1] = $surname;
-		$data[2] = $email;
-		$data[3] = $street;
-		$data[4] = $house;
-		$data[5] = $index;
-		$data[6] = $date;
-		$data[7] = $time;
-		$data[8] = $service;
-	
+		$_SESSION['booking_made'] = true;
 		// Calculate total price based on service type and selected items
 		$price = 0;
 		if ($service === 'Regular Pickup') {
@@ -183,45 +179,24 @@ if (
 				}
 			}
 		}
-	
-		// Add total price to $data array
-		$data[9] = $price;
-	    $_SESSION['price'] = $price;
-		// Add phone and comment fields to $data array
-		$data[10] = !empty($_POST['phone']) ? sanitize($_POST['phone']) : '';
-		$data[11] = !empty($_POST['comment']) ? sanitize($_POST['comment']) : '';
-		if (!empty($_POST['selector'])) {
-			$data[12] = implode('|', sanitize($_POST['selector']));
-		} else {
-			$data[12] = ' ';
-		}
-	
-		// Initializing file
-		$fileName = dirname(__FILE__) . "/booking-data.csv";
-		if (!file_exists($fileName)) {
-			// create file if it does not exist
-			$file = fopen($fileName, "w");
-			if (!$file) {
-				$error_messages[] = "Error creating or opening CSV file!";
+		$_SESSION['price'] = $price;
+		$selectedItems = implode('|', $_POST['selector']);
+		$_SESSION['selected_items'] = $selectedItems;
+		$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
+		$saveDataChecked = isset($_POST['saveData']) && $_POST['saveData'] === 'saveData';
+		// insert the data into the database
+		$clientId = getClientId();
+
+		if ($clientId != null) {
+			// Update client data if checkbox is checked
+			if ($saveDataChecked) {
+				updateClientData($clientId, $name, $surname, $email, $phone, $street, $house, $index);
 			}
-			fclose($file);
+
+			$_SESSION['success'] = "Your booking was successfully created.";
+			header("Location: order-confirmation.php");
+		} else {
+			$errors['session'] = "Invalid session.";
 		}
-	
-		// Open the file, mode a+ 
-		// creates a file if it does not exist
-		// existing data in file is preserved
-		$file = fopen($fileName, "a+") or $error_messages[] = "Error opening the file";
-	
-		// Change file permissions
-		chmod($fileName, 0666);
-	
-		// Put data into the csv file, separator ';'
-		fputcsv($file, $data, ";", '"');
-	
-		// Revert pointer to the beginning of the file for further reading
-		fseek($file, 0);
-	
-		// Close the file
-		fclose($file);
 	}
 }

@@ -1,6 +1,6 @@
 # LINKS
 enos link: https://enos.itcollege.ee/~ksokun/web-project/
-branch for milestone 2 (php): main
+branch for milestone 3 (db + JS): main
 
 # SPECIFICATION FOR A WEBSITE
 
@@ -36,8 +36,8 @@ General Summary:
 ## Phases
 
 - 1 March 2023 Milestone #1 (HTML/CSS) - COMPLETED
-- 29 March 2023 Milestone #2 (PHP) - ABOUT TO BE COMPLETED
-- 26 April 2023 Milestone #3 (SQL/JS) - ABOUT TO START
+- 29 March 2023 Milestone #2 (PHP) - COMPLETED
+- 26 April 2023 Milestone #3 (SQL/JS) - ABOUT TO BE COMPLETED
   
 ## Content Structure
 - Home Page:

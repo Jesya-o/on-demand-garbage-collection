@@ -3,19 +3,21 @@
 
 .block {
 	/* same - white line problem */
-    width: 180px;
+	width: 180px;
 	padding-right: 20px;
 	padding-left: 20px;
-    display: inline-block;
+	display: inline-block;
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
 	.block {
 		width: 100px;
 	}
 }
 
-.icon, .left-icon, .right-icon {
+.icon,
+.left-icon,
+.right-icon {
 	margin: 0px auto;
 	color: var(--truewhite);
 	text-align: center;
@@ -24,8 +26,9 @@
 	position: relative;
 	opacity: 1;
 	z-index: 9;
-	width:48px;
+	width: 48px;
 }
+
 /* .icon:before, .icon:after, .right-icon:before, .left-icon:after {
 	z-index: 0;
 	content: "";
@@ -47,22 +50,24 @@
 		display: none;
 	}
 } */
-@media screen and (max-width: 460px){
+@media screen and (max-width: 460px) {
 	.working-process .row {
 		flex-direction: column;
 		align-items: center;
 	}
+
 	.block {
 		width: 200px;
 	}
 }
+
 .how_it_works h3 {
-	font-weight:550;
-	font-size:24px;
+	font-weight: 550;
+	font-size: 24px;
 }
 
 .how_it_works {
-	padding-bottom:60px;
+	padding-bottom: 60px;
 }
 
 .blocks-content {
@@ -70,6 +75,6 @@
 }
 
 .process-line {
-    width:100%;
-    text-align: center;
+	width: 100%;
+	text-align: center;
 }

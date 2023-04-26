@@ -1,4 +1,12 @@
-<?php require_once('session.php');?>
+<?php
+require_once('session.php');
+require_once('orders-backend.php');
+
+// foreach (fetchOrders(explode(':', base64_decode($_SESSION['client_key']))) as $order) {
+//     print_r($order);
+//     echo '<br>';
+// }
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -17,7 +25,10 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/booking.css">
+    <link rel="stylesheet" href="styles/order-confirmation.css">
     <link rel="stylesheet" href="styles/orders.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
@@ -28,72 +39,24 @@
         <?php require_once('open-btn.php'); ?>
         <!-- Content of the page -->
         <div id="main" class="orders">
-            <h1>See all the orders</h1>
-            <!-- Slider container -->
-            <div class="slider-container">
-
-                <!-- caption text -->
-                <div class="slider fade">
-                    <div class="row">
-                        <div class="slider-text">
-                            <h2>
-                                #3 Regular pickup
-                            </h2>
-                            <!-- Cancel button is available only for some time -->
-                            <p>Ongoing order <button type="submit" onclick="alert('Order #3 cancelled!')" name="submitCancelling" class="cancel-btn">Cancel</button></p>
-                            <p>Driver: Sarah Johnson</p>
-                        </div>
-                        <div class="price">
-                            10 EUR
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slider fade">
-                    <div class="row">
-                        <div class="slider-text">
-                            <h2>
-                                #2 Bulk waste removal
-                            </h2>
-                            <p>Completed on 14 February 2023</p>
-                            <p>Driver: Sarah Johnson</p>
-                        </div>
-                        <div class="price">
-                            15 EUR
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slider fade">
-                    <div class="row">
-                        <div class="slider-text">
-                            <h2>
-                                #1 Recycling
-                            </h2>
-                            <p>Completed on 1 February 2023</p>
-                            <p>Driver: Sarah Johnson</p>
-                        </div>
-                        <div class="price">
-                            10 EUR
-                        </div>
-                    </div>
-                </div>
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                <div class="dots">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
+            <h1>Your orders</h1>
+            <div id="no-orders" class="no-orders">
+                <h3 class="order-record">You have no orders at the moment</h3>
+                <div class="buttons">
+                    <a href="booking.php" class="back-btn">Book!</a>
                 </div>
             </div>
-            <br>
-
-            <!-- Animation -->
-            <script src="js/orders-slider.js"></script>
+            <div id="order-pagination">
+                <div id="container"></div>
+                <div id="order-pager" class="pager"></div>
+            </div>
         </div>
-
     </div>
+
+    <div id="client_key" style="display: none"><?= $_SESSION['client_key'] ?? '' ?></div>
+    <script src="js/dashboard-navigation.js"></script>
+    <script src="js/cancel-order.js"></script>
+    <script type="module" src="js/orders-pagination.js"></script>
 </body>
 
 </html>

@@ -473,13 +473,13 @@ input {
     font-weight: 600;
     font-family: "Nanum Myeongjo";
 }
+
 .book-btn:hover {
     background-color: var(--blue);
     cursor: pointer;
 }
 
 .settings-save-btn {
-    margin-top: 20px;
     margin-bottom: 20px;
     height: 40px;
     border-radius: 10px;
@@ -492,7 +492,7 @@ input {
     font-family: "Nanum Myeongjo";
     width: 140px;
     position: relative;
-    left: 59%;
+    /* left: 59%; */
 }
 
 /* Checkbox for saving data */
@@ -512,11 +512,8 @@ input {
 
 .order-form {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
     justify-content: space-evenly;
-    align-items: flex-start;
+    flex-direction: row;
 }
 
 .save-settings-checkbox {

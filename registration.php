@@ -1,50 +1,5 @@
 <?php
-session_start();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Retrieve the entered username and password
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-
-  // Check if the entered username and password are valid
-  if (
-    preg_match('/^[A-Za-z][A-Za-z0-9_.]{4,14}$/', $username) &&
-    preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_!%*?&])[A-Za-z\d@_!%*?&]{8,15}$/', $password)
-  ) {
-
-    // Check if the username already exists
-    $file = fopen("user_data.csv", "a+");
-    $exists = false;
-    while (($data = fgetcsv($file, 1000, ",")) !== FALSE) {
-      if ($data[0] === $username) {
-        $exists = true;
-        break;
-      }
-    }
-    rewind($file);
-
-    // If the username is available, register the user
-    if (!$exists) {
-      // Write the username and password to the file
-      fputcsv($file, array($username, $password));
-      fclose($file);
-
-      // Set the session variable
-      $_SESSION['loggedIn'] = true;
-
-      // Redirect the user to the booking page
-      header("Location: booking.php");
-      exit;
-    } else {
-      // Display error message if the username is already taken
-      $errorMessage = "Sorry, seems this username has already been taken.";
-      fclose($file);
-    }
-  } else {
-    // Display error message if the username and/or password are invalid
-    $errorMessage = "Invalid username and/or password.";
-  }
-}
+require_once('registration-backend.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <form id="signup" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="input-lines">
           <div class="username-container">
-            <input type="text" id="username" class="username" name="username" placeholder="Username" required pattern="^[A-Za-z][A-Za-z0-9_.]{4,14}$">
-            <div class="error-msg" id="username-error"></div>
+            <input type="text" id="username" class="username" name="username" placeholder="Username" required pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]{4,45}">
+            <span id="usernameError" class="error"></span>
           </div>
           <div class="password-container">
-            <input type="password" id="password" class="password" name="password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_!%*?&])[A-Za-z\d@_!%*?&]{8,15}$">
+            <input type="password" id="password" class="password" name="password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$">
+            <span id="passwordError" class="error"></span>
             <button type="button" id="show-password" class="show-password">Show</button>
-            <div class="error-msg" id="password-error"></div>
           </div>
         </div>
         <?php if (isset($errorMessage)) : ?>

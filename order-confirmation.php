@@ -1,7 +1,14 @@
 <?php require_once('session.php'); ?>
-<?php require_once('book-validation.php'); ?>
+<?php //require_once('book-validation.php'); 
+?>
 <?php
-
+// Check if booking has been made
+if (!isset($_SESSION['booking_made']) || $_SESSION['booking_made'] !== true) {
+    // Booking has not been made - display error message and redirect to booking.php
+    $_SESSION['error_message'] = "There are no orders that need confirmation! Please make a booking first.";
+    header("Location: booking.php");
+    exit();
+}
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
 $phone = isset($_SESSION['phone']) ? $_SESSION['phone'] : '';
@@ -9,11 +16,15 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 $street = isset($_SESSION['street']) ? $_SESSION['street'] : '';
 $house = isset($_SESSION['house']) ? $_SESSION['house'] : '';
 $index = isset($_SESSION['index']) ? $_SESSION['index'] : '';
-$datepicker = isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : '';
+$datepicker = isset($_SESSION['date']) ? $_SESSION['date'] : null;
+$timestamp = !empty($datepicker) ? strtotime($datepicker) : null;
 $time = isset($_SESSION['time']) ? $_SESSION['time'] : '';
 $service = isset($_SESSION['service']) ? $_SESSION['service'] : '';
 $comment = isset($_SESSION['comment']) ? $_SESSION['comment'] : '';
 $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
+$selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
+$_SESSION['confirmation'] = true;
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +42,8 @@ $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/order-confirmation.css">
+
+    <script src="js/dashboard-navigation.js"></script>
 </head>
 
 <body>
@@ -71,38 +84,43 @@ $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
                 </p>
                 <p>
                     <?php if ($service === 'Bulk Waste Removal') : ?>
-                        Number of items to be removed:
-                        &nbsp;
-                        <?= count($_POST['selector']) ?><br>
+                <p>
+                    Number of items to be removed:
+                    &nbsp;
+                    <?php
+                        $selectedItemsArray = explode('|', $selectedItems);
+                        echo count($selectedItemsArray);
+                    ?><br>
                 </p>
                 <p>
                     Weights of items to be removed:
                     &nbsp;
                     <?php
                         $option_weights = [
-                            'option1' => '10-20 kg',
-                            'option2' => '20-50 kg',
-                            'option3' => '50-100 kg',
-                            'option4' => '100-200 kg',
-                            'option5' => '100-500 kg'
+                            'option1' => '1-20 kg',
+                            'option2' => '21-50 kg',
+                            'option3' => '51-100 kg',
+                            'option4' => '101-200 kg',
+                            'option5' => '201-500 kg'
                         ];
                         $weights = array();
-                        foreach ($_POST['selector'] as $selected) {
+                        foreach ($selectedItemsArray as $selected) {
                             $weights[] = $option_weights[$selected];
                         }
                         echo implode(', ', $weights);
                     ?><br>
-                <?php endif; ?>
                 </p>
-                <p>
-                    Total price:
-                    &nbsp;
-                    <?= $price; ?> EUR<br>
-                </p>
-                <p>
-                    The driver will arrive on
-                    <?= date('l, d.m.Y', $timestamp) . ' at ' . $time; ?>
-                </p>
+            <?php endif; ?>
+            </p>
+            <p>
+                Total price:
+                &nbsp;
+                <?= $price; ?> EUR<br>
+            </p>
+            <p>
+                The driver will arrive on
+                <?= date('l, d.m.Y', $timestamp) . ' at ' . $time; ?>
+            </p>
             </div>
 
         </div>
@@ -112,7 +130,7 @@ $price = isset($_SESSION['price']) ? $_SESSION['price'] : '';
         </div>
     </div>
 
-    <script src="js/dashboard-navigation.js"></script>
+
 </body>
 
 </html>

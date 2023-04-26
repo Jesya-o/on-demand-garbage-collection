@@ -9,13 +9,17 @@ ob_start();
 // Start the session
 session_start();
 
+require_once('db-connection.php');
+require_once('token-management.php');
 // If the session variable is not set, redirect to the login page
-if (!isset($_SESSION['loggedIn'])) {
-    echo "<script>alert('Your session has expired. Please log in again.'); window.location.href='login.php';</script>";
+if (
+    !($clientKey = $_SESSION['client_key'] ?? null) ||
+    !validateClientKey($clientKey)
+) {
+    echo "<script>alert('Please log in again.'); window.location.href='login.php';</script>";
     header("Cache-Control: no-cache, must-revalidate");
     header("Expires: Thu, 01 Jan 1970 00:00:00 GMT");
     exit;
 }
 
 ob_end_flush();
-?>

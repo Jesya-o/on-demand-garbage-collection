@@ -1,11 +1,11 @@
 <?php 
-// Start the session
-
-if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
-    // Show header for logged in users
+require_once('db-connection.php');
+require_once('token-management.php');
+if (
+    ($clientKey = $_SESSION['client_key'] ?? null) &&
+    validateClientKey($clientKey)
+) {
     include 'header-logged-in.php';
 } else {
-    // Show header for non-logged in users
     include 'header-non-logged-in.php';
 }
-?>

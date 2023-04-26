@@ -1,8 +1,13 @@
 @charset "UTF-8";
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
 aside {
@@ -38,6 +43,6 @@ aside {
 }
 
 .sidenav .closebtn {
-    display:flex;
+    display: flex;
     padding-bottom: 15px;
 }

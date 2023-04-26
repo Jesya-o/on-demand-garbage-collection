@@ -1,4 +1,4 @@
- <?php session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +42,7 @@
     <!-- Open button -->
     <div id="openbutton">
       <button class="openbtn" type="button" onclick="openNav();">
-        <img src="img/menu.png" alt="toggle menu" >
+        <img src="img/menu.png" alt="toggle menu">
       </button>
     </div>
 
@@ -97,7 +97,7 @@
             <div class="blocks-content">
               <p>
                 Just provide some basic information
-                such as your name, email, and address. 
+                such as your name, email, and address.
                 Then a date and time that works for you.
               </p>
             </div>
@@ -116,7 +116,7 @@
             </div>
             <div class="blocks-content">
               <p>
-                On the day of your scheduled pickup, 
+                On the day of your scheduled pickup,
                 we'll send a collection team to your address
                 at the scheduled time.
               </p>

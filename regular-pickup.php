@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +68,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Footer section of the document -->
     <?php require_once('footer.php'); ?>
 </body>

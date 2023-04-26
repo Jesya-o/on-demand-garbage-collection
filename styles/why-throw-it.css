@@ -1,65 +1,93 @@
 @charset "utf-8";
+
 @media screen {
-    html, body { 
+
+    html,
+    body {
         background: url("../img/background.jpg") scroll no-repeat;
         background-position: center center !important;
         width: 100vw !important;
     }
 }
-@media screen and (max-width: 768px){
-    .whyus-header{
+
+@media screen and (max-width: 768px) {
+    .whyus-header {
         font-size: 28px !important;
     }
-    .section1 img{
+
+    .section1 img {
         width: 200px !important;
         height: 170px !important;
     }
-     .text1, .text3{
+
+    .text1,
+    .text3 {
         margin-left: 20px !important;
     }
-    .text1 h2, .text3 h2{
+
+    .text1 h2,
+    .text3 h2 {
         margin-left: 7px !important;
         font-size: 22px !important;
     }
-    .text1 p, .text2 p, .text3 p, .text4 p{
+
+    .text1 p,
+    .text2 p,
+    .text3 p,
+    .text4 p {
         font-size: 17px !important;
     }
-    .btn1, .btn2, .btn3, .btn4{
+
+    .btn1,
+    .btn2,
+    .btn3,
+    .btn4 {
         display: flex !important;
         width: 100px !important;
         font-size: 20px !important;
         margin-top: 35px !important;
     }
-    .section2 img{
+
+    .section2 img {
         width: 190px !important;
         height: 180px !important;
     }
-    .text2, .text4{
+
+    .text2,
+    .text4 {
         margin-right: 20px !important;
         margin-left: 5px !important;
     }
-    .text2 h2, .text4 h2{
+
+    .text2 h2,
+    .text4 h2 {
         font-size: 22px !important;
     }
-    .btn2, .btn4{
+
+    .btn2,
+    .btn4 {
         margin-left: 3px !important;
-    } 
-    .section3 img{
+    }
+
+    .section3 img {
         width: 190px !important;
         height: 150px !important;
     }
-    .section4 img{
+
+    .section4 img {
         width: 190px !important;
         height: 170px !important;
     }
 }
-.whyus-header h1{
+
+.whyus-header h1 {
     margin-left: -1vw;
     margin-top: 5vw;
-    position: relative;  
+    position: relative;
     margin-bottom: 10vw;
 }
-.whyus-header{
+
+.whyus-header {
 
     font-family: 'NanumMyeongjo';
     font-style: normal;
@@ -69,30 +97,42 @@
     margin-top: -10vw;
     margin-bottom: 15px;
 }
-#main{
+
+#main {
     padding: 1vw !important;
     margin-top: 10vw;
 }
-.section1, .section2, .section3, .section4{
+
+.section1,
+.section2,
+.section3,
+.section4 {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: normal;
     margin-bottom: 2vw;
 }
-.section1 img, .section3 img{
+
+.section1 img,
+.section3 img {
     margin-top: 15px;
     margin-bottom: 2vw;
     margin-left: 1vw;
 }
-.text1, .text3{
+
+.text1,
+.text3 {
     display: flex;
     flex-wrap: wrap;
-    margin-right: 20px; /* Add some spacing between the text and image */
+    margin-right: 20px;
+    /* Add some spacing between the text and image */
     margin-left: 70px;
-    padding-bottom: 20px; /* Add some spacing at the bottom */
+    padding-bottom: 20px;
+    /* Add some spacing at the bottom */
 }
-.text1 h2{
+
+.text1 h2 {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
@@ -101,7 +141,8 @@
     margin-top: 0vw;
     margin-bottom: 2vw;
 }
-.text3 h2{
+
+.text3 h2 {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
@@ -110,7 +151,9 @@
     margin-top: 0vw;
     margin-bottom: 2vw;
 }
-.text1 p, .text3 p{
+
+.text1 p,
+.text3 p {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
@@ -120,10 +163,12 @@
     margin-right: 2vw;
     margin-bottom: 5vw;
 }
-.btn1, .btn3{
+
+.btn1,
+.btn3 {
     margin-top: 30px;
-/*    margin:auto;*/
-/*    margin-bottom: 80px;*/
+    /*    margin:auto;*/
+    /*    margin-bottom: 80px;*/
     max-width: 200px;
     min-width: 50px;
     bottom: 30px;
@@ -139,19 +184,27 @@
     font-size: 20px;
     font-family: "Nanum Myeongjo";
 }
-.section2 img, .section4 img{
+
+.section2 img,
+.section4 img {
     margin-top: 15px;
     margin-bottom: 2vw;
     margin-right: 4vw;
 }
-.text2, .text4{
+
+.text2,
+.text4 {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 20px; /* Add some spacing between the text and image */
+    margin-left: 20px;
+    /* Add some spacing between the text and image */
     margin-right: 70px;
-    padding-bottom: 20px; /* Add some spacing at the bottom */
+    padding-bottom: 20px;
+    /* Add some spacing at the bottom */
 }
-.text2 h2, .text4 h2{
+
+.text2 h2,
+.text4 h2 {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
@@ -159,7 +212,9 @@
     color: white;
     margin-top: 0vw;
 }
-.text2 p, .text4 p{
+
+.text2 p,
+.text4 p {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
@@ -169,11 +224,13 @@
     margin-left: 0vw;
     margin-bottom: 5vw;
 }
-.btn2, .btn4{
+
+.btn2,
+.btn4 {
     margin-top: 4vw;
-/*    margin:auto;*/
+    /*    margin:auto;*/
     margin-top: 30px;
-/*    margin-bottom: 80px;*/
+    /*    margin-bottom: 80px;*/
     max-width: 200px;
     min-width: 50px;
     bottom: 30px;
@@ -189,7 +246,11 @@
     font-size: 20px;
     font-family: "Nanum Myeongjo";
 }
-.btn1:hover, .btn2:hover, .btn3:hover, .btn4:hover{
+
+.btn1:hover,
+.btn2:hover,
+.btn3:hover,
+.btn4:hover {
     cursor: pointer;
     border: 1px var(--truewhite) solid;
     background-color: var(--shadowedblack);

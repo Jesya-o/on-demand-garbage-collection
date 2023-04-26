@@ -1,51 +1,73 @@
 @charset "utf-8";
+
 @media screen {
-    html, body { 
+
+    html,
+    body {
         background: url("../img/background.jpg") scroll no-repeat;
         background-position: center bottom;
         background-size: cover;
     }
 }
-@media screen and (max-width: 768px){
-    html, body{
+
+@media screen and (max-width: 768px) {
+
+    html,
+    body {
         background-position: top right !important;
     }
-    .ourteam-header{
+
+    .ourteam-header {
         font-size: 25px !important;
     }
-    #main h2{
+
+    #main h2 {
         font-size: 20px !important;
     }
-    #main img{
+
+    #main img {
         width: 100px;
         height: 100px;
     }
-    .cofounders-images{
+
+    .cofounders-images {
         flex-direction: column !important;
         flex-wrap: wrap;
         align-items: flex-start;
     }
-    .cofounders-images p, .victoria p, .adrian p, .emily p, .alex p{
+
+    .cofounders-images p,
+    .victoria p,
+    .adrian p,
+    .emily p,
+    .alex p {
         font-size: 13px !important;
     }
-    .cofounders-description{
+
+    .cofounders-description {
         margin-left: 50px !important;
         width: 200px !important;
         font-size: 18px !important;
     }
-    .manager-description, .driver-description, .custservice-description, .recycling-description{
+
+    .manager-description,
+    .driver-description,
+    .custservice-description,
+    .recycling-description {
         width: 200px !important;
         font-size: 18px !important;
         margin-left: 50px !important;
     }
 }
-.ourteam-header h1{
+
+.ourteam-header h1 {
     margin-left: -1vw;
     margin-top: 5vw;
-    position: relative;  
+    position: relative;
     margin-bottom: 10vw;
 }
-.ourteam-header{
+
+.ourteam-header {
 
     font-family: 'NanumMyeongjo';
     font-style: normal;
@@ -55,35 +77,51 @@
     margin-top: -10vw;
     margin-bottom: 15px;
 }
-#main{
+
+#main {
     padding: 1vw !important;
     margin-top: 10vw;
 }
-#main h2{
+
+#main h2 {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
     font-size: 28px;
     color: white;
 }
-.ksenija, .vira, .ilja, .victoria, .adrian, .emily, .alex{
+
+.ksenija,
+.vira,
+.ilja,
+.victoria,
+.adrian,
+.emily,
+.alex {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     margin-right: 1vw;
 }
-.cofounders-images{
+
+.cofounders-images {
     display: flex;
     flex-direction: row;
 }
-.cofounders, .manager, .driver, .custservice, .recycling{
+
+.cofounders,
+.manager,
+.driver,
+.custservice,
+.recycling {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
 }
-.cofounders-description{
+
+.cofounders-description {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -94,7 +132,11 @@
     background-color: var(--transblack);
     border-radius: 5px;
 }
-.manager-description, .driver-description, .custservice-description, .recycling-description{
+
+.manager-description,
+.driver-description,
+.custservice-description,
+.recycling-description {
     display: flex;
     flex-wrap: wrap;
     align-items: center;

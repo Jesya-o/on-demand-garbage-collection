@@ -1,47 +1,60 @@
 @charset "utf-8";
 
 @media screen and (max-width: 768px) {
-	html, body{
+
+	html,
+	body {
 		background-position: top right !important;
 	}
-	.welcome-header h1{
+
+	.welcome-header h1 {
 		font-size: 45px !important;
 		margin-top: 40px;
 	}
-	.username-container{
+
+	.username-container {
 		margin-top: 20px !important;
 	}
-    input[type="text"], input[type="password"] {
+
+	input[type="text"],
+	input[type="password"] {
 		width: 300px !important;
 		height: 35px !important;
 	}
-	input::placeholder, .show-password{
+
+	input::placeholder,
+	.show-password {
 		font-size: 18px !important;
 	}
-	.forgot-password{
-		margin-left: 200px !important;
-		margin-top: 7px !important;
-	}
-	.signup, .login{
+
+	.signup,
+	.login {
 		width: 300px !important;
 		height: 40px !important;
 		font-size: 20px !important;
 		/* margin-top: 15px !important; */
 	}
-	.signup{
+
+	.signup {
 		margin-top: 10px !important;
 	}
-	.or{
+
+	.or {
 		width: 300px !important;
 		margin: 15px auto !important;
 	}
-	.or:before, .or:after{
+
+	.or:before,
+	.or:after {
 		width: 130px !important;
 	}
 }
-html, body {
-    justify-content: flex-start!important;
+
+html,
+body {
+	justify-content: flex-start !important;
 }
+
 .centered * {
 	text-align: center;
 	font-family: "Nanum Myeongjo";
@@ -52,43 +65,63 @@ div {
 	display: block;
 }
 
-.welcome-header h1{
-    font-size: 60px;
+.welcome-header h1 {
+	font-size: 60px;
 	font-style: normal;
 	font-weight: 50;
 	color: var(--truewhite);
 	/* line-height: 69px; */
 }
-.input-lines {
-	position:relative;
 
+.input-lines {
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
-.username-container{
+
+.username-container {
 	margin-bottom: 20px;
 	margin-top: 70px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
 }
-.password-container{
+
+.password-container {
 	position: relative;
-	width:100%
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
 }
+
 .show-password {
-	margin-left: -62px;
 	cursor: pointer;
 	font-style: normal;
 	font-size: 20px;
 	background-color: #0d0d0d00;
 	opacity: 0.8;
 	border: none;
+	position: absolute;
+	top: 25%;
+	left: 64%;
 }
+
 .password-visible {
-    margin-left: -55px;
+	margin-left: -55px;
 }
-.username, .password {
+
+.username,
+.password {
 	text-align: left;
 	padding-left: 15px;
 }
 
-.forgot-password{
+.forgot-password {
 	font-family: 'NanumMyeongjo';
 	font-style: normal;
 	font-size: 18px;
@@ -97,11 +130,14 @@ div {
 	opacity: 0.8;
 	margin-left: 350px;
 }
-.forgot-password a{
+
+.forgot-password a {
 	text-decoration: none;
 	color: inherit;
 }
-input[type="text"], input[type="password"]{
+
+input[type="text"],
+input[type="password"] {
 	width: 463px;
 	height: 49px;
 	background-color: var(--shadowedblack);
@@ -114,7 +150,8 @@ input[type="text"], input[type="password"]{
 	/* line-height: 35px; */
 	display: inline-block;
 }
-input::placeholder{
+
+input::placeholder {
 	font-family: 'NanumMyeongjo';
 	font-style: normal;
 	/* font-weight: 300; */
@@ -124,10 +161,16 @@ input::placeholder{
 	opacity: 0.8;
 }
 
-.show-password:hover{
+input {
+	border-radius: 7px;
+	border: 1px solid var(--blue);
+}
+
+.show-password:hover {
 	cursor: pointer;
 	opacity: 1;
 }
+
 .signup,
 .login {
 	width: 475px;
@@ -140,14 +183,17 @@ input::placeholder{
 	font-size: 25px;
 	color: var(--black);
 	text-decoration: none;
-	margin-top:10px;
+	margin-top: 10px;
 }
 
-.signup a, .login a{
+.signup a,
+.login a {
 	text-decoration: none;
 	color: var(--black);
 }
-.signup:hover, .login:hover{
+
+.signup:hover,
+.login:hover {
 	background-color: var(--white);
 	cursor: pointer;
 }
@@ -161,6 +207,7 @@ input::placeholder{
 	position: relative;
 
 }
+
 .or:before {
 	content: "";
 	display: block;
@@ -170,6 +217,7 @@ input::placeholder{
 	top: 50%;
 	position: absolute;
 }
+
 .or:after {
 	content: "";
 	display: block;
@@ -179,4 +227,12 @@ input::placeholder{
 	right: 0;
 	top: 50%;
 	position: absolute;
-  }
+}
+
+.error {
+	color: red;
+	display: block;
+	width: 300px;
+	padding: auto;
+	padding-top: 10px;
+}
