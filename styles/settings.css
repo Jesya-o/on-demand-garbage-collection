@@ -7,6 +7,7 @@
 .settings-save-btn {
     position: absolute;
 }
+
 .settings-save-btn:hover {
     background-color: var(--black);
     color: var(--truewhite);
@@ -18,7 +19,10 @@
 }
 
 .user-settings-save-btn {
-    bottom: -20px !important;
+    bottom: 0;
+    position: absolute;
+    bottom: -110px;
+    left: 202px;
 }
 .delete{
     display: flex;
@@ -56,11 +60,36 @@
 .form-rows {
     min-height: 550px;
 }
-#old-password-group, #new-password-group, #repeat-password-group{
-    display: flex;
+
+#old-password-group,
+#new-password-group,
+#repeat-password-group {
+    /* display: flex; */
 }
-#show-old-password, #show-new-password, #show-repeat-password{
+
+#show-old-password,
+#show-new-password,
+#show-repeat-password {
     background: none;
     border: none;
     cursor: pointer;
+}
+
+
+.error {
+    color: red;
+    display: block;
+    width: 300px;
+    padding: auto;
+    padding-top: 10px;
+}
+
+.second-title {
+    margin-top: 29px;
+}
+
+.show {
+    position: absolute;
+    right: 10px;
+    padding-top: 13px;
 }
