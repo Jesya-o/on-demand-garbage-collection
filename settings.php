@@ -102,14 +102,12 @@
                                 <button type="button" id="show-old-password" class="show">Show</button>
                                 <span id="oldPasswordError" class="error"></span>
                             </div>
-                            <br>
                             <label for="new-password">New password</label>
                             <div id="new-password-group">
                                 <input type="password" id="new-password" class="field" name="new-password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$">
                                 <button type="button" id="show-new-password" class="show">Show</button>
                                 <span id="newPasswordError" class="error"></span>
                             </div>
-                            <br>
                             <label for="repeat-password">Repeat password</label>
                             <div id="repeat-password-group">
                                 <input type="password" id="repeat-password" class="field" name="repeat-password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$">
@@ -118,13 +116,13 @@
                             </div>
 
                             <!-- Submit form button -->
-                            <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn">Submit and save</button>
+                            <div class="buttons">
+                                <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn">Submit and save</button>
+                                <button type="button" href="delete-account.php" class="delete">Delete account</button>
+                            </div>
                         </div>
-                        <a href="delete-account.php" class="delete">Delete account</a>
-
                     </div>
                 </form>
-                
             </div>
         </div>
     </div>

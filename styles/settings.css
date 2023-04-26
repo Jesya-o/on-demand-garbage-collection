@@ -19,10 +19,8 @@
 }
 
 .user-settings-save-btn {
-    bottom: 0;
-    position: absolute;
-    bottom: -110px;
-    left: 202px;
+    margin-top: 25px;
+    margin-bottom: 90px;
 }
 .delete{
     display: flex;
@@ -43,8 +41,7 @@
     justify-content: center;
     align-items: center;
 
-    margin-top: 33px;
-
+    margin: 120px 0px 40px auto;
     color: red;
     font-weight: 700;
 }
@@ -92,4 +89,12 @@
     position: absolute;
     right: 10px;
     padding-top: 13px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: flex-end;
 }
