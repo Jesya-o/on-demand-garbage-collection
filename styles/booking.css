@@ -477,6 +477,7 @@ input {
     font-weight: 600;
     font-family: "Nanum Myeongjo";
 }
+
 .book-btn:hover {
     background-color: var(--blue);
     cursor: pointer;
@@ -516,6 +517,8 @@ input {
 
 .order-form {
     display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
 }
 
 .save-settings-checkbox {

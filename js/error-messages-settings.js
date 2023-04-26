@@ -45,7 +45,7 @@ usernameInput.addEventListener('input', () => {
 	}
 });
 oldPasswordInput.addEventListener('input', () => {
-	const password = oldPasswordInput.value;
+	const password = oldPasswordInput.value.trim();
 
 	if (!passwordPattern.test(password)) {
 		oldPasswordError.textContent = 'Password must be between 8 and 45 characters, have at least one lowercase letter, one uppercase letter, one number, and one special character.';
@@ -54,7 +54,7 @@ oldPasswordInput.addEventListener('input', () => {
 	}
 });
 newPasswordInput.addEventListener('input', () => {
-	const password = newPasswordInput.value;
+	const password = newPasswordInput.value.trim();
 
 	if (!passwordPattern.test(password)) {
 		newPasswordError.textContent = 'Password must be between 8 and 45 characters, have at least one lowercase letter, one uppercase letter, one number, and one special character.';
@@ -63,7 +63,7 @@ newPasswordInput.addEventListener('input', () => {
 	}
 });
 repeatPasswordInput.addEventListener('input', () => {
-	const password = repeatPasswordInput.value;
+	const password = repeatPasswordInput.value.trim();
 
 	if (!passwordPattern.test(password)) {
 		repeatPasswordError.textContent = 'Password must be between 8 and 45 characters, have at least one lowercase letter, one uppercase letter, one number, and one special character.';

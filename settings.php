@@ -87,39 +87,40 @@
                 <form action="settings.php" name="booking-account" method="post" class="form-rows">
                     <!-- Second row of settings form -->
                     <div class="order-details settings-form">
+                        <p class="booking-form-title">Account information</p>
                         <div class="input-lines">
                             <!-- Username -->
-                            <p class="booking-form-title">Account information</p>
                             <label for="username">Username</label>
                             <input type="text" id="username" name="username" class="field" required value="<?php echo $username; ?>" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]{4,45}">
                             <span id="usernameError" class="error"></span>
 
                             <!-- Change password -->
-                            <p class="booking-form-title">Change password</p>
+                            <p class="booking-form-title second-title">Change password</p>
                             <label for="old-password">Old password</label>
                             <div id="old-password-group">
                                 <input type="password" id="old-password" class="field" name="old-password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$">
-                                <button type="button" id="show-old-password">Show</button>
+                                <button type="button" id="show-old-password" class="show">Show</button>
                                 <span id="oldPasswordError" class="error"></span>
                             </div>
                             <br>
                             <label for="new-password">New password</label>
                             <div id="new-password-group">
                                 <input type="password" id="new-password" class="field" name="new-password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$">
-                                <button type="button" id="show-new-password">Show</button>
+                                <button type="button" id="show-new-password" class="show">Show</button>
                                 <span id="newPasswordError" class="error"></span>
                             </div>
                             <br>
                             <label for="repeat-password">Repeat password</label>
                             <div id="repeat-password-group">
                                 <input type="password" id="repeat-password" class="field" name="repeat-password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$">
-                                <button type="button" id="show-repeat-password">Show</button>
+                                <button type="button" id="show-repeat-password" class="show">Show</button>
                                 <span id="repeatPasswordError" class="error"></span>
                             </div>
 
                             <!-- Submit form button -->
-                            <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn" style="position: absolute; bottom: -110px;">Submit and save</button>
-                        </div>
+                            <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn">Submit and save</button>
+                        </div>    justify-content: center;
+
                     </div>
                 </form>
             </div>
