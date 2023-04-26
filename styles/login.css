@@ -107,8 +107,9 @@ div {
 	opacity: 0.8;
 	border: none;
 	position: absolute;
-	top: 25%;
 	left: 64%;
+	padding-left: 40px;
+	padding-top: 15px;
 }
 
 .password-visible {
@@ -149,6 +150,7 @@ input[type="password"] {
 	font-size: 20px;
 	/* line-height: 35px; */
 	display: inline-block;
+	flex-grow: 1;
 }
 
 input::placeholder {
@@ -233,6 +235,5 @@ input {
 	color: red;
 	display: block;
 	width: 300px;
-	padding: auto;
 	padding-top: 10px;
 }

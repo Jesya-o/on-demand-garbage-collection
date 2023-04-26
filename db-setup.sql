@@ -32,6 +32,16 @@ CREATE TABLE Sessions
   FOREIGN KEY (client_id) REFERENCES Clients(client_id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE Drivers
+(
+  driver_id int(11) NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  surname varchar(255) NOT NULL,
+  email varchar(255) NOT NULL,
+  phone_number varchar(255) NOT NULL,
+  PRIMARY KEY (driver_id)
+) ENGINE=InnoDB;
+
 CREATE TABLE Orders
 (
   order_id int(11) NOT NULL AUTO_INCREMENT,
@@ -59,15 +69,6 @@ CREATE TABLE Bulk_items
   order_id int(11) NOT NULL,
   PRIMARY KEY (bulk_items_id),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id)
-) ENGINE=InnoDB;
-CREATE TABLE Drivers
-(
-  driver_id int(11) NOT NULL AUTO_INCREMENT,
-  name varchar(255) NOT NULL,
-  surname varchar(255) NOT NULL,
-  email varchar(255) NOT NULL,
-  phone_number varchar(255) NOT NULL,
-  PRIMARY KEY (driver_id)
 ) ENGINE=InnoDB;
 
 INSERT INTO Drivers (name, surname, email, phone_number)
