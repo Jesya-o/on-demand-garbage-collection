@@ -31,7 +31,7 @@
     <!-- Content section of the document -->
     <div id="main" class="content">
         <h2 class="links-back">
-            <a href="/index.php#pricing">Services</a>
+            <a href="index.php#pricing">Services</a>
             <span>&#8594;</span>
             <a href="/bulk-waste.php">Bulk Waste Removal</a>
         </h2>

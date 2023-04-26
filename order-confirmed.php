@@ -52,6 +52,7 @@ unset($_SESSION['service']);
 unset($_SESSION['comment']);
 unset($_SESSION['price']);
 unset($_SESSION['confirmation']);
+unset($_SESSION['booking_made']);
 ?>
 
 
