@@ -126,6 +126,12 @@ if (
 	} else {
 		$comment = '';
 	}
+    
+	$driver_id = findDriver($date, $time);
+
+	if ($driver_id === null) {
+		$error_messages[] = "No available drivers for the given date and time.";
+	}
 
 	if (isset($_POST['selector']) && !empty($_POST['phone'])) {
 		$phone = sanitize($_POST['phone']);
