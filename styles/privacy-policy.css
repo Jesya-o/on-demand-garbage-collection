@@ -1,6 +1,9 @@
 @charset "utf-8";
+
 @media screen {
-    html, body { 
+
+    html,
+    body {
         /*background: url("../img/background.jpg") scroll no-repeat;
         background-position: bottom center !important;*/
         background-image: none !important;
@@ -8,13 +11,14 @@
     }
 }
 
-.policy h1{
+.policy h1 {
     margin-left: -1vw;
     margin-top: 5vw;
-    position: relative;  
+    position: relative;
     margin-bottom: 10vw;
 }
-.policy{
+
+.policy {
 
     font-family: 'NanumMyeongjo';
     font-style: normal;
@@ -22,21 +26,27 @@
     font-size: 32px;
     color: black;
 }
-#main{
+
+#main {
     padding: 1vw !important;
 }
-#main h2, .policy-footer, #main h3{
+
+#main h2,
+.policy-footer,
+#main h3 {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     color: black;
 }
-.policy-footer a{
+
+.policy-footer a {
     text-decoration: underline;
     color: inherit;
 }
-#main p{
+
+#main p {
     font-family: 'NanumMyeongjo';
     font-style: normal;
     font-weight: 500;

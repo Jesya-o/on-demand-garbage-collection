@@ -9,4 +9,3 @@ if (
 } else {
     include 'header-non-logged-in.php';
 }
-?>

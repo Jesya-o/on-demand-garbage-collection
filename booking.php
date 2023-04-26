@@ -1,9 +1,12 @@
 <?php require_once('session.php');
-require_once('backend-personalinfo.php'); 
+require_once('backend-personalinfo.php');
+
+$selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Booking Form</title>
@@ -18,6 +21,7 @@ require_once('backend-personalinfo.php');
     <link rel="stylesheet" href="styles/booking.css">
 
 </head>
+
 <body>
     <!-- Content section of the document -->
     <?php require_once('sidenav.php'); ?>
@@ -39,33 +43,33 @@ require_once('backend-personalinfo.php');
                         <!-- User info fields -->
                         <p class="booking-form-title">Enter your information</p>
                         <div class="input-lines">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" class="field" placeholder=" Name" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($name) ? '' : $name; ?>">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" class="field" placeholder=" Name" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($name) ? '' : $name; ?>">
 
-                        <label for="surname">Surname</label>
-                        <input type="text" id="surname" name="surname" class="field" placeholder=" Surname" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($surname) ? '' : $surname; ?>">
+                            <label for="surname">Surname</label>
+                            <input type="text" id="surname" name="surname" class="field" placeholder=" Surname" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($surname) ? '' : $surname; ?>">
 
-                        <label for="phone">Phone (optional)</label>
-                        <input type="text" id="phone" name="phone" class="field" placeholder=" +372 58678900" pattern="^[0-9\-\+ ]{7,15}$" value="<?php echo empty($phone) ? '' : $phone; ?>">
+                            <label for="phone">Phone (optional)</label>
+                            <input type="text" id="phone" name="phone" class="field" placeholder=" +372 58678900" pattern="^[0-9\-\+ ]{7,15}$" value="<?php echo empty($phone) ? '' : $phone; ?>">
 
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="field" placeholder=" name@example.com" pattern="^[\w\-\.]{1,50}@([\w-]{1,50}\.){1,50}[\w-]{2,4}$" value="<?php echo empty($email) ? '' : $email; ?>">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="field" placeholder=" name@example.com" pattern="^[\w\-\.]{1,50}@([\w-]{1,50}\.){1,50}[\w-]{2,4}$" value="<?php echo empty($email) ? '' : $email; ?>">
 
-                        <span class="Tallinn">Address: &nbsp;Tallinn, Estonia</span>
-                        <div class="line">
-                            <div class="address-group street">
-                                <label for="street">Street name</label>
-                                <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" pattern="^[\w\s\.,'\-#;^:=()~&amp;&gt;+=*\/&lt;?!{}[\]]+$" value="<?php echo empty($street) ? '' : $street; ?>">
+                            <span class="Tallinn">Address: &nbsp;Tallinn, Estonia</span>
+                            <div class="line">
+                                <div class="address-group street">
+                                    <label for="street">Street name</label>
+                                    <input type="text" id="street" name="street" class="field" placeholder=" Akadeemia tee" pattern="^[\w\s\.,'\-#;^:=()~&amp;&gt;+=*\/&lt;?!{}[\]]+$" value="<?php echo empty($street) ? '' : $street; ?>">
+                                </div>
+                                <div class="address-group house">
+                                    <label for="house">House</label>
+                                    <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-#;^:=()~&amp;&gt;+=*\/&lt;?!{}[\]]+$" value="<?php echo empty($house) ? '' : $house; ?>">
+                                </div>
+                                <div class="address-group index">
+                                    <label for="index">Postcode</label>
+                                    <input type="text" id="index" name="index" class="field" placeholder=" 21800" pattern="\d{5}" value="<?php echo empty($index) ? '' : $index; ?>">
+                                </div>
                             </div>
-                            <div class="address-group house">
-                                <label for="house">House</label>
-                                <input type="text" id="house" name="house" class="field" placeholder=" 8" pattern="^[\w\s\.,'\-#;^:=()~&amp;&gt;+=*\/&lt;?!{}[\]]+$" value="<?php echo empty($house) ? '' : $house; ?>">
-                            </div>
-                            <div class="address-group index">
-                                <label for="index">Postcode</label>
-                                <input type="text" id="index" name="index" class="field" placeholder=" 21800" pattern="\d{5}" value="<?php echo empty($index) ? '' : $index; ?>">
-                            </div>
-                        </div>
 
                         </div>
                         <!-- Date picker -->
@@ -81,7 +85,8 @@ require_once('backend-personalinfo.php');
                                     </div>
                                     <div class="calendar-days"></div>
                                 </div>
-                                <input type="hidden" id="datepicker" name="datepicker" required value="<?= isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : ''; ?>">                            </div>
+                                <input type="hidden" id="datepicker" name="datepicker" required value="<?= isset($_SESSION['datepicker']) ? $_SESSION['datepicker'] : ''; ?>">
+                            </div>
                             <!-- Available time slots -->
                             <div class="date-row">
                                 <label for="datepicker" class="calendar-label time-slots">Free slots:</label>
@@ -162,7 +167,7 @@ require_once('backend-personalinfo.php');
     <script src="js/booking-totalprice.js"></script>
     <script src="js/booking-validation.js"></script>
     <script>
-        <?php if (isset($_SESSION['error_message'])): ?>
+        <?php if (isset($_SESSION['error_message'])) : ?>
             alert("<?= $_SESSION['error_message']; ?>");
             <?php unset($_SESSION['error_message']); ?>
         <?php endif; ?>

@@ -91,14 +91,17 @@ footer {
     margin-left: 0;
     padding-left: 0;
 }
+
 .footer-last-column {
     margin-right: 10px;
 }
+
 /* adaptation for smaller widths */
 
 .include-when-narrow {
     display: none;
 }
+
 @media screen and (max-width: 963px) {
     footer {
         min-width: 0;
@@ -119,6 +122,7 @@ footer {
     .menu-footer {
         align-items: flex-start;
     }
+
     .menu-footer ul {
         padding-left: 10px;
     }
@@ -138,32 +142,40 @@ footer {
         min-height: 180px;
         padding-bottom: 0;
     }
+
     .logo-caption-footer {
         margin: 0;
         margin-top: 25px;
     }
 }
+
 @media screen and (max-width: 769px) {
     footer {
         min-height: 200px;
     }
+
     .logo-caption-footer {
         margin-top: 30px;
     }
 }
+
 @media screen and (max-width: 759px) {
     footer {
         min-height: 190px;
     }
+
     .logo-footer {
         height: 60px;
     }
+
     .logo-caption-footer {
         margin-top: 10px;
     }
+
     .menu-footer ul {
         margin-top: 0;
     }
+
     .menu-footer-item {
         padding-top: 0;
     }
@@ -173,64 +185,80 @@ footer {
 .footer-mobile {
     display: none;
 }
+
 /* Mobile versions footer when mobile*/
 @media screen and (max-width: 614px) {
     .logo-caption-footer {
         margin-top: 0;
     }
+
     .footer-regular {
         display: none;
     }
+
     .footer-mobile {
         display: flex;
         min-height: 300px;
     }
+
     .footer-row {
         display: flex;
         flex-direction: row;
         width: 300px;
         padding-left: 10px;
     }
+
     .footer-row ul {
-        padding-left : 10px;
+        padding-left: 10px;
         flex-grow: 1;
     }
+
     .menu-footer-item {
         font-size: 18px;
     }
+
     .menu-footer-subitem {
         font-size: 16px;
     }
+
     .logo-caption {
         margin-top: 130px;
     }
 }
+
 @media screen and (max-width: 484px) {
     .footer-mobile {
         min-height: 320px;
     }
+
     .footer-row {
         width: 350px;
         padding-left: 100px;
     }
+
     .footer-row ul {
         padding-right: 20px;
     }
+
     .logo-caption {
         font-size: 10px;
         padding-left: 15px;
         padding-top: 10px;
     }
+
     .exclude-logo {
         display: none;
     }
+
     .footer-column {
         flex-grow: 1;
     }
+
     .include-when-narrow {
         display: block;
     }
 }
+
 @media screen and (max-width: 409px) {
     .footer-row {
         padding-left: 15px;

@@ -2,12 +2,13 @@
 
 /* Heading of last subpage */
 .last-headings {
-	padding-top: 60px; 
-	padding-left: 10%;
-	font-weight: 400;
-	font-size: 48px;
+    padding-top: 60px;
+    padding-left: 10%;
+    font-weight: 400;
+    font-size: 48px;
     margin-bottom: 0;
 }
+
 /* Slider container */
 .slider-container {
     max-width: 700px;
@@ -74,6 +75,7 @@
     display: inline-block;
     transition: background-color 0.6s ease;
 }
+
 .dots {
     text-align: center;
 }
@@ -98,14 +100,15 @@
         opacity: 1
     }
 }
+
 /* Avatar on card */
 .avatars {
     padding-top: 20px;
     padding-bottom: 10px;
     display: flex;
     border-radius: 50%;
-    width:120px;
+    width: 120px;
     justify-content: center;
     position: relative;
     margin: auto;
-  }
+}

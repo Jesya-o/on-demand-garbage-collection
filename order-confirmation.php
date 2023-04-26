@@ -1,5 +1,6 @@
 <?php require_once('session.php'); ?>
-<?php //require_once('book-validation.php'); ?>
+<?php //require_once('book-validation.php'); 
+?>
 <?php
 // Check if booking has been made
 if (!isset($_SESSION['booking_made']) || $_SESSION['booking_made'] !== true) {
@@ -7,7 +8,7 @@ if (!isset($_SESSION['booking_made']) || $_SESSION['booking_made'] !== true) {
     $_SESSION['error_message'] = "There are no orders that need confirmation! Please make a booking first.";
     header("Location: booking.php");
     exit();
-  }
+}
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
 $phone = isset($_SESSION['phone']) ? $_SESSION['phone'] : '';
@@ -82,44 +83,44 @@ $_SESSION['confirmation'] = true;
                     <?= ucfirst((string)$service); ?>
                 </p>
                 <p>
-                <?php if ($service === 'Bulk Waste Removal') : ?>
-    <p>
-        Number of items to be removed:
-        &nbsp;
-        <?php
-        $selectedItemsArray = explode('|', $selectedItems);
-        echo count($selectedItemsArray);
-        ?><br>
-        </p>
-        <p>
-            Weights of items to be removed:
-            &nbsp;
-            <?php
-            $option_weights = [
-                'option1' => '1-20 kg',
-                'option2' => '21-50 kg',
-                'option3' => '51-100 kg',
-                'option4' => '101-200 kg',
-                'option5' => '201-500 kg'
-            ];
-            $weights = array();
-            foreach ($selectedItemsArray as $selected) {
-                $weights[] = $option_weights[$selected];
-            }
-            echo implode(', ', $weights);
-            ?><br>
-        </p>
-    <?php endif; ?>
-                </p>
+                    <?php if ($service === 'Bulk Waste Removal') : ?>
                 <p>
-                    Total price:
+                    Number of items to be removed:
                     &nbsp;
-                    <?= $price; ?> EUR<br>
+                    <?php
+                        $selectedItemsArray = explode('|', $selectedItems);
+                        echo count($selectedItemsArray);
+                    ?><br>
                 </p>
                 <p>
-                    The driver will arrive on
-                    <?= date('l, d.m.Y', $timestamp) . ' at ' . $time; ?>
+                    Weights of items to be removed:
+                    &nbsp;
+                    <?php
+                        $option_weights = [
+                            'option1' => '1-20 kg',
+                            'option2' => '21-50 kg',
+                            'option3' => '51-100 kg',
+                            'option4' => '101-200 kg',
+                            'option5' => '201-500 kg'
+                        ];
+                        $weights = array();
+                        foreach ($selectedItemsArray as $selected) {
+                            $weights[] = $option_weights[$selected];
+                        }
+                        echo implode(', ', $weights);
+                    ?><br>
                 </p>
+            <?php endif; ?>
+            </p>
+            <p>
+                Total price:
+                &nbsp;
+                <?= $price; ?> EUR<br>
+            </p>
+            <p>
+                The driver will arrive on
+                <?= date('l, d.m.Y', $timestamp) . ' at ' . $time; ?>
+            </p>
             </div>
 
         </div>
@@ -129,7 +130,7 @@ $_SESSION['confirmation'] = true;
         </div>
     </div>
 
-    
+
 </body>
 
 </html>

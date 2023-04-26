@@ -228,6 +228,7 @@
     border: 1px solid var(--black);
     border-radius: 10px;
 }
+
 @media screen and (max-width: 555px) {
     .slider-text {
         position: relative;

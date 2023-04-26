@@ -30,15 +30,15 @@
       <h2 class="cofounders-header">Co-founders</h2>
       <div class="cofounders">
         <div class="cofounders-images">
-            <div class="ksenija">
-              <img src="img/ourteam_img1.png" alt="co-founders1" width="150px" height="150px">
-              <p>Ksenija Okuneva</p>
-            </div>
-            <div class="vira">
-              <img src="img/ourteam_img2.png" alt="co-founders2" width="150px" height="150px">
-              <p>Vira Lavrova</p>
-            </div>
-            <!-- <div class="ilja">
+          <div class="ksenija">
+            <img src="img/ourteam_img1.png" alt="co-founders1" width="150px" height="150px">
+            <p>Ksenija Okuneva</p>
+          </div>
+          <div class="vira">
+            <img src="img/ourteam_img2.png" alt="co-founders2" width="150px" height="150px">
+            <p>Vira Lavrova</p>
+          </div>
+          <!-- <div class="ilja">
               <img src="img/ourteam_img3.png" alt="co-founders3" width="150px" height="150px">
               <p>Ilja Grigorjev</p>
             </div> -->

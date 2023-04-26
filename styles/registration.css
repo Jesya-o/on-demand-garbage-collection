@@ -1,40 +1,55 @@
 @charset "utf-8";
 
 @media screen and (max-width: 768px) {
-	html, body{
+
+	html,
+	body {
 		background-position: top right !important;
 	}
-	.welcome-header h1{
+
+	.welcome-header h1 {
 		font-size: 45px !important;
 		margin-top: 40px;
 	}
-	.username-container{
+
+	.username-container {
 		margin-top: 20px !important;
 	}
-    input[type="text"], input[type="password"] {
+
+	input[type="text"],
+	input[type="password"] {
 		width: 300px !important;
 		height: 35px !important;
 	}
-	input::placeholder, .show-password{
+
+	input::placeholder,
+	.show-password {
 		font-size: 18px !important;
 	}
-	.signup, .login{
+
+	.signup,
+	.login {
 		width: 300px !important;
 		height: 40px !important;
 		font-size: 20px !important;
 		/* margin-top: 15px !important; */
 	}
-	.signup{
+
+	.signup {
 		margin-top: 10px !important;
 	}
-	.or{
+
+	.or {
 		width: 300px !important;
 		margin: 15px auto !important;
 	}
-	.or:before, .or:after{
+
+	.or:before,
+	.or:after {
 		width: 130px !important;
 	}
 }
+
 .join-header h1 {
 	font-size: 58px;
 	font-style: normal;

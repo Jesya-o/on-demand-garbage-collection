@@ -22,7 +22,8 @@
     margin-top: 25px;
     margin-bottom: 90px;
 }
-.delete{
+
+.delete {
     display: flex;
     height: 40px;
     text-decoration: none;
@@ -46,23 +47,19 @@
     font-weight: 700;
     cursor: pointer;
 }
-.delete:hover{
+
+.delete:hover {
     border-color: var(--snowwhite);
     color: var(--snowwhite);
-    background-color: var(--red);   
+    background-color: var(--red);
 }
+
 .line {
     margin-bottom: 0;
 }
 
 .form-rows {
     min-height: 550px;
-}
-
-#old-password-group,
-#new-password-group,
-#repeat-password-group {
-    /* display: flex; */
 }
 
 #show-old-password,

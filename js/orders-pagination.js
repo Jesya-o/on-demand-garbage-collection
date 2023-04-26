@@ -48,10 +48,10 @@ const renderOrders = (desiredPage, perPage) => {
 
             // Handle no orders case
             if (ordersNumber != 0) {
-                    var element = document.getElementById('no-orders');
-                    if (element) {
-                        element.style.display = 'none';
-                    }
+                var element = document.getElementById('no-orders');
+                if (element) {
+                    element.style.display = 'none';
+                }
             }
 
             updatePager(ordersNumber, desiredPage);

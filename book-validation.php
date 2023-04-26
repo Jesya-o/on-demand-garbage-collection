@@ -60,7 +60,7 @@ if (
 	// Street check
 	if (!preg_match("/^[\p{L}a-zA-Z\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$/u", $street)) {
 		$error_messages[] = "Invalid street name.";
-	}	
+	}
 	// House check
 	if (!preg_match("/^[\w\s\.,'\-\#\;\^\:\=\(\)\~\&\>\+=\*\/\<\?!{}\[\]]+$/", $house)) {
 		$error_messages[] = "Invalid street number.";
@@ -180,7 +180,7 @@ if (
 			}
 		}
 		$_SESSION['price'] = $price;
-	    $selectedItems = implode('|', $_POST['selector']);
+		$selectedItems = implode('|', $_POST['selector']);
 		$_SESSION['selected_items'] = $selectedItems;
 		$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
 		$saveDataChecked = isset($_POST['saveData']) && $_POST['saveData'] === 'saveData';

@@ -69,53 +69,52 @@ document.getElementById('house').addEventListener('blur', () => {
     fetchPostalCode(streetValue, houseValue);
   }
 });
-  function fixDropdownPosition(inputId) {
-    const input = document.getElementById(inputId);
-    if (input) {
-      input.addEventListener('focus', () => {
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.target.style.top !== '') {
-              updateDropdownPosition(input, mutation.target);
-            }
-          });
+function fixDropdownPosition(inputId) {
+  const input = document.getElementById(inputId);
+  if (input) {
+    input.addEventListener('focus', () => {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.target.style.top !== '') {
+            updateDropdownPosition(input, mutation.target);
+          }
         });
-        const pacContainer = document.querySelector('.pac-container');
-        if (pacContainer) {
-          observer.observe(pacContainer, { attributes: true, attributeFilter: ['style'] });
-        }
       });
-  
-      input.addEventListener('blur', () => {
-        const pacContainer = document.querySelector('.pac-container');
-        if (pacContainer) {
-          pacContainer.style.top = '';
-          pacContainer.style.left = '';
-        }
-      });
-    }
+      const pacContainer = document.querySelector('.pac-container');
+      if (pacContainer) {
+        observer.observe(pacContainer, { attributes: true, attributeFilter: ['style'] });
+      }
+    });
+
+    input.addEventListener('blur', () => {
+      const pacContainer = document.querySelector('.pac-container');
+      if (pacContainer) {
+        pacContainer.style.top = '';
+        pacContainer.style.left = '';
+      }
+    });
   }
-  
-  function updateDropdownPosition(input, container) {
-    const rect = input.getBoundingClientRect();
-    container.style.top = `${rect.bottom + window.scrollY}px`;
-    container.style.left = `${rect.left + window.scrollX}px`;
+}
+
+function updateDropdownPosition(input, container) {
+  const rect = input.getBoundingClientRect();
+  container.style.top = `${rect.bottom + window.scrollY}px`;
+  container.style.left = `${rect.left + window.scrollX}px`;
+}
+
+fixDropdownPosition('street');
+
+function disablePageScroll(inputId) {
+  const input = document.getElementById(inputId);
+  if (input) {
+    input.addEventListener('focus', () => {
+      document.body.style.overflowY = 'hidden';
+    });
+
+    input.addEventListener('blur', () => {
+      document.body.style.overflowY = 'auto';
+    });
   }
-  
-  fixDropdownPosition('street');
-  
-  function disablePageScroll(inputId) {
-    const input = document.getElementById(inputId);
-    if (input) {
-      input.addEventListener('focus', () => {
-        document.body.style.overflowY = 'hidden';
-      });
-  
-      input.addEventListener('blur', () => {
-        document.body.style.overflowY = 'auto';
-      });
-    }
-  }
-  
-  disablePageScroll('street');
-    
+}
+
+disablePageScroll('street');

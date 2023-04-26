@@ -9,7 +9,7 @@ const cancelOrder = (button, orderId) => {
             url: url.substring(0, url.lastIndexOf('/')) + '/api/cancel-order.php',
             data: { orderId: orderId },
             beforeSend: (xhr) => {
-                xhr.setRequestHeader ("Authorization", clientKey);
+                xhr.setRequestHeader("Authorization", clientKey);
             },
             success: (data) => {
                 const statusElement = button.parentElement;

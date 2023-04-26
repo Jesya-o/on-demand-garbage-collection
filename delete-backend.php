@@ -57,4 +57,3 @@ $deleteStmt->close();
 $link->close();
 
 echo "<script>alert('Account deleted. We will miss you!'); window.location.href = 'index.php';</script>";
-?>

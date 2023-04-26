@@ -49,8 +49,7 @@
     <p>We reserve the right to modify or update this Privacy Policy at any time. Any changes will be posted on our
       website, and your continued use of our services will signify your acceptance of the revised Privacy Policy.</p>
     <h3>Contact Us</h3>
-    <p class="policy-footer">If you have any questions or concerns about our Privacy Policy, please contact us at <a
-        href="support.html">support page</a>.</p>
+    <p class="policy-footer">If you have any questions or concerns about our Privacy Policy, please contact us at <a href="support.html">support page</a>.</p>
   </div>
 
   <!-- Footer section of the document -->

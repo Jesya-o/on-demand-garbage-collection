@@ -22,12 +22,13 @@ function fetchOrders($clientId)
     $result = $statement->get_result();
     $statement->close();
 
-    while($order = $result->fetch_assoc()) {
+    while ($order = $result->fetch_assoc()) {
         yield $order;
     }
 }
 
-function getOrdersNumber($clientId) {
+function getOrdersNumber($clientId)
+{
     $link = connectDatabase();
     $query = "SELECT COUNT(*) as orders_number FROM Orders WHERE client_id = ?";
     $statement = $link->prepare($query);
@@ -43,7 +44,8 @@ function getOrdersNumber($clientId) {
     return $result;
 }
 
-function fetchOrdersByPage($clientId, $desiredPage, $ordersPerPage) {
+function fetchOrdersByPage($clientId, $desiredPage, $ordersPerPage)
+{
     $link = connectDatabase();
     $query = "SELECT o.order_id, o.date, o.order_type, o.time_slot, o.status, o.price, d.name, d.surname
     FROM Orders as o
@@ -63,7 +65,7 @@ function fetchOrdersByPage($clientId, $desiredPage, $ordersPerPage) {
     $statement->close();
 
     $orders = [];
-    while($order = $result->fetch_assoc()) {
+    while ($order = $result->fetch_assoc()) {
         $orders[] = $order;
     }
     return $orders;

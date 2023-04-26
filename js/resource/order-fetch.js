@@ -20,7 +20,7 @@ export const orderData = {
                 url: self.getUrl(),
                 data: { desiredPage: desiredPage, ordersPerPage: ordersPerPage },
                 beforeSend: (xhr) => {
-                    xhr.setRequestHeader ("Authorization", clientKey);
+                    xhr.setRequestHeader("Authorization", clientKey);
                 },
                 success: (response) => {
                     resolve(response);

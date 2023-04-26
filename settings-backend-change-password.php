@@ -42,4 +42,3 @@ require_once('db-connection.php');
     // Close the database connection
     $statement->close();
     $link->close();
-?>
