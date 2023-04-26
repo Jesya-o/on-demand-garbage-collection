@@ -44,6 +44,7 @@
     margin: 120px 0px 40px auto;
     color: red;
     font-weight: 700;
+    cursor: pointer;
 }
 .delete:hover{
     border-color: var(--snowwhite);
