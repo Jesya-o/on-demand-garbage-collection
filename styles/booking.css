@@ -530,6 +530,10 @@ input {
     width: 15px;
 }
 
+input[name="time"]:disabled + label {
+    opacity: 0.5;
+}
+
 /* Mobile versions */
 @media screen and (max-width: 420px) {
     .booking {
