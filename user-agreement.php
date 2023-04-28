@@ -56,8 +56,7 @@
         changes will be posted on our website, and your continued use of our services will signify your acceptance of
         the revised User Agreement.</li>
     </ol>
-    <p class="list-footer">If you have any questions or concerns about this User Agreement, please contact us at support
-      page.</p>
+    <p class="list-footer">If you have any questions or concerns about this User Agreement, please contact <a href="mailto:info@whythrowit.com">our support services</a>.</p>
   </div>
 
   <!-- Footer section of the document -->

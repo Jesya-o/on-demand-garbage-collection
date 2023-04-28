@@ -55,7 +55,7 @@
                         <ul>
                             <li>
                                 <i class="checkmark"></i>
-                                Unsubscribe at any time
+                                Cancel at any time
                             </li>
                         </ul>
                     </div>
