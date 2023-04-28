@@ -31,11 +31,11 @@
       <div class="cofounders">
         <div class="cofounders-images">
           <div class="ksenija">
-            <img src="img/ourteam_img1.png" alt="co-founders1" width="150px" height="150px">
+            <img src="img/ourteam_img1.png" alt="co-founders1" width="150" height="150">
             <p>Ksenija Okuneva</p>
           </div>
           <div class="vira">
-            <img src="img/ourteam_img2.png" alt="co-founders2" width="150px" height="150px">
+            <img src="img/ourteam_img2.png" alt="co-founders2" width="150" height="150">
             <p>Vira Lavrova</p>
           </div>
           <!-- <div class="ilja">
@@ -52,7 +52,7 @@
       <h2 class="manager-header">Operations manager</h2>
       <div class="manager">
         <div class="victoria">
-          <img src="img/ourteam_img4.png" alt="Victoria" width="150px" height="150px">
+          <img src="img/ourteam_img4.png" alt="Victoria" width="150" height="150">
           <p>Victoria Chen</p>
         </div>
         <p class="manager-description">Victoria is in charge of coordinating our daily operations and ensuring that our
@@ -64,7 +64,7 @@
       <h2 class="driver-header">Lead driver</h2>
       <div class="driver">
         <div class="adrian">
-          <img src="img/ourteam_img5.png" alt="Adrian" width="150px" height="150px">
+          <img src="img/ourteam_img5.png" alt="Adrian" width="150" height="150">
           <p>Adrian Lopez</p>
         </div>
         <p class="manager-description">As our lead driver, Adrian oversees our garbage collection and disposal efforts.
@@ -76,7 +76,7 @@
       <h2 class="custservice-header">Customer Service Representative</h2>
       <div class="custservice">
         <div class="emily">
-          <img src="img/ourteam_img6.png" alt="Emily" width="150px" height="150px">
+          <img src="img/ourteam_img6.png" alt="Emily" width="150" height="150">
           <p>Emily Williams</p>
         </div>
         <p class="manager-description">Emily is the friendly voice on the other end of the phone when you call us. She's
@@ -88,7 +88,7 @@
       <h2 class="recycling-header">Recycling Coordinator</h2>
       <div class="recycling">
         <div class="alex">
-          <img src="img/ourteam_img7.png" alt="Alex" width="150px" height="150px">
+          <img src="img/ourteam_img7.png" alt="Alex" width="150" height="150">
           <p>Alex Scott</p>
         </div>
         <p class="recycling-description">As our recycling coordinator, Alex is responsible for ensuring that all

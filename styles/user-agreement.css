@@ -38,6 +38,10 @@
     color: black;
 }
 
+.list-footer a{
+    text-decoration: underline;
+    color: inherit;
+}
 #main ol {
     font-family: 'NanumMyeongjo';
     font-style: normal;

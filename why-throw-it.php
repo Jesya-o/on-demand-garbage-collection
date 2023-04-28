@@ -27,7 +27,7 @@
   <div id="main" class="content">
     <h1 class="whyus-header">Why Throw It?</h1>
     <div class="section1">
-      <img src="img/whyus_img1.jpg" alt="why_us_image1" width="240px" height="235px">
+      <img src="img/whyus_img1.jpg" alt="why_us_image1" width="240" height="235">
       <div class="text1" id="text1">
         <h2>Convenience</h2>
         <p>Our on-demand service allows you to schedule a pickup whenever you need it, at your convenience. You don't
@@ -38,14 +38,13 @@
     <div class="section2">
       <div class="text2" id="text2">
         <h2>Pricing</h2>
-        <p>Our on-demand service allows you to schedule a pickup whenever you need it, at your convenience. You don't
-          have to worry about adhering to a strict garbage collection schedule, as we're available when you need us.</p>
+        <p>At our on-demand garbage collection service, we believe that pricing should be transparent and affordable. That's why we offer competitive rates for all our waste management services.</p>
         <a class="btn2" href="index.php#pricing">Check our prices</a>
       </div>
-      <img src="img/whyus_img2.jpg" alt="why_us_image2" width="300px" height="235px">
+      <img src="img/whyus_img2.jpg" alt="why_us_image2" width="300" height="235">
     </div>
     <div class="section3">
-      <img src="img/whyus_img3.jpg" alt="why_us_image3" width="300px" height="235px">
+      <img src="img/whyus_img3.jpg" alt="why_us_image3" width="300" height="235">
       <div class="text3" id="text3">
         <h2>Ecology</h2>
         <p>We're committed to reducing waste and protecting the environment. We dispose of your garbage in an
@@ -60,7 +59,7 @@
           is professional, friendly, and respectful of your property.</p>
         <a class="btn4" href="our-team.php">Check our team</a>
       </div>
-      <img src="img/whyus_img4.jpg" alt="why_us_image4" width="300px" height="235px">
+      <img src="img/whyus_img4.jpg" alt="why_us_image4" width="300" height="235">
     </div>
   </div>
 
