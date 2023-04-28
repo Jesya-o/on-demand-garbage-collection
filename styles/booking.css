@@ -253,6 +253,7 @@
 
 .time-slots input:checked {
     border: 3px solid var(--blue);
+    background: var(--lightblue);
 }
 
 .time-slots input:disabled {
@@ -278,6 +279,7 @@
 
 .service-selector input:checked {
     border: 3px solid var(--blue);
+    background: var(--lightblue);
 }
 
 
