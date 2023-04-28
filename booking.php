@@ -76,7 +76,7 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                         <div class="line time">
                             <!-- Calendar -->
                             <div class="date-row">
-                                <label for="datepicker" class="calendar-label">Select a date:</label>
+                                <label class="calendar-label">Select a date:</label>
                                 <div class="calendar-container">
                                     <div class="calendar-header">
                                         <div class="calendar-prev-month">&lt;</div>
@@ -89,7 +89,7 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                             </div>
                             <!-- Available time slots -->
                             <div class="date-row">
-                                <label for="datepicker" class="calendar-label time-slots">Free slots:</label>
+                                <label class="calendar-label time-slots">Free slots:</label>
                                 <div class="calendar-container time-slots time-selector">
                                     <input type="radio" id="time1" name="time" value="10:00" <?= isset($_SESSION['time']) && $_SESSION['time'] === '10:00' ? 'checked' : ''; ?> required>
                                     <label for="time1">10:00</label><br>
@@ -121,7 +121,7 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                         <div class="form-container">
                             <p>Enter the weights of items</p>
                             <div class="form-line">
-                                <label for="selector1" class="item">Item 1</label>
+                                <label class="item">Item 1</label>
                                 <select name="selector[]">
                                     <option value="option1">1 - 20 kg</option>
                                     <option value="option2">21 - 50 kg</option>

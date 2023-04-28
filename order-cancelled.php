@@ -28,7 +28,7 @@
         <?php require_once('open-btn.php'); ?>
         <div class="centered-content">
 
-            <img src="img/broken-heart.png" class="heart">
+            <img src="img/broken-heart.png" class="heart" alt="broken heart">
             <div class="confirmation-message">
                 <p> Your order has been cancelled. </p>
                 <p> We are always glad to see you again at Throw It!</p>

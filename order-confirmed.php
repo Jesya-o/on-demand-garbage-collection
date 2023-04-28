@@ -83,7 +83,7 @@ unset($_SESSION['booking_made']);
         <?php require_once('open-btn.php'); ?>
         <div class="centered-content">
 
-            <img src="img/heart.png" class="heart">
+            <img src="img/heart.png" class="heart" alt="heart">
             <div class="confirmation-message">
                 <p> Your order has been accepted. </p>
                 <p> Thanks for choosing Throw It! </p>

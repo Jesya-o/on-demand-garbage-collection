@@ -2,7 +2,7 @@
   <footer class="footer-container footer-regular">
       <div class="menu-footer">
           <ul class="logo-caption-footer">
-              <li href="index.php">
+              <li>
                   <img src="img/logo.png" alt="Logo" class="logo-footer">
               </li>
               <li class="logo-caption">&#169; Throw It 2023. All rights reserved</li>
@@ -36,7 +36,7 @@
   <footer class="footer-container footer-mobile">
       <div class="footer-column exclude-logo">
           <ul class="logo-caption-footer">
-              <li href="index.php">
+              <li>
                   <img src="img/logo.png" alt="Logo" class="logo-footer">
               </li>
               <li class="logo-caption">&#169; Throw It 2023.<br>All rights reserved</li>
