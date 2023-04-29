@@ -3,7 +3,6 @@
 <?php 
 // Check if the user accessed order-confirmed.php from order-confirmation.php
 if (!isset($_SESSION['confirmation']) || $_SESSION['confirmation'] != true) {
-    // Redirect the user to booking.php and display an alert message
     $_SESSION['error_message'] = "See your confirmed orders in Orders section on Dashboard. To make sure your ongoing order is confirmed, make a booking first!";
     header("Location: booking.php");
     exit();
