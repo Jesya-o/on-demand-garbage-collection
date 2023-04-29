@@ -30,6 +30,7 @@
     --lightblue: #15384c;
     --white-yellow: #888;
     --red: rgb(208, 61, 51);
+    --light-red: #ff0000;
 }
 
 #main {
@@ -37,4 +38,25 @@
     padding: 2vw;
     color: var(--white);
     font-family: "Nanum Myeongjo";
+}
+
+.message-container {
+    display: none;
+    background-color: #f1f1f1;
+    color: #333;
+    border: 3px solid var(--red);
+    padding: 20px 30px;
+    border-radius: 5px;
+    z-index: 1000;
+
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+    transition: opacity 0.5s ease-in-out;
+
+    text-align: center;
 }

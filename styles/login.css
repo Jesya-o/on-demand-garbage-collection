@@ -231,7 +231,7 @@ input {
 }
 
 .error {
-	color: red;
+	color: var(--light-red);
 	display: block;
 	width: 300px;
 	padding-top: 10px;
