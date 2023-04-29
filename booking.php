@@ -25,6 +25,9 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
 <body>
     <!-- Content section of the document -->
     <?php require_once('sidenav.php'); ?>
+
+    <div class="message-container" id="messageContainer"></div>
+
     <div id="booking-main" class="booking">
         <!-- Open button -->
         <?php require_once('open-btn.php'); ?>
@@ -168,7 +171,10 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
     <script src="js/booking-validation.js"></script>
     <script>
         <?php if (isset($_SESSION['error_message'])) : ?>
-            alert("<?= $_SESSION['error_message']; ?>");
+            const errorMessage = "<?= addslashes($_SESSION['error_message']); ?>";
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = errorMessage;
+            messageContainer.style.display = 'block';
             <?php unset($_SESSION['error_message']); ?>
         <?php endif; ?>
     </script>
