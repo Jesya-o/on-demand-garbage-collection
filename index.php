@@ -39,6 +39,8 @@
 
   <!-- Content section of the document -->
   <div id="main" class="content">
+    <div class="message-container" id="messageContainer"></div>
+
     <!-- Open button -->
     <div id="openbutton">
       <button class="openbtn" type="button" onclick="openNav();">
@@ -325,6 +327,7 @@
 
   <script src="js/index-navigation.js"></script>
   <script src="js/testimonials-slider.js"></script>
+  <script src="js/message-account-deleted.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,4 @@
 <?php require_once('session.php'); ?>
-<?php //require_once('book-validation.php'); 
-?>
 <?php
 // Check if booking has been made
 if (!isset($_SESSION['booking_made']) || $_SESSION['booking_made'] !== true) {
@@ -50,6 +48,8 @@ $_SESSION['confirmation'] = true;
 
     <!-- Navigation -->
     <?php require('sidenav.php'); ?>
+
+    <div class="message-container" id="messageContainer"></div>
 
     <div id="booking-main" class="confirmation">
         <!-- Open button -->
@@ -130,7 +130,15 @@ $_SESSION['confirmation'] = true;
         </div>
     </div>
 
-
+    <script>
+        <?php if (isset($_SESSION['error_message'])) : ?>
+            const errorMessage = "<?= addslashes($_SESSION['error_message']); ?>";
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = errorMessage;
+            messageContainer.style.display = 'block';
+            <?php unset($_SESSION['error_message']); ?>
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>

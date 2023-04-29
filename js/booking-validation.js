@@ -6,7 +6,7 @@ function showMessage(message) {
   messageContainer.innerHTML = message;
   messageContainer.style.display = 'block';
 
-  // Set a timeout to hide the message after 5 seconds
+  // Set a timeout to hide the message after 3 seconds
   setTimeout(() => {
     hideMessage();
   }, 3000);

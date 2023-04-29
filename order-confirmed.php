@@ -78,6 +78,8 @@ unset($_SESSION['booking_made']);
     <!-- Navigation -->
     <?php require('sidenav.php'); ?>
 
+    <div class="message-container" id="messageContainer"></div>
+
     <div class="confirmation heart-container">
         <!-- Open button -->
         <?php require_once('open-btn.php'); ?>
@@ -98,6 +100,15 @@ unset($_SESSION['booking_made']);
     </div>
 
     <script src="js/dashboard-navigation.js"></script>
+    <script>
+        <?php if (isset($_SESSION['error_message'])) : ?>
+            const errorMessage = "<?= addslashes($_SESSION['error_message']); ?>";
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = errorMessage;
+            messageContainer.style.display = 'block';
+            <?php unset($_SESSION['error_message']); ?>
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>

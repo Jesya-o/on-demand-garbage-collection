@@ -16,21 +16,25 @@ $stmt->bind_param("i", $clientId);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Update driver_schedule table by setting order_id to null for the retrieved orders
-while ($row = $result->fetch_assoc()) {
-    $orderId = $row['order_id'];
-    $updateQuery = "UPDATE driver_schedule SET order_id = NULL WHERE order_id = ?";
-    $updateStmt = $link->prepare($updateQuery);
-    $updateStmt->bind_param("i", $orderId);
-    $updateStmt->execute();
-    $updateStmt->close();
+if ($result->num_rows > 0) {
+    // Update driver_schedule table by setting order_id to null for the retrieved orders
+    while ($row = $result->fetch_assoc()) {
+        $orderId = $row['order_id'];
+        $updateQuery = "UPDATE driver_schedule SET order_id = NULL WHERE order_id = ?";
+        $updateStmt = $link->prepare($updateQuery);
+        $updateStmt->bind_param("i", $orderId);
+        $updateStmt->execute();
+        $updateStmt->close();
 
-    // Delete entries from bulk_items table associated with the order
-    $deleteQuery = "DELETE FROM Bulk_items WHERE order_id = ?";
-    $deleteStmt = $link->prepare($deleteQuery);
-    $deleteStmt->bind_param("i", $orderId);
-    $deleteStmt->execute();
-    $deleteStmt->close();
+        if (!empty($orderId)) {
+            // Delete entries from bulk_items table associated with the order
+            $deleteQuery = "DELETE FROM Bulk_items WHERE order_id = ?";
+            $deleteStmt = $link->prepare($deleteQuery);
+            $deleteStmt->bind_param("i", $orderId);
+            $deleteStmt->execute();
+            $deleteStmt->close();
+        }
+    }
 }
 
 // Delete entries from Orders and Sessions tables associated with the client
@@ -56,4 +60,9 @@ $deleteStmt->close();
 // Close the database connection
 $link->close();
 
-echo "<script>alert('Account deleted. We will miss you!'); window.location.href = 'index.php';</script>";
+echo "
+<script>
+const message = encodeURIComponent('Account deleted. We will miss you!');
+window.location.href = 'index.php?message=' + message;
+</script>
+";

@@ -1,11 +1,9 @@
 <?php require_once('session.php'); ?>
-
 <?php require_once('settings-validation.php'); ?>
 <?php require_once('settings-backend-username.php'); ?>
-
 <?php require_once('backend-personalinfo.php'); ?>
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -28,6 +26,9 @@
 
     <!-- Navigation -->
     <?php require_once('sidenav.php'); ?>
+
+    <div class="message-container" id="messageContainer"></div>
+
     <div id="booking-main" class="booking">
         <!-- Open and Close button -->
         <div id="openbutton">
