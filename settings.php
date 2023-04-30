@@ -119,7 +119,7 @@
                             <!-- Submit form button -->
                             <div class="buttons">
                                 <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn">Submit and save</button>
-                                <button type="button" onclick="location.href='../delete-account.php'" class="delete">Delete account</button>
+                                <button type="button" onclick="location.href='delete-account.php'" class="delete">Delete account</button>
                             </div>
                         </div>
                     </div>
@@ -134,6 +134,7 @@
     <script src="js/error-messages-settings.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUUbQx_beVyNpZ1KjcZma3KZHDGbC68U&libraries=places"></script>
     <script src="js/address-suggestions.js"></script>
+    <script src="js/message-account-deleted.js"></script>
 </body>
 
 </html>
