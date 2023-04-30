@@ -34,6 +34,7 @@ require_once('orders-backend.php');
 <body>
     <!-- Content section of the document -->
     <?php require_once('sidenav.php'); ?>
+    <div class="message-container" id="messageContainer"></div>
     <div id="booking-main" class="booking">
         <!-- Open button -->
         <?php require_once('open-btn.php'); ?>
