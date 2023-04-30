@@ -26,6 +26,7 @@ function updateSlotStatus(availableSlots) {
             timeInputs[i].nextElementSibling.style.opacity = 1;
         } else {
             timeInputs[i].disabled = true;
+            timeInputs[i].checked = false;
             timeInputs[i].nextElementSibling.style.opacity = 0.5;
         }
     }
