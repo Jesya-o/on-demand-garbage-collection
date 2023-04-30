@@ -139,10 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitUserSettings'])
 	}
 	if (!empty($error_messages)) {
 		// Join the error messages into a single string separated by line breaks
-		$errorMessage = implode("\n", $error_messages);
+		$errorMessage = implode("<br>", $error_messages);
 		
 		// Generate the HTML and JavaScript code to display the error messages
-		echo '<div id="messageContainer" class="message-container" style="display: none;">' . htmlentities($errorMessage) . '</div>';
+		echo '<div id="messageContainer" class="message-container" style="display: none;">' . $errorMessage . '<br><br>Click to dismiss</div>';
 		echo '<script>
 				const messageContainer = document.getElementById("messageContainer");
 				
@@ -150,21 +150,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitUserSettings'])
 				if (messageContainer.textContent !== "") {
 				  messageContainer.style.display = "block";
 				}
-				
-				// Set a timeout to hide the message after 3 seconds
-				setTimeout(() => {
+			
+				// Add a click event listener to the message container
+				messageContainer.addEventListener("click", function () {
 				  messageContainer.style.display = "none";
-				}, 3000);
-	  
-				// Add a click event listener to the document object
-				document.addEventListener("click", function (event) {
-				  // Check if the click event target is not the messageContainer itself
-				  if (event.target !== messageContainer) {
-					messageContainer.style.display = "none";
-				  }
 				});
 			  </script>';
-	  }	  
+	  }
+	  
 	// If validation don't fail
 	if (empty($error_messages)) {
 		require_once('settings-backend-change-password.php');
