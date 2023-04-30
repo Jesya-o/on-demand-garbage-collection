@@ -5,9 +5,11 @@ function getUrl(date) {
 
 function updateAvailableTimeSlots() {
     var date = document.getElementById("datepicker").value;
+    var today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()).getTime();
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
+        if (new Date(date).getTime() >= today && this.readyState === 4 && this.status === 200) {
             var availableSlots = JSON.parse(this.responseText);
             updateSlotStatus(availableSlots);
         }

@@ -3,6 +3,9 @@ require_once('../db-connection.php');
 require_once('../token-management.php');
 
 function getAvailableTimeSlots($date) {
+    $timestamp = strtotime($date);
+	$date = date('Y-m-d', $timestamp);
+    
     $link = connectDatabase();
     $query = "SELECT DISTINCT time_slot FROM driver_schedule WHERE date = ? AND order_id IS NULL";
     $stmt = $link->prepare($query);
