@@ -46,11 +46,11 @@ if (
 	// Validation
 	// First name check: contains only letters
 	if (!preg_match("/^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$/", $name)) {
-		$error_messages[] = "Invalid first name. Please enter only letters.";
+		$error_messages[] = "Invalid first name. Name should be 1-30 english/estonian letters.";
 	}
 	// Last name check: contains only letters
 	if (!preg_match("/^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$/", $surname)) {
-		$error_messages[] = "Invalid last name. Please enter only letters.";
+		$error_messages[] = "Invalid last name. Surname should be 1-30 english/estonian letters.";
 	}
 
 	// Email check: contains @ symbol somewhere in the middle and .smth in the end
@@ -126,7 +126,7 @@ if (
 	} else {
 		$comment = '';
 	}
-    
+
 	$driver_id = findDriver($date, $time);
 
 	if ($driver_id === null) {
@@ -144,14 +144,13 @@ if (
 		$phone = '';
 	}
 	if (!empty($error_messages)) {
-		echo '<div class="error-messages">';
-		echo '<p>The following errors occurred:</p>';
-		echo '<ul>';
-		foreach ($error_messages as $error) {
-			echo '<li>' . $error . '</li>';
-		}
-		echo '</ul>';
-		echo '</div>';
+		// Store the error messages in a session variable
+		session_start();
+		$_SESSION['error_messages'] = $error_messages;
+
+		// Redirect the user back to the booking.php page
+		header('Location: booking.php');
+		exit();
 	}
 	// If validation don't fail
 	if (empty($error_messages)) {

@@ -2,6 +2,18 @@
 require_once('backend-personalinfo.php');
 
 $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'] : '';
+
+session_start();
+if (isset($_SESSION['error_messages'])) {
+    echo "<div class='message-container' id='messageContainer' style='display:block;'>";
+    foreach ($_SESSION['error_messages'] as $error_message) {
+        echo "$error_message<br>";
+    }
+    echo "<br>Message will be closed in 5s. <br> Click on the screen to close now.";
+    echo "</div>";
+    // Unset the session variable after displaying the messages
+    unset($_SESSION['error_messages']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +59,7 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
                         <p class="booking-form-title">Enter your information</p>
                         <div class="input-lines">
                             <label for="name">Name</label>
-                            <!-- <input type="text" id="name" name="name" class="field" placeholder=" Name" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($name) ? '' : $name; ?>"> -->
-                            <input type="text" id="name" name="name" class="field" placeholder=" Name" required value="<?php echo empty($name) ? '' : $name; ?>">
+                            <input type="text" id="name" name="name" class="field" placeholder=" Name" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($name) ? '' : $name; ?>">
 
                             <label for="surname">Surname</label>
                             <input type="text" id="surname" name="surname" class="field" placeholder=" Surname" required pattern="^[A-Za-z '\-šžõäöüŠŽÕÄÖÜ]{1,30}$" value="<?php echo empty($surname) ? '' : $surname; ?>">
@@ -171,13 +182,12 @@ $selectedItems = isset($_SESSION['selected_items']) ? $_SESSION['selected_items'
     <script src="js/booking-totalprice.js"></script>
     <script src="js/booking-validation.js"></script>
     <script>
-        <?php if (isset($_SESSION['error_message'])) : ?>
-            const errorMessage = "<?= addslashes($_SESSION['error_message']); ?>";
-            const messageContainer = document.getElementById('messageContainer');
-            messageContainer.innerHTML = errorMessage;
-            messageContainer.style.display = 'block';
-            <?php unset($_SESSION['error_message']); ?>
-        <?php endif; ?>
+        const errorMessagesContainer = document.getElementById('messageContainer');
+        if (errorMessagesContainer) {
+            setTimeout(() => {
+                errorMessagesContainer.style.display = 'none';
+            }, 5000); // Hide the error messages after 5 seconds
+        }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUUbQx_beVyNpZ1KjcZma3KZHDGbC68U&libraries=places"></script>
     <script src="js/address-suggestions.js"></script>
