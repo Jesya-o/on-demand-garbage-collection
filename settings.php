@@ -145,6 +145,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUUbQx_beVyNpZ1KjcZma3KZHDGbC68U&libraries=places"></script>
     <script src="js/address-suggestions.js"></script>
     <script src="js/delete-account.js"></script>
+    <script src="js/message-account-deleted.js"></script>
 </body>
 
 </html>
