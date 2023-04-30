@@ -17,4 +17,8 @@ if (urlParams.has('message')) {
     document.addEventListener('click', function () {
         messageContainer.style.display = 'none';
     });
+
+    // Remove 'message' parameter from the URL
+    const newUrl = window.location.href.split("?")[0];
+    window.history.replaceState(null, null, newUrl);
 }
