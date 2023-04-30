@@ -16,7 +16,11 @@ if (
     !($clientKey = $_SESSION['client_key'] ?? null) ||
     !validateClientKey($clientKey)
 ) {
-    echo "<script>alert('Please log in again.'); window.location.href='login.php';</script>";
+    echo "<script>
+    const message = encodeURIComponent('Please log in again!');
+    window.location.href = 'index.php?message=' + message;
+    </script>
+    ";
     header("Cache-Control: no-cache, must-revalidate");
     header("Expires: Thu, 01 Jan 1970 00:00:00 GMT");
     exit;
