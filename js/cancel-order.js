@@ -19,10 +19,10 @@ const cancelOrder = (button, orderId) => {
 
                 statusElement.innerHTML = '';
                 statusElement.appendChild(cancelledLabel);
-                alert('Order canceled successfully!');
+                showMessage('Order canceled successfully!');
             },
             error: (data) => {
-                alert('Could not cancel order!');
+                showMessage('Could not cancel order!');
                 if (data?.responseJSON?.reloadRequired) {
                     location.reload();
                 }
@@ -30,3 +30,18 @@ const cancelOrder = (button, orderId) => {
         });
     }
 }
+
+function showMessage(message) {
+    const messageContainer = document.getElementById("messageContainer");
+    messageContainer.innerHTML = message + '<br><br>Click to dismiss';
+    messageContainer.style.display = "block";
+    messageContainer.addEventListener("click", function () {
+      messageContainer.style.display = "none";
+    });
+  
+    // Set a timeout to hide the message after 3 seconds
+    setTimeout(() => {
+      messageContainer.style.display = "none";
+    }, 3000);
+  }
+  

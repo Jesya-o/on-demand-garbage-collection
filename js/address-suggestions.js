@@ -18,14 +18,14 @@ function onStreetChanged() {
   const place = autocompleteStreet.getPlace();
 
   if (!place.address_components) {
-    alert('No details available for the selected address');
+    showMessage('No details available for the selected address');
     return;
   }
 
   // Filter results by Tallinn
   const cityComponent = place.address_components.find((component) => component.types.includes('locality'));
   if (cityComponent && cityComponent.long_name !== 'Tallinn') {
-    alert('Please select a street within Tallinn');
+    showMessage('Please select a street within Tallinn');
     document.getElementById('street').value = '';
     return;
   }
@@ -54,10 +54,10 @@ function fetchPostalCode(street, houseNumber) {
       if (postalCodeComponent) {
         document.getElementById('index').value = postalCodeComponent.long_name;
       } else {
-        alert('Postal code not found');
+        showMessage('Postal code not found');
       }
     } else {
-      alert(`Geocoder failed due to: ${status}`);
+      showMessage(`Geocoder failed due to: ${status}`);
     }
   });
 }
@@ -118,3 +118,17 @@ function disablePageScroll(inputId) {
 }
 
 disablePageScroll('street');
+
+function showMessage(message) {
+  const messageContainer = document.getElementById("messageContainer");
+  messageContainer.innerHTML = message + '<br><br>Click to dismiss';
+  messageContainer.style.display = "block";
+  messageContainer.addEventListener("click", function () {
+    messageContainer.style.display = "none";
+  });
+
+  // Set a timeout to hide the message after 3 seconds
+  setTimeout(() => {
+    messageContainer.style.display = "none";
+  }, 3000);
+}
