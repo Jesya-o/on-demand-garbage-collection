@@ -42,10 +42,32 @@ require_once('registration-backend.php');
           </div>
         </div>
         <?php if (isset($errorMessage)) : ?>
-          <script>
-            alert('<?php echo $errorMessage; ?>');
-          </script>
-        <?php endif; ?>
+  <div id="messageContainer" class="message-container" style="display: none; color: #333;"><?php echo $errorMessage; ?></div>
+  <script>
+    const messageContainer = document.getElementById("messageContainer");
+    
+    // Show the message container if the error message is present
+    if (messageContainer.textContent.trim() !== "") {
+      messageContainer.style.display = "block";
+      
+      // Set a timeout to hide the message after 3 seconds
+      setTimeout(() => {
+        messageContainer.style.display = "none";
+      }, 3000);
+    }
+    
+    // Add a click event listener to the document object
+    document.addEventListener("click", function (event) {
+      // Check if the click event target is not the messageContainer itself
+      if (event.target !== messageContainer) {
+        messageContainer.style.display = "none";
+      }
+    });
+  </script>
+<?php endif; ?>
+
+
+
         <div class="terms">
           <p>By clicking Agree &amp; Join, you agree to the <br>
             Throw It
