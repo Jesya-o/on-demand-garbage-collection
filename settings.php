@@ -28,6 +28,16 @@
     <?php require_once('sidenav.php'); ?>
 
     <div class="message-container" id="messageContainer"></div>
+    <div class="message-container custom-modal" id="customModal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete your account?</p>
+            <div class="message-btns">
+                <button class="button red-btn" id="okButton">Yes</button>
+                <button class="button" id="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+
 
     <div id="booking-main" class="booking">
         <!-- Open and Close button -->
@@ -119,7 +129,7 @@
                             <!-- Submit form button -->
                             <div class="buttons">
                                 <button type="submit" name="submitUserSettings" class="settings-save-btn user-settings-save-btn">Submit and save</button>
-                                <button type="button" onclick="location.href='../delete-account.php'" class="delete">Delete account</button>
+                                <button type="button" class="delete" id="deleteButton">Delete account</button>
                             </div>
                         </div>
                     </div>
@@ -134,6 +144,7 @@
     <script src="js/error-messages-settings.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUUbQx_beVyNpZ1KjcZma3KZHDGbC68U&libraries=places"></script>
     <script src="js/address-suggestions.js"></script>
+    <script src="js/delete-account.js"></script>
 </body>
 
 </html>
