@@ -59,8 +59,10 @@ function updateCalendar() {
         if (slotTime < currentDate.getTime()) {
             slot.disabled = true;
             slot.checked = false;
+            slot.nextElementSibling.style.opacity = 0.5;
         } else {
             slot.disabled = false;
+            slot.nextElementSibling.style.opacity = 1;
         }
     });
 }
