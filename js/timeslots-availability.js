@@ -21,7 +21,7 @@ function updateAvailableTimeSlots() {
 function updateSlotStatus(availableSlots) {
     var timeInputs = document.querySelectorAll('input[name="time"]');
     for (var i = 0; i < timeInputs.length; i++) {
-        if (availableSlots.includes(timeInputs[i].value)) {
+        if (availableSlots.includes(timeInputs[i].value) && timeInputs.disabled[i] == false) {
             timeInputs[i].disabled = false;
             timeInputs[i].nextElementSibling.style.opacity = 1;
         } else {

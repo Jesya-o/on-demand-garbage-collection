@@ -58,6 +58,7 @@ function updateCalendar() {
         var slotTime = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), slot.value.split(':')[0], slot.value.split(':')[1]).getTime();
         if (slotTime < currentDate.getTime()) {
             slot.disabled = true;
+            slot.checked = false;
         } else {
             slot.disabled = false;
         }
