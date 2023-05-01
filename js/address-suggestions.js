@@ -121,7 +121,7 @@ disablePageScroll('street');
 
 function showMessage(message) {
   const messageContainer = document.getElementById("messageContainer");
-  messageContainer.innerHTML = message + '<br><br>Click to dismiss';
+  messageContainer.innerHTML = message + '<br><br>Click on me to hide the message now';
   messageContainer.style.display = "block";
   messageContainer.addEventListener("click", function () {
     messageContainer.style.display = "none";
