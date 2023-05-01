@@ -16,18 +16,6 @@ if (
     !($clientKey = $_SESSION['client_key'] ?? null) ||
     !validateClientKey($clientKey)
 ) {
-    echo "<script>
-        const homeBtn = document.getElementById('homeBtn');
-        const loginBtn = document.getElementById('loginBtn');
-
-        homeBtn.addEventListener('click', () => {
-            window.location.href = 'index.php'; // Replace with your home page URL
-        });
-
-        loginBtn.addEventListener('click', () => {
-            window.location.href = 'login.php';
-        });
-    </script>";
     echo "<div id='customAlert' style='    
         position: fixed;
         top: 50%;
@@ -64,6 +52,18 @@ if (
             Log in
             </button>
           </div>";
+    echo "<script>
+        const homeBtn = document.getElementById('homeBtn');
+        const loginBtn = document.getElementById('loginBtn');
+
+        homeBtn.addEventListener('click', () => {
+            window.location.href = 'index.php';
+        });
+
+        loginBtn.addEventListener('click', () => {
+            window.location.href = 'login.php';
+        });
+    </script>";
     header("Cache-Control: no-cache, must-revalidate");
     header("Expires: Thu, 01 Jan 1970 00:00:00 GMT");
     exit;
