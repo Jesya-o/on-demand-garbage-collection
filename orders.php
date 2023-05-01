@@ -1,11 +1,6 @@
 <?php
 require_once('session.php');
 require_once('orders-backend.php');
-
-// foreach (fetchOrders(explode(':', base64_decode($_SESSION['client_key']))) as $order) {
-//     print_r($order);
-//     echo '<br>';
-// }
 ?>
 <!DOCTYPE html>
 
