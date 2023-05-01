@@ -143,6 +143,7 @@
     }
 
     .price {
+        position: absolute;
         left: 2%;
         top: 70%;
     }
@@ -240,9 +241,8 @@
 
     .price {
         text-align: center;
-        font-weight: bold;
-        top: 95%;
-        right: -50%;
+        top: 100%;
+        left: 9%;
     }
 
     .next {
