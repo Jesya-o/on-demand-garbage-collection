@@ -1,9 +1,10 @@
-// Navigation
+// Open navigation menu
 function openNav() {
     document.getElementById("side-panel").style.width = "180px";
     document.getElementById("booking-main").style.marginLeft = "200px";
 }
 
+// Close navigation menu
 function closeNav() {
     document.getElementById("side-panel").style.width = "0";
     if (window.innerWidth < 420) {

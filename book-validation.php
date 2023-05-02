@@ -118,6 +118,7 @@ if (
 		}
 	}
 
+	// Comments check
 	if (isset($_POST['selector']) && !empty($_POST['comment'])) {
 		$comment = sanitize($_POST['comment']);
 		if (!preg_match("/^[\w\s\.,'\-\#\@\;\$\%\^\:\=\(\)\~\&\€\>\+=\*\/\<\?!{}\[\]]+$/", $comment)) {
@@ -127,12 +128,15 @@ if (
 		$comment = '';
 	}
 
+	// Find the driver for provided date and time
 	$driver_id = findDriver($date, $time);
 
+	// Handle if driver not found
 	if ($driver_id === null) {
 		$error_messages[] = "No available drivers for the given date and time.";
 	}
 
+	// Phone check
 	if (isset($_POST['selector']) && !empty($_POST['phone'])) {
 		$phone = sanitize($_POST['phone']);
 		$_SESSION['phone'] = $phone;
@@ -143,6 +147,8 @@ if (
 	} else {
 		$phone = '';
 	}
+
+	// Display if any error messages on booking page
 	if (!empty($error_messages)) {
 		// Store the error messages in a session variable
 		session_start();
@@ -152,6 +158,7 @@ if (
 		header('Location: booking.php');
 		exit();
 	}
+
 	// If validation don't fail
 	if (empty($error_messages)) {
 		$_SESSION['booking_made'] = true;
@@ -189,7 +196,8 @@ if (
 		$_SESSION['selected_items'] = $selectedItems;
 		$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
 		$saveDataChecked = isset($_POST['saveData']) && $_POST['saveData'] === 'saveData';
-		// insert the data into the database
+
+		// Insert the data into the database by client id
 		$clientId = getClientId();
 
 		if ($clientId != null) {
@@ -199,6 +207,8 @@ if (
 			}
 
 			$_SESSION['success'] = "Your booking was successfully created.";
+
+			// Relocate to confirmation page
 			header("Location: order-confirmation.php");
 		} else {
 			$errors['session'] = "Invalid session.";
