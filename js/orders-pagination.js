@@ -1,20 +1,23 @@
+// Import the orderData object from the order-fetch.js module.
 import { orderData } from "./resource/order-fetch.js";
 
-// Call the function to hide the specified div
-
+// Get the container and pager elements by their IDs and set the number of orders to display per page.
 const container = $('#container'),
     pager = $('#order-pager'),
     perPage = 5;
 
 let pagesNumber;
 
+// Define a function to format dates in a specific way.
 const formatDate = (date) => {
     const dateObj = new Date(date);
     return dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
+// Define a function to render the orders for the specified page and number per page.
 const renderOrders = (desiredPage, perPage) => {
 
+    // Define a nested function to update the pager based on the number of orders and the current page.
     const updatePager = (ordersNumber, currentPage) => {
         const pagesNumberBuffer = Math.ceil(ordersNumber / perPage);
 
@@ -40,13 +43,14 @@ const renderOrders = (desiredPage, perPage) => {
         }
     }
 
+    // Fetch the orders for the specified page and number per page.
     orderData.fetchOrdersByPage(desiredPage, perPage)
         .then((data) => {
-            // Clean container before rendering
+            // Clear the container before rendering.
             container.empty();
             const { ordersNumber, orders } = data;
 
-            // Handle no orders case
+            // Handle the case where there are no orders.
             if (ordersNumber != 0) {
                 var element = document.getElementById('no-orders');
                 if (element) {
@@ -54,9 +58,11 @@ const renderOrders = (desiredPage, perPage) => {
                 }
             }
 
+            // Update the pager based on the number of orders and the current page.
             updatePager(ordersNumber, desiredPage);
             let index = perPage * (desiredPage - 1) + 1;
             orders.forEach((order) => {
+                // Create the HTML elements for each order record.
                 const captionText = $('<div>').addClass('order-record');
                 const row = $('<div>').addClass('row');
                 const info = $('<div>').addClass('info');
@@ -64,8 +70,11 @@ const renderOrders = (desiredPage, perPage) => {
                 const p1 = $('<p>');
                 const status = order.status;
 
+                // Customize the display of the order status and add a cancel button if the order is ongoing.
                 if (status === 'Ongoing') {
                     p1.append('Ongoing by ' + formatDate(order.date) + ' at ' + order.time_slot);
+
+                    // Create a cancel button for ongoing orders and add a click handler.
                     const cancelBtn = $('<button>').attr({
                         type: 'submit',
                         name: 'submitCancelling',
@@ -76,21 +85,27 @@ const renderOrders = (desiredPage, perPage) => {
                     });
                     p1.append(cancelBtn);
                 } else if (status === 'Completed') {
+                    // Display the completion date and time for completed orders.
                     p1.text('Completed on ' + formatDate(order.date) + ' at ' + order.time_slot);
                 } else if (status === 'Cancelled') {
+                    // Display a "Cancelled" label for cancelled orders.
                     const span = $('<span>').addClass('cancelled').text('Cancelled');
                     p1.append(span);
                 }
 
+                // Create the HTML elements for the driver name and order price.
                 const p2 = $('<p>').text('Driver: ' + order.name + ' ' + order.surname);
                 const price = $('<div>').addClass('price').text('Price: ' + order.price + ' EUR');
 
+                // Append the HTML elements to the container.
                 info.append(h2, p1, p2);
                 row.append(info, price);
                 captionText.append(row);
                 container.append(captionText);
 
+                // Increment the index to keep track of the order numbers.
                 index++;
+
             });
         });
 }

@@ -43,7 +43,3 @@ passwordInput.addEventListener('invalid', () => {
 		passwordInput.setCustomValidity('');
 	}
 });
-
-// document.getElementById('signup').addEventListener('submit', (event) => {
-// 	event.preventDefault();
-// });
