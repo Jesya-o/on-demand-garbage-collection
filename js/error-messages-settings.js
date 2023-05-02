@@ -10,6 +10,7 @@ const repeatPasswordError = document.getElementById('RepeatPasswordError');
 const usernamePattern = /^[A-Za-z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]{4,45}$/;
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,45}$/;
 
+//every error is as stated in output message
 function validatePasswordInput(passwordInput) {
 	const password = passwordInput.value.trim();
 
