@@ -131,8 +131,8 @@ function updateDropdownPosition(input, container) {
   // Get the bounding rectangle of the input field
   const rect = input.getBoundingClientRect();
   // Set the position of the container to be just below the input field
-  container.style.top = ${ rect.bottom + window.scrollY } px;
-  container.style.left = ${ rect.left + window.scrollX } px;
+  container.style.top = `${rect.bottom + window.scrollY}px`;
+  container.style.left = `${rect.left + window.scrollX}px`;
 }
 
 // Call the updateDropdownPosition function with the 'street' input and its corresponding container
