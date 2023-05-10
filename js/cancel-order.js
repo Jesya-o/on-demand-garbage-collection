@@ -23,11 +23,8 @@ const cancelOrder = (button, orderId) => {
                         const statusElement = button.parentElement;
                         const cancelledLabel = document.createElement('span');
                         cancelledLabel.textContent = 'Cancelled';
-                        const spanInfo = $('<span>').addClass('cancelled').text(' The driver would\'ve arrived at ' + formatDate(order.date) + ' at ' + order.time_slot);
-                    p1.append(spanInfo);
+                        
                         cancelledLabel.className = 'cancelled';
-                        // Reload the current page
-location.reload();
 
                         statusElement.innerHTML = '';
                         statusElement.appendChild(cancelledLabel);
