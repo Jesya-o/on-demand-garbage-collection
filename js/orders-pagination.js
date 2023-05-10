@@ -88,9 +88,11 @@ const renderOrders = (desiredPage, perPage) => {
                     // Display the completion date and time for completed orders.
                     p1.text('Completed on ' + formatDate(order.date) + ' at ' + order.time_slot);
                 } else if (status === 'Cancelled') {
-                    // Display a "Cancelled" label for cancelled orders.
-                    const span = $('<span>').addClass('cancelled').text('Cancelled');
-                    p1.append(span);
+                    // Display a "Cancelled" label for cancelled orders and include the date and time slot.
+                    const spanCancelled = $('<span>').addClass('cancelled').text('Cancelled');
+                    p1.append(spanCancelled);
+                    const spanInfo = $('<span>').addClass('cancelled').text(' The driver would\'ve arrived at ' + formatDate(order.date) + ' at ' + order.time_slot);
+                    p1.append(spanInfo);
                 }
 
                 // Create the HTML elements for the driver name and order price.
