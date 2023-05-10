@@ -82,6 +82,8 @@ const renderOrders = (desiredPage, perPage) => {
                     }).text('Cancel');
                     cancelBtn.click(function () {
                         cancelOrder(this, order.order_id);
+                        const spanInfo = $('<span>').addClass('cancelled').text(' The driver would\'ve arrived at ' + formatDate(order.date) + ' at ' + order.time_slot);
+                    p1.append(spanInfo);
                     });
                     p1.append(cancelBtn);
                 } else if (status === 'Completed') {
