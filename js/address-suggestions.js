@@ -1,3 +1,18 @@
+function onAddressInputChange() {
+  const streetValue = document.getElementById('street').value;
+  const houseValue = document.getElementById('house').value;
+
+  if (streetValue && houseValue) {
+    fetchPostalCode(streetValue, houseValue);
+  } else if (streetValue) {
+    fetchPostalCode(streetValue, 1);
+  }
+
+}
+
+document.getElementById('street').addEventListener('input', onAddressInputChange);
+document.getElementById('house').addEventListener('input', onAddressInputChange);
+
 // Declare global variables
 let autocompleteStreet, autocompleteHouse;
 let selectedStreetName = '';
@@ -68,7 +83,7 @@ function fetchPostalCode(street, houseNumber) {
         document.getElementById('index').value = postalCodeComponent.long_name;
       } else {
         // If no postal code component was found, display an error message to the user
-        showMessage('Postal code not found');
+        //showMessage('Postal code not found');
       }
     } else {
       // If the geocoding request failed, display an error message to the user with the reason for the failure
