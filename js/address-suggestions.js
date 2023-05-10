@@ -1,3 +1,23 @@
+let houseNumberEntered = false;
+
+document.getElementById('house').addEventListener('blur', () => {
+  const streetValue = document.getElementById('street').value;
+  const houseValue = document.getElementById('house').value;
+
+  if (streetValue && houseValue) {
+    houseNumberEntered = true;
+    fetchPostalCode(streetValue, houseValue);
+  }
+});
+document.getElementById('street').addEventListener('change', () => {
+  const streetValue = document.getElementById('street').value;
+  const houseValue = document.getElementById('house').value;
+
+  if (houseNumberEntered && streetValue && houseValue) {
+    fetchPostalCode(streetValue, houseValue);
+  }
+});
+
 // Declare global variables
 let autocompleteStreet, autocompleteHouse;
 let selectedStreetName = '';
@@ -22,7 +42,6 @@ function onStreetChanged() {
     return;
   }
 
-  // Filter results by Tallinn
   const cityComponent = place.address_components.find((component) => component.types.includes('locality'));
   if (cityComponent && cityComponent.long_name !== 'Tallinn') {
     showMessage('Please select a street within Tallinn');
@@ -30,13 +49,21 @@ function onStreetChanged() {
     return;
   }
 
-  // Extract street name
   const streetComponent = place.address_components.find((component) => component.types.includes('route'));
   if (streetComponent) {
     selectedStreetName = streetComponent.long_name;
     document.getElementById('street').value = selectedStreetName;
+
+    // Check if house number is entered, and regenerate postal code if required
+    const houseValue = document.getElementById('house').value;
+    if (houseValue) {
+      fetchPostalCode(selectedStreetName, houseValue);
+    } else {
+      fetchPostalCode(selectedStreetName, 1);
+    }
   }
 }
+
 
 // When the DOM is fully loaded, run the initAutocomplete function
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
