@@ -1,23 +1,3 @@
-let houseNumberEntered = false;
-
-document.getElementById('house').addEventListener('blur', () => {
-  const streetValue = document.getElementById('street').value;
-  const houseValue = document.getElementById('house').value;
-
-  if (streetValue && houseValue) {
-    houseNumberEntered = true;
-    fetchPostalCode(streetValue, houseValue);
-  }
-});
-document.getElementById('street').addEventListener('change', () => {
-  const streetValue = document.getElementById('street').value;
-  const houseValue = document.getElementById('house').value;
-
-  if (houseNumberEntered && streetValue && houseValue) {
-    fetchPostalCode(streetValue, houseValue);
-  }
-});
-
 // Declare global variables
 let autocompleteStreet, autocompleteHouse;
 let selectedStreetName = '';
